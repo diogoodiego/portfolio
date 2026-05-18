@@ -24,3 +24,25 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+.me-animation {
+  animation: me-animation 10s linear infinite;
+}
+
+@keyframes me-animation {
+  0% {
+    object-position: 50% 100%;
+  }
+  25% {
+    object-position: 50% 93%;
+  }
+  50% {
+    object-position: 50% 96%;
+    scale: 1.05;
+  }
+  75% {
+    object-position: 50% 92%;
+  }
+  100% {
+    object-position: 50% 100%;
+  }
+}
