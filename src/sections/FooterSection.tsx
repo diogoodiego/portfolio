@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import me from "../assets/me.png";
+import side from "../assets/side.png";
 
 // ==========================================
 // Types & Data Contracts
@@ -42,6 +43,43 @@ const CONTACTS: ContactInfo[] = [
     action: "Connect on LinkedIn",
     value: "linkedin.com/in/dio",
     href: "https://linkedin.com",
+  },
+];
+
+interface ResumeItem {
+  institution: string;
+  role: string;
+  period: string;
+}
+
+const EDUCATION: ResumeItem[] = [
+  {
+    institution: "IFRN",
+    role: "Technologist in Software Analysis and Development",
+    period: "2021-2025",
+  },
+  {
+    institution: "IFRN",
+    role: "Web Development Technician",
+    period: "2017-2021",
+  },
+];
+
+const EXPERIENCE: ResumeItem[] = [
+  {
+    institution: "Geowellex",
+    role: "UX/UI Designer",
+    period: "Present",
+  },
+  {
+    institution: "Leme",
+    role: "UI Designer and Front-end Developer",
+    period: "2020-2021",
+  },
+  {
+    institution: "Assembleia Smart",
+    role: "Ui Designer Freelancer",
+    period: "2019",
   },
 ];
 
@@ -92,38 +130,77 @@ const CLIENTS: InfoItem[] = [
 
 const ContactItem = ({ label, action, value, href }: ContactInfo) => (
   <div>
-    <h4 className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase font-mono mb-2">
+    <h4 className="mb-2 font-mono font-bold text-[10px] text-zinc-500 uppercase tracking-widest">
       {label}
     </h4>
     <a
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noreferrer" : undefined}
-      className="text-xs text-white hover:text-[#f85c37] font-medium transition-colors duration-200 block group"
+      className="group block font-medium text-white hover:text-[#f85c37] text-xs transition-colors duration-200"
     >
       {action} &rarr;{" "}
-      <span className="font-mono block text-zinc-400 group-hover:text-zinc-300 mt-0.5 transition-colors duration-200">
+      <span className="block mt-0.5 font-mono text-zinc-400 group-hover:text-zinc-300 transition-colors duration-200">
         {value}
       </span>
     </a>
   </div>
 );
 
+const SparkleIcon = () => (
+  <svg
+    className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300 shrink-0"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id="sparkle-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#e23c14" />
+        <stop offset="100%" stopColor="#f85c37" />
+      </linearGradient>
+    </defs>
+    <path
+      d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z"
+      fill="url(#sparkle-grad)"
+    />
+  </svg>
+);
+
+const ResumeItemComponent = ({ institution, role, period }: ResumeItem) => (
+  <div className="group flex items-start gap-4 py-1">
+    <SparkleIcon />
+    <div className="flex-1">
+      <div className="flex justify-between items-baseline gap-4">
+        <h5 className="font-bold text-white group-hover:text-[#f85c37] text-sm sm:text-base tracking-wide transition-colors duration-200">
+          {institution}
+        </h5>
+        <span className="font-mono text-zinc-500 group-hover:text-zinc-400 text-xs transition-colors duration-200 shrink-0">
+          {period}
+        </span>
+      </div>
+      <p className="mt-1 text-zinc-400 group-hover:text-zinc-300 text-xs sm:text-sm leading-relaxed transition-colors duration-200">
+        {role}
+      </p>
+    </div>
+  </div>
+);
+
 const InfoList = ({ title, items }: { title: string; items: InfoItem[] }) => (
   <div className="flex flex-col gap-3">
-    <h5 className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase font-mono">
+    <h5 className="font-mono font-bold text-[10px] text-zinc-500 uppercase tracking-widest">
       {title}
     </h5>
     <ul className="flex flex-col gap-2">
       {items.map((item, idx) => (
         <li
           key={idx}
-          className="flex justify-between items-center text-xs group/item cursor-pointer"
+          className="group/item flex justify-between items-center text-xs cursor-pointer"
         >
           <span className="text-zinc-400 group-hover/item:text-[#f85c37] transition-colors duration-200">
             {item.name}
           </span>
-          <span className="text-[9px] sm:text-[10px] text-zinc-600 font-mono text-right group-hover/item:text-zinc-400 transition-colors duration-200">
+          <span className="font-mono text-[9px] text-zinc-600 sm:text-[10px] group-hover/item:text-zinc-400 text-right transition-colors duration-200">
             {item.meta.match(/^\d+$/) ? `'${item.meta}` : item.meta}
           </span>
         </li>
@@ -140,81 +217,105 @@ export const FooterSection = () => {
   return (
     <footer
       id="contato"
-      className="relative bg-black h-screen w-full flex flex-col lg:flex-row p-12 gap-12 items-center justify-center snap-start overflow-hidden animate-fade-in"
+      className="relative flex lg:flex-row flex-col justify-center items-center gap-8 bg-stone-950 p-24 w-full min-h-screen overflow-hidden animate-fade-in snap-start"
     >
       {/* Left Side: Editorial Bio/About Hero Card */}
-      <div className="group relative w-full lg:w-[380px] shrink-0 bg-gradient-to-b from-[#e23c14] to-[#f85c37] rounded-[24px] p-8 flex flex-col justify-between min-h-[460px] lg:min-h-[580px] shadow-2xl overflow-hidden">
+      <div className="group relative flex flex-col justify-between lg:self-stretch bg-gradient-to-b from-[#a3060e] to-[#CB1019] shadow-2xl p-8 rounded-[24px] overflow-hidden shrink-0">
         {/* Subtle noise/mesh background texture */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-black/20 mix-blend-overlay pointer-events-none" />
-
-        {/* Top text - Huge bold header */}
-        <div className="relative z-10">
-          <h3 className="text-4xl font-extrabold tracking-tighter text-white select-none font-mono">
-            DIO
-          </h3>
-        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-stone-950/20 pointer-events-none mix-blend-overlay" />
 
         {/* Profile cutout blend overlay */}
-        <div className="absolute bottom-0 right-0 left-0 h-[65%] w-full flex items-end justify-center pointer-events-none overflow-hidden select-none">
-          <Image
-            src={me}
-            alt="Diogo profile picture"
-            className="w-[90%] h-full object-contain object-bottom translate-y-4 scale-110 mix-blend-luminosity opacity-90 transition-all duration-700 ease-out group-hover:scale-105 group-hover:translate-y-2 group-hover:opacity-100 group-hover:mix-blend-normal"
-            priority
-          />
-          {/* Smooth transition gradient to bottom of the card */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#f85c37] to-transparent" />
+        <Image
+          src={side}
+          alt="Diogo profile picture"
+          className="-bottom-2 -left-2 z-3 absolute w-[75%] group-hover:w-[76%] scale-x-[-1] transition-all duration-300"
+          priority
+        />
+        <Image
+          src={side}
+          alt="Diogo profile picture"
+          className="-bottom-2 -left-2 z-2 absolute blur-[3px] w-[75%] group-hover:w-[76%] scale-x-[-1] transition-all duration-300"
+          priority
+        />
+        <Image
+          src={side}
+          alt="Shadow"
+          className="-bottom-2 -left-2 z-1 absolute opacity-20 group-hover:opacity-60 blur-lg w-80 scale-x-[-1] transition-all duration-300 mix-blend-plus-darker"
+          priority
+        />
+        <div className="top-0 left-0 z-4 absolute bg-gradient-to-b from-80% from-orange-700/0 to-red-700/90 w-full h-full"></div>
+        <div className="top-[50%] group-hover:top-[35%] left-1/2 z-0 absolute font-black text-[280px] rotate-6 group-hover:rotate-45 transition-all -translate-x-1/2 -translate-y-1/2 duration-300">
+          DIO
         </div>
 
         {/* Bottom Biography Area */}
-        <div className="relative z-10 mt-auto pt-48">
-          <p className="text-[11px] font-bold tracking-wider text-white/50 uppercase font-mono mb-2">
+        <div className="z-10 relative mt-auto pt-48">
+          <p className="mb-2 font-regular text-md text-white/60 uppercase tracking-wider">
             Sobre mim
           </p>
-          <p className="text-white text-base md:text-lg leading-snug font-medium max-w-[280px]">
-            Olá, sou o{" "}
-            <span className="underline decoration-white/30 underline-offset-4 font-bold">
-              Diogo (Dio)
-            </span>
-            . Desenho interfaces intuitivas, sistemas de design robustos e
-            soluções digitais de alta precisão.
+          <p className="max-w-[360px] font-medium text-white text-base md:text-lg leading-snug">
+            I'm Diogo! A designer with over 5 years of experience, specializing
+            in creating intuitive interfaces and visual solutions for the energy
+            industry.
           </p>
         </div>
       </div>
 
       {/* Right Side: Navigation Lists, Metadata & Action button */}
-      <div className="flex-1 flex flex-col justify-between gap-12 lg:gap-8 pt-4 lg:pt-0">
-        {/* Top Row: Quick Contacts */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pb-8 border-b border-white/5">
-          {CONTACTS.map((contact, idx) => (
-            <ContactItem key={idx} {...contact} />
-          ))}
-        </div>
+      <div className="flex flex-col justify-between gap-8 w-full">
+        {/* Middle Row: About Me + Education & Experience Layout and Navigation Info Lists */}
+        <div className="gap-8 grid grid-cols-1 xl:grid-cols-5 py-2">
+          {/* Left Part (Col 1-3): About Me + Education & Experience */}
+          <div className="flex flex-col gap-6 xl:col-span-3">
+            <div className="relative gap-6 grid grid-cols-1 sm:grid-cols-2 pt-4">
+              {/* Education */}
+              <div className="flex flex-col gap-4">
+                <h4 className="font-mono font-bold text-zinc-500 text-xs uppercase tracking-widest">
+                  Education
+                </h4>
+                <div className="flex flex-col gap-4">
+                  {EDUCATION.map((item, idx) => (
+                    <ResumeItemComponent key={idx} {...item} />
+                  ))}
+                </div>
+              </div>
 
-        {/* Middle Row: Double layer Grid columns */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-10 py-4">
-          <InfoList title="Projects" items={PROJECTS} />
-          <InfoList title="Stack" items={STACK} />
-          <InfoList title="Channels" items={CHANNELS} />
-          <InfoList title="Features" items={FEATURES} />
-          <InfoList title="Clients" items={CLIENTS} />
+              {/* Experience */}
+              <div className="flex flex-col gap-4 sm:pl-6 sm:border-white/5 sm:border-l">
+                <h4 className="font-mono font-bold text-zinc-500 text-xs uppercase tracking-widest">
+                  Experience
+                </h4>
+                <div className="flex flex-col gap-4">
+                  {EXPERIENCE.map((item, idx) => (
+                    <ResumeItemComponent key={idx} {...item} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Part (Col 4-5): Original Navigation Info Lists (Compact 2-column layout) */}
+          <div className="gap-x-6 gap-y-8 grid grid-cols-2 xl:col-span-2 xl:pl-8 xl:border-white/5 xl:border-l">
+            <InfoList title="Projects" items={PROJECTS} />
+            <InfoList title="Stack" items={STACK} />
+            <InfoList title="Channels" items={CHANNELS} />
+            <InfoList title="Features" items={FEATURES} />
+            <div className="col-span-2">
+              <InfoList title="Clients" items={CLIENTS} />
+            </div>
+          </div>
         </div>
 
         {/* Bottom Section: Footer metadata & Pill Action button */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-6 border-t border-white/5">
-          <div className="flex flex-col gap-1 text-[11px] text-zinc-600">
-            <div className="font-mono">
-              &copy; {new Date().getFullYear()} DIO. All rights reserved.
-            </div>
-            <div>
-              Designed with pixel-precision. Built with Next.js, React and D3.
-            </div>
-          </div>
+        <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-6 pt-6 border-white/5 border-t">
+          {CONTACTS.map((contact, idx) => (
+            <ContactItem key={idx} {...contact} />
+          ))}
 
           {/* Glowing Orange Book Call Action Button */}
           <a
             href="mailto:hello@dio.design"
-            className="relative inline-flex items-center justify-center px-7 py-3.5 bg-gradient-to-r from-[#e23c14] to-[#f85c37] rounded-full text-xs font-bold text-white uppercase tracking-wider transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_24px_rgba(248,92,55,0.4)] active:scale-[0.98]"
+            className="inline-flex relative justify-center items-center bg-gradient-to-r from-[#e23c14] to-[#f85c37] hover:shadow-[0_0_24px_rgba(248,92,55,0.4)] px-7 py-3.5 rounded-full font-bold text-white text-xs uppercase tracking-wider hover:scale-[1.03] active:scale-[0.98] transition-all duration-300"
           >
             Book a session
           </a>

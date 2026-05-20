@@ -15,7 +15,7 @@ export const NavItem: React.FC<NavItemProps> = ({
   return (
     <Link
       href={href}
-      className={`text-sm font-medium rounded-full px-4 py-2 transition-all duration-400 
+      className={`text-sm font-medium rounded-full px-4 py-2 transition-all duration-400 leading-none
         ${
           isActive
             ? "text-white bg-white/10"

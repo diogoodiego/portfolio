@@ -1,374 +1,279 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import * as d3 from "d3";
+import React, { useState, useMemo } from "react";
 
-interface DataPoint {
-  depth: number; // meters
-  rop: number;   // Rate of Penetration, m/h
-  target: number; // Benchmark ROP, m/h
+interface ChartDataPoint {
+  date: string;
+  value: number;
 }
 
-// Generate premium-looking, realistic drilling telemetry data
-const initialData: DataPoint[] = [
-  { depth: 2100, rop: 12.4, target: 15.0 },
-  { depth: 2102, rop: 14.8, target: 15.0 },
-  { depth: 2104, rop: 18.2, target: 15.0 },
-  { depth: 2106, rop: 15.1, target: 15.0 },
-  { depth: 2108, rop: 22.4, target: 15.0 },
-  { depth: 2110, rop: 26.8, target: 15.0 },
-  { depth: 2112, rop: 21.0, target: 15.0 },
-  { depth: 2114, rop: 13.5, target: 15.0 },
-  { depth: 2116, rop: 9.6, target: 15.0 },
-  { depth: 2118, rop: 11.2, target: 15.0 },
-  { depth: 2120, rop: 17.5, target: 15.0 },
-  { depth: 2122, rop: 23.1, target: 15.0 },
-  { depth: 2124, rop: 29.4, target: 15.0 },
-  { depth: 2126, rop: 32.8, target: 15.0 },
-  { depth: 2128, rop: 25.4, target: 15.0 },
-  { depth: 2130, rop: 19.8, target: 15.0 },
-  { depth: 2132, rop: 16.2, target: 15.0 },
-  { depth: 2134, rop: 22.1, target: 15.0 },
-  { depth: 2136, rop: 28.5, target: 15.0 },
-  { depth: 2138, rop: 34.2, target: 15.0 },
-  { depth: 2140, rop: 31.0, target: 15.0 },
-];
+interface TabData {
+  data: ChartDataPoint[];
+  total: string;
+  change: string;
+}
 
 export const ROPChart = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const svgRef = useRef<SVGSVGElement>(null);
-  const [mounted, setMounted] = useState(false);
-  const [hoveredData, setHoveredData] = useState<DataPoint | null>(null);
-  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const [selectedTab, setSelectedTab] = useState<string>("1M");
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  useEffect(() => {
-    setMounted(true);
+  // Generate high-fidelity realistic datasets for each tab relative to May 19, 2026
+  const tabDataMap = useMemo<Record<string, TabData>>(() => {
+    const baseDate = new Date(2026, 4, 19); // May 19, 2026
+
+    // 1W: 7 days
+    const generate1W = (): TabData => {
+      const values = [5210.45, 5480.90, 5320.10, 5890.30, 6120.75, 6436.44, 7223.62];
+      const data = Array.from({ length: 7 }, (_, i) => {
+        const d = new Date(baseDate);
+        d.setDate(baseDate.getDate() - (6 - i));
+        const dateStr = d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+        return { date: dateStr, value: values[i] };
+      });
+      return { data, total: "$7,223.62", change: "14.3% ↑" };
+    };
+
+    // 1M: 28 days (to fit perfectly in the card layout)
+    const generate1M = (): TabData => {
+      const data: ChartDataPoint[] = [];
+      const startVal = 4700;
+      const endVal = 7223.62;
+      const count = 28;
+      
+      for (let i = 0; i < count; i++) {
+        const d = new Date(baseDate);
+        d.setDate(baseDate.getDate() - (count - 1 - i));
+        const dateStr = d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+        
+        // Progress factor
+        const factor = i / (count - 1);
+        // Add smooth wave fluctuations
+        const wave = Math.sin(factor * Math.PI * 2.5) * 350;
+        const noise = Math.sin(i * 1.8) * 120;
+        let value = startVal + (endVal - startVal) * factor + wave + noise;
+        
+        // Ensure precise final value
+        if (i === count - 1) value = endVal;
+        data.push({ date: dateStr, value: Math.round(value * 100) / 100 });
+      }
+      return { data, total: "$7,223.62", change: "14.3% ↑" };
+    };
+
+    // 6M: 24 points (approx weekly points over 6 months)
+    const generate6M = (): TabData => {
+      const data: ChartDataPoint[] = [];
+      const startVal = 5120;
+      const endVal = 12850.40;
+      const count = 24;
+
+      for (let i = 0; i < count; i++) {
+        const d = new Date(baseDate);
+        d.setDate(baseDate.getDate() - (count - 1 - i) * 7);
+        const dateStr = d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+        
+        const factor = i / (count - 1);
+        const wave = Math.sin(factor * Math.PI * 3.5) * 550;
+        const noise = Math.cos(i * 1.2) * 200;
+        let value = startVal + (endVal - startVal) * factor + wave + noise;
+        
+        if (i === count - 1) value = endVal;
+        data.push({ date: dateStr, value: Math.round(value * 100) / 100 });
+      }
+      return { data, total: "$12,850.40", change: "32.1% ↑" };
+    };
+
+    // 1Y: 12 monthly points
+    const generate1Y = (): TabData => {
+      const data: ChartDataPoint[] = [];
+      const startVal = 10800;
+      const endVal = 24110.85;
+      const count = 12;
+
+      for (let i = 0; i < count; i++) {
+        const d = new Date(baseDate);
+        d.setMonth(baseDate.getMonth() - (count - 1 - i));
+        const dateStr = d.toLocaleDateString("en-US", { month: "short", year: "2-digit" });
+        
+        const factor = i / (count - 1);
+        const wave = Math.sin(factor * Math.PI * 2.2) * 1100;
+        let value = startVal + (endVal - startVal) * factor + wave;
+        
+        if (i === count - 1) value = endVal;
+        data.push({ date: dateStr, value: Math.round(value * 100) / 100 });
+      }
+      return { data, total: "$24,110.85", change: "68.4% ↑" };
+    };
+
+    // All Time: 28 bi-weekly/monthly points
+    const generateAllTime = (): TabData => {
+      const data: ChartDataPoint[] = [];
+      const startVal = 1500;
+      const endVal = 48250.00;
+      const count = 28;
+
+      for (let i = 0; i < count; i++) {
+        const d = new Date(baseDate);
+        d.setMonth(baseDate.getMonth() - (count - 1 - i) * 2);
+        const dateStr = d.toLocaleDateString("en-US", { month: "short", year: "2-digit" });
+        
+        const factor = i / (count - 1);
+        const wave = Math.sin(factor * Math.PI * 4) * 1800;
+        const noise = Math.cos(i * 1.5) * 800;
+        let value = startVal + (endVal - startVal) * factor + wave + noise;
+        
+        if (i === count - 1) value = endVal;
+        data.push({ date: dateStr, value: Math.round(value * 100) / 100 });
+      }
+      return { data, total: "$48,250.00", change: "148.9% ↑" };
+    };
+
+    return {
+      "1W": generate1W(),
+      "1M": generate1M(),
+      "6M": generate6M(),
+      "1Y": generate1Y(),
+      "All Time": generateAllTime(),
+    };
   }, []);
 
-  useEffect(() => {
-    if (!mounted || !svgRef.current || !containerRef.current) return;
+  const activeData = tabDataMap[selectedTab];
+  const { data: chartData, total: totalBalance, change: percentageChange } = activeData;
 
-    const svg = d3.select(svgRef.current);
-    const container = containerRef.current;
+  // Find min and max for scaling
+  const values = chartData.map((d) => d.value);
+  const maxVal = Math.max(...values);
+  const minVal = Math.min(...values);
 
-    // Clear previous elements
-    svg.selectAll("*").remove();
+  // Helper to scale bar heights elegantly (min height is 15% to keep chart balanced)
+  const getBarHeight = (value: number) => {
+    if (maxVal === minVal) return 50;
+    // Scale value between 15% and 85% for visual composition
+    const range = maxVal - minVal;
+    return ((value - minVal) / range) * 70 + 15;
+  };
 
-    // Get exact dimensions of parent container
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+  // Tooltip position & information calculation
+  const hoveredPoint = hoveredIndex !== null ? chartData[hoveredIndex] : null;
+  const hoveredBarHeight = hoveredPoint ? getBarHeight(hoveredPoint.value) : 0;
+  const hoveredBarLeft = hoveredIndex !== null ? (hoveredIndex / (chartData.length - 1)) * 100 : 0;
 
-    const margin = { top: 12, right: 16, bottom: 20, left: 32 };
-    const chartWidth = width - margin.left - margin.right;
-    const chartHeight = height - margin.top - margin.bottom;
-
-    const g = svg
-      .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
-
-    // Define X & Y Scales
-    const xScale = d3
-      .scaleLinear()
-      .domain(d3.extent(initialData, (d) => d.depth) as [number, number])
-      .range([0, chartWidth]);
-
-    const yScale = d3
-      .scaleLinear()
-      .domain([0, (d3.max(initialData, (d) => Math.max(d.rop, d.target)) || 40) * 1.1])
-      .range([chartHeight, 0]);
-
-    // Create custom gridlines
-    const yTicks = yScale.ticks(4);
-    g.append("g")
-      .attr("class", "gridlines")
-      .selectAll("line")
-      .data(yTicks)
-      .enter()
-      .append("line")
-      .attr("x1", 0)
-      .attr("x2", chartWidth)
-      .attr("y1", (d) => yScale(d))
-      .attr("y2", (d) => yScale(d))
-      .attr("stroke", "rgba(255, 255, 255, 0.05)")
-      .attr("stroke-dasharray", "2,2");
-
-    // X Axis (Depth) - sleek minimalist style
-    const xAxis = d3
-      .axisBottom(xScale)
-      .ticks(5)
-      .tickFormat((d) => `${d}m`)
-      .tickSize(0)
-      .tickPadding(8);
-
-    g.append("g")
-      .attr("transform", `translate(0, ${chartHeight})`)
-      .call(xAxis)
-      .call((g) => g.select(".domain").remove())
-      .selectAll("text")
-      .attr("fill", "rgba(255, 255, 255, 0.4)")
-      .style("font-size", "10px")
-      .style("font-family", "monospace");
-
-    // Y Axis (ROP)
-    const yAxis = d3
-      .axisLeft(yScale)
-      .ticks(4)
-      .tickFormat((d) => `${d}`)
-      .tickSize(0)
-      .tickPadding(6);
-
-    g.append("g")
-      .call(yAxis)
-      .call((g) => g.select(".domain").remove())
-      .selectAll("text")
-      .attr("fill", "rgba(255, 255, 255, 0.4)")
-      .style("font-size", "10px")
-      .style("font-family", "monospace");
-
-    // Defs for gradients & glowing filters
-    const defs = svg.append("defs");
-
-    // Area Gradient (Teal/Emerald)
-    const areaGradient = defs
-      .append("linearGradient")
-      .attr("id", "rop-area-gradient")
-      .attr("x1", "0%")
-      .attr("y1", "0%")
-      .attr("x2", "0%")
-      .attr("y2", "100%");
-
-    areaGradient
-      .append("stop")
-      .attr("offset", "0%")
-      .attr("stop-color", "#10b981")
-      .attr("stop-opacity", 0.25);
-
-    areaGradient
-      .append("stop")
-      .attr("offset", "100%")
-      .attr("stop-color", "#10b981")
-      .attr("stop-opacity", 0.0);
-
-    // Glowing filter for the line
-    const glowFilter = defs
-      .append("filter")
-      .attr("id", "glow")
-      .attr("x", "-20%")
-      .attr("y", "-20%")
-      .attr("width", "140%")
-      .attr("height", "140%");
-
-    glowFilter
-      .append("feGaussianBlur")
-      .attr("stdDeviation", "3")
-      .attr("result", "blur");
-
-    const feMerge = glowFilter.append("feMerge");
-    feMerge.append("feMergeNode").attr("in", "blur");
-    feMerge.append("feMergeNode").attr("in", "SourceGraphic");
-
-    // Area Generator
-    const areaGenerator = d3
-      .area<DataPoint>()
-      .x((d) => xScale(d.depth))
-      .y0(chartHeight)
-      .y1((d) => yScale(d.rop))
-      .curve(d3.curveMonotoneX);
-
-    // Line Generator (Actual ROP)
-    const lineGenerator = d3
-      .line<DataPoint>()
-      .x((d) => xScale(d.depth))
-      .y((d) => yScale(d.rop))
-      .curve(d3.curveMonotoneX);
-
-    // Line Generator (Target ROP benchmark)
-    const targetLineGenerator = d3
-      .line<DataPoint>()
-      .x((d) => xScale(d.depth))
-      .y((d) => yScale(d.target))
-      .curve(d3.curveMonotoneX);
-
-    // Draw Target Benchmark Line (Subtle pink dashed line)
-    g.append("path")
-      .datum(initialData)
-      .attr("fill", "none")
-      .attr("stroke", "#db2777")
-      .attr("stroke-width", 1.5)
-      .attr("stroke-opacity", 0.4)
-      .attr("stroke-dasharray", "4,4")
-      .attr("d", targetLineGenerator);
-
-    // Draw ROP Gradient Area
-    const areaPath = g
-      .append("path")
-      .datum(initialData)
-      .attr("fill", "url(#rop-area-gradient)")
-      .attr("d", areaGenerator);
-
-    // Draw ROP Neon Line
-    const linePath = g
-      .append("path")
-      .datum(initialData)
-      .attr("fill", "none")
-      .attr("stroke", "#10b981")
-      .attr("stroke-width", 2)
-      .attr("filter", "url(#glow)")
-      .attr("d", lineGenerator);
-
-    // Add entry animation (draw line from left to right)
-    const totalLength = linePath.node()?.getTotalLength() || 0;
-    linePath
-      .attr("stroke-dasharray", `${totalLength} ${totalLength}`)
-      .attr("stroke-dashoffset", totalLength)
-      .transition()
-      .duration(1500)
-      .ease(d3.easeCubicOut)
-      .attr("stroke-dashoffset", 0);
-
-    // Animate Area opacity fading in
-    areaPath
-      .attr("opacity", 0)
-      .transition()
-      .delay(400)
-      .duration(1000)
-      .attr("opacity", 1);
-
-    // Create interactive Overlay for tooltips
-    const focus = g.append("g").style("display", "none");
-
-    // Vertical cursor line
-    const hoverLine = focus
-      .append("line")
-      .attr("class", "hover-line")
-      .attr("stroke", "rgba(255, 255, 255, 0.15)")
-      .attr("stroke-width", 1)
-      .attr("stroke-dasharray", "3,3")
-      .attr("y1", 0)
-      .attr("y2", chartHeight);
-
-    // Active data point circle
-    const hoverCircle = focus
-      .append("circle")
-      .attr("r", 5)
-      .attr("fill", "#ffffff")
-      .attr("stroke", "#10b981")
-      .attr("stroke-width", 2)
-      .attr("filter", "url(#glow)");
-
-    // Target point indicator
-    const targetHoverCircle = focus
-      .append("circle")
-      .attr("r", 3.5)
-      .attr("fill", "#db2777")
-      .attr("stroke-width", 0);
-
-    // Bisector function for finding nearest point on hover
-    const bisectDepth = d3.bisector((d: DataPoint) => d.depth).left;
-
-    // Invisible rectangle to capture all mouse events
-    g.append("rect")
-      .attr("width", chartWidth)
-      .attr("height", chartHeight)
-      .attr("fill", "transparent")
-      .on("mouseover", () => focus.style("display", null))
-      .on("mouseout", () => {
-        focus.style("display", "none");
-        setHoveredData(null);
-      })
-      .on("mousemove", function (event) {
-        const mouseX = d3.pointer(event)[0];
-        const xValue = xScale.invert(mouseX);
-
-        // Find index of closest data point
-        const index = bisectDepth(initialData, xValue, 1);
-        const d0 = initialData[index - 1];
-        const d1 = initialData[index];
-        if (!d0) return;
-        const d = !d1 ? d0 : xValue - d0.depth > d1.depth - xValue ? d1 : d0;
-
-        const xPos = xScale(d.depth);
-        const yPos = yScale(d.rop);
-        const yTargetPos = yScale(d.target);
-
-        // Update indicators
-        hoverLine.attr("x1", xPos).attr("x2", xPos);
-        hoverCircle.attr("cx", xPos).attr("cy", yPos);
-        targetHoverCircle.attr("cx", xPos).attr("cy", yTargetPos);
-
-        // Update state for DOM tooltip
-        setHoveredData(d);
-        setTooltipPos({
-          x: xPos + margin.left + 12,
-          y: yPos + margin.top - 20,
-        });
-      });
-
-    // Resize observer to handle dynamic changes
-    const resizeObserver = new ResizeObserver(() => {
-      // Re-trigger layout logic on size change
-      const newWidth = container.clientWidth;
-      const newHeight = container.clientHeight;
-      if (newWidth === 0 || newHeight === 0) return;
-      
-      const newChartWidth = newWidth - margin.left - margin.right;
-      const newChartHeight = newHeight - margin.top - margin.bottom;
-
-      xScale.range([0, newChartWidth]);
-      yScale.range([newChartHeight, 0]);
-
-      // Re-render components instantly
-      g.selectAll(".gridlines line")
-        .attr("x2", newChartWidth)
-        .attr("y1", (d: any) => yScale(d))
-        .attr("y2", (d: any) => yScale(d));
-
-      g.select(".x-axis").attr("transform", `translate(0, ${newChartHeight})`);
-      
-      // Update paths
-      areaPath.attr("d", areaGenerator);
-      linePath.attr("d", lineGenerator);
-    });
-
-    resizeObserver.observe(container);
-    return () => resizeObserver.disconnect();
-  }, [mounted]);
-
-  if (!mounted) {
-    return (
-      <div className="w-full h-full bg-neutral-900/40 rounded-lg animate-pulse border border-white/5 flex items-center justify-center">
-        <span className="text-white/20 text-xs font-mono">Telemetry Connecting...</span>
-      </div>
-    );
-  }
+  // Decide if tooltip should go to the left or right of the line
+  const isTooltipOnRight = hoveredIndex !== null && hoveredIndex / chartData.length < 0.35;
 
   return (
-    <div ref={containerRef} className="w-full h-full relative overflow-visible select-none">
-      <svg ref={svgRef} className="w-full h-full overflow-visible" />
-      
-      {/* Absolute overlay HTML tooltip for pixel-perfect design */}
-      {hoveredData && (
-        <div
-          className="absolute z-20 pointer-events-none bg-black/90 border border-white/10 rounded px-2 py-1 shadow-lg flex flex-col gap-0.5"
-          style={{
-            left: `${Math.min(tooltipPos.x, (containerRef.current?.clientWidth || 300) - 110)}px`,
-            top: `${Math.max(4, Math.min(tooltipPos.y, (containerRef.current?.clientHeight || 100) - 45))}px`,
-            transition: "left 0.08s ease, top 0.08s ease",
-          }}
-        >
-          <div className="text-[9px] text-zinc-500 font-mono tracking-wider uppercase">
-            Depth: <span className="text-zinc-300 font-semibold">{hoveredData.depth} m</span>
-          </div>
-          <div className="flex items-center gap-1.5 justify-between">
-            <span className="text-[10px] text-emerald-400 font-bold font-mono">
-              ROP: {hoveredData.rop.toFixed(1)} m/h
-            </span>
-            <span className="text-[9px] text-pink-500 font-mono">
-              tgt: {hoveredData.target.toFixed(1)}
-            </span>
-          </div>
+    <div className="col-start-2 row-start-2 flex flex-col p-5 bg-stone-950/40 backdrop-blur-md z-10 rounded-2xl gap-4 w-[420px] shadow-2xl border border-white/5 font-sans">
+      {/* Header Info */}
+      <div className="flex flex-col">
+        <span className="text-[11px] text-stone-400 font-medium tracking-wide uppercase font-mono">
+          Total Balance
+        </span>
+        <div className="flex items-baseline gap-2 mt-1">
+          <span className="text-3xl font-bold tracking-tight text-white">
+            {totalBalance}
+          </span>
+          <span className="text-[13px] font-semibold text-emerald-400 flex items-center gap-0.5">
+            {percentageChange}
+          </span>
         </div>
-      )}
+      </div>
+
+      {/* Timeframe Selector tabs */}
+      <div className="flex justify-between items-center gap-1.5 mt-1">
+        {["1W", "1M", "6M", "1Y", "All Time"].map((tab) => (
+          <button
+            key={tab}
+            onClick={() => {
+              setSelectedTab(tab);
+              setHoveredIndex(null);
+            }}
+            className={`px-3 py-1 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
+              selectedTab === tab
+                ? "bg-white text-stone-950 shadow-md scale-105"
+                : "bg-transparent text-stone-400 hover:text-white border border-white/10 hover:bg-white/5"
+            }`}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+
+      {/* Interactive Bar Chart Container */}
+      <div className="relative h-32 w-full mt-4 flex items-end justify-between select-none">
+        
+        {/* Render Background Bars */}
+        {chartData.map((d, index) => {
+          const height = getBarHeight(d.value);
+          const isHovered = hoveredIndex === index;
+
+          return (
+            <div
+              key={index}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className="flex-1 h-full flex flex-col justify-end items-center group cursor-pointer relative"
+              style={{
+                paddingLeft: chartData.length > 10 ? "1px" : "4px",
+                paddingRight: chartData.length > 10 ? "1px" : "4px",
+              }}
+            >
+              {/* The visual Bar */}
+              <div
+                className={`w-full rounded-t-[3px] transition-all duration-500 ease-out ${
+                  isHovered
+                    ? "bg-rose-500 shadow-[0_0_12px_rgba(244,63,94,0.65)]"
+                    : "bg-white/[0.08] hover:bg-white/20"
+                }`}
+                style={{ height: `${height}%` }}
+              />
+            </div>
+          );
+        })}
+
+        {/* Hover Line, Handle Dot, and Tooltip */}
+        {hoveredIndex !== null && hoveredPoint && (
+          <>
+            {/* Vertical Line through active bar */}
+            <div
+              className="absolute top-0 bottom-0 w-[1px] bg-rose-500/30 pointer-events-none transition-all duration-150 ease-out"
+              style={{
+                left: `calc(${hoveredBarLeft}% + 0px)`,
+              }}
+            />
+
+            {/* Glowing Dot on top of active bar */}
+            <div
+              className="absolute w-3 h-3 rounded-full bg-white border-2 border-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.8)] -translate-x-1/2 translate-y-1/2 pointer-events-none transition-all duration-150 ease-out"
+              style={{
+                left: `${hoveredBarLeft}%`,
+                bottom: `${hoveredBarHeight}%`,
+              }}
+            />
+
+            {/* Floating Tooltip positioned left or right of the handle */}
+            <div
+              className="absolute z-30 pointer-events-none bg-stone-900/95 border border-white/10 text-white rounded-lg px-2.5 py-1.5 shadow-xl text-xs flex items-center gap-1.5 font-mono backdrop-blur-sm transition-all duration-150 ease-out"
+              style={{
+                bottom: `calc(${hoveredBarHeight}% - 14px)`,
+                left: isTooltipOnRight
+                  ? `calc(${hoveredBarLeft}% + 12px)`
+                  : `calc(${hoveredBarLeft}% - 12px)`,
+                transform: isTooltipOnRight
+                  ? "translate(0, 0)"
+                  : "translate(-100%, 0)",
+              }}
+            >
+              <span className="text-stone-400 font-sans font-medium">{hoveredPoint.date}</span>
+              <span className="text-white/30">|</span>
+              <span className="text-white font-bold">
+                ${hoveredPoint.value.toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </span>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };
