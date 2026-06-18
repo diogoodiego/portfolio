@@ -94,7 +94,7 @@ export const BentoSection = () => {
           <div className="top-6 right-6 left-6 z-20 absolute flex flex-col gap-2.5 bg-stone-900 shadow-2xl backdrop-blur-md p-3 border border-white/10 rounded-2xl">
             <div className="flex justify-between items-center pb-2 border-white/5 border-b">
               <div className="flex items-center gap-1.5">
-                <span className="bg-rose-500 rounded-full w-1.5 h-1.5 animate-pulse" />
+                <span className="bg-theme-accent rounded-full w-1.5 h-1.5 animate-pulse" />
                 <span className="font-mono font-bold text-[9px] text-white uppercase tracking-wide">Ceni UI Kit</span>
               </div>
               <span className="font-mono text-[8px] text-stone-500">v1.2.0</span>
@@ -102,16 +102,16 @@ export const BentoSection = () => {
 
             <div className="gap-2 grid grid-cols-2">
               {/* Accordion Card */}
-              <div className="group/card flex flex-col gap-1.5 bg-stone-950/40 hover:bg-stone-950/80 p-2 border border-white/5 hover:border-rose-500/25 rounded-xl transition-all duration-300">
+              <div className="group/card flex flex-col gap-1.5 bg-stone-950/40 hover:bg-stone-950/80 p-2 border border-white/5 hover:border-theme-accent/25 rounded-xl transition-all duration-300">
                 <div className="relative flex flex-col justify-center items-center gap-1 bg-stone-900/50 p-1 border border-white/5 rounded-lg w-full h-11 overflow-hidden">
                   <div className="flex justify-between items-center bg-stone-800/80 px-1 py-0.5 border border-white/5 rounded w-full text-[5px] text-stone-400">
                     <span>Accordion Item</span>
                     <ChevronRight size={4} className="text-stone-500" />
                   </div>
-                  <div className="flex flex-col bg-rose-950/10 p-1 border border-rose-500/15 rounded w-full text-[4px] text-rose-300/85">
-                    <div className="flex justify-between items-center font-medium text-rose-300">
+                  <div className="flex flex-col bg-theme-accent/10 p-1 border border-theme-accent/15 rounded w-full text-[4px] text-theme-accent/85">
+                    <div className="flex justify-between items-center font-medium text-theme-accent">
                       <span>Expanded Item</span>
-                      <ChevronRight size={4} className="text-rose-400 rotate-90" />
+                      <ChevronRight size={4} className="text-theme-accent/80 rotate-90" />
                     </div>
                     <span className="mt-0.5 text-[3.5px] text-stone-400/80 leading-tight">Tailwind collapse view.</span>
                   </div>
@@ -123,10 +123,10 @@ export const BentoSection = () => {
               </div>
 
               {/* Avatars Card */}
-              <div className="group/card flex flex-col gap-1.5 bg-stone-950/40 hover:bg-stone-950/80 p-2 border border-white/5 hover:border-rose-500/25 rounded-xl transition-all duration-300">
+              <div className="group/card flex flex-col gap-1.5 bg-stone-950/40 hover:bg-stone-950/80 p-2 border border-white/5 hover:border-theme-accent/25 rounded-xl transition-all duration-300">
                 <div className="flex justify-center items-center bg-stone-900/50 border border-white/5 rounded-lg w-full h-11 overflow-hidden">
                   <div className="flex items-center">
-                    <div className="flex justify-center items-center bg-rose-500 shadow-sm border border-stone-850 rounded-full w-4 h-4 font-bold text-[5px] text-white">JD</div>
+                    <div className="flex justify-center items-center bg-theme-accent shadow-sm border border-stone-850 rounded-full w-4 h-4 font-bold text-[5px] text-white">JD</div>
                     <div className="flex justify-center items-center bg-indigo-500 shadow-sm -ml-1.5 border border-stone-850 rounded-full w-4 h-4 font-bold text-[5px] text-white">AM</div>
                     <div className="flex justify-center items-center bg-amber-500 shadow-sm -ml-1.5 border border-stone-850 rounded-full w-4 h-4 font-bold text-[5px] text-white">SK</div>
                     <div className="flex justify-center items-center bg-stone-700 -ml-1.5 border border-stone-850 rounded-full w-4 h-4 font-semibold text-[5px] text-stone-300">+2</div>
@@ -139,9 +139,9 @@ export const BentoSection = () => {
               </div>
 
               {/* Buttons Card */}
-              <div className="group/card flex flex-col gap-1.5 bg-stone-950/40 hover:bg-stone-950/80 p-2 border border-white/5 hover:border-rose-500/25 rounded-xl transition-all duration-300">
+              <div className="group/card flex flex-col gap-1.5 bg-stone-950/40 hover:bg-stone-950/80 p-2 border border-white/5 hover:border-theme-accent/25 rounded-xl transition-all duration-300">
                 <div className="flex flex-col justify-center items-center gap-1 bg-stone-900/50 p-1 border border-white/5 rounded-lg w-full h-11">
-                  <div className="bg-rose-600 group-hover/card:bg-rose-500 shadow-[0_0_8px_rgba(225,29,72,0.3)] py-0.5 rounded w-full font-bold text-[5px] text-white text-center transition-colors">
+                  <div className="bg-theme-accent hover:bg-theme-accent/90 shadow-theme-glow-sm py-0.5 rounded w-full font-bold text-[5px] text-white text-center transition-colors">
                     Primary
                   </div>
                   <div className="py-0.5 border border-white/10 rounded w-full text-[4px] text-stone-400 text-center">
@@ -155,7 +155,7 @@ export const BentoSection = () => {
               </div>
 
               {/* Drawer Card */}
-              <div className="group/card flex flex-col gap-1.5 bg-stone-950/40 hover:bg-stone-950/80 p-2 border border-white/5 hover:border-rose-500/25 rounded-xl transition-all duration-300">
+              <div className="group/card flex flex-col gap-1.5 bg-stone-950/40 hover:bg-stone-950/80 p-2 border border-white/5 hover:border-theme-accent/25 rounded-xl transition-all duration-300">
                 <div className="relative flex justify-end items-center bg-stone-900/50 border border-white/5 rounded-lg w-full h-11 overflow-hidden">
                   <div className="flex flex-col justify-between gap-0.5 bg-stone-850 shadow-2xl p-1 border-white/10 border-l w-[65%] h-full">
                     <div className="flex flex-col gap-0.5">
@@ -163,7 +163,7 @@ export const BentoSection = () => {
                       <span className="bg-stone-600 rounded w-5 h-0.5" />
                       <span className="bg-stone-600 rounded w-4 h-0.5" />
                     </div>
-                    <div className="bg-rose-600/20 py-0.5 border border-rose-500/20 rounded w-full font-bold text-[3.5px] text-rose-300 text-center">
+                    <div className="bg-theme-accent/20 py-0.5 border border-theme-accent/20 rounded w-full font-bold text-[3.5px] text-theme-accent text-center">
                       Done
                     </div>
                   </div>

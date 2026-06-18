@@ -4,6 +4,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --theme-color: #e11d48;
+  --theme-color-rgb: 225, 29, 72;
 }
 
 @theme inline {
@@ -13,6 +15,17 @@
   --font-mono: var(--font-geist-mono);
   --font-rokkitt: "Rokkitt", serif;
   --font-abeezee: "ABeeZee", sans-serif;
+  --color-theme-accent: var(--theme-color);
+}
+
+.shadow-theme-glow {
+  box-shadow: 0 0 12px rgba(var(--theme-color-rgb), 0.65);
+}
+.shadow-theme-glow-sm {
+  box-shadow: 0 0 8px rgba(var(--theme-color-rgb), 0.8);
+}
+.shadow-theme-glow-lg {
+  box-shadow: 0 0 20px rgba(var(--theme-color-rgb), 0.3);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,39 +42,6 @@ body {
   line-height: 140% !important;
 }
 
-
-.me-animation {
-  animation: me-animation 10s linear infinite;
-}
-
-.music-player:hover {
-  animation: m-player-animation 0.2s linear;
-  transform: translateY(-6px);
-  rotate: 0deg;
-}
-
-@keyframes me-animation {
-  0% {
-    object-position: 50% 100%;
-  }
-
-  25% {
-    object-position: 50% 93%;
-  }
-
-  50% {
-    object-position: 50% 96%;
-    scale: 1.05;
-  }
-
-  75% {
-    object-position: 50% 92%;
-  }
-
-  100% {
-    object-position: 50% 100%;
-  }
-}
 
 @keyframes m-player-animation {
   0% {
