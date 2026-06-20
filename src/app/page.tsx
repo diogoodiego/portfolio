@@ -1,11 +1,9 @@
 import Image from "next/image";
 import background from "../assets/background.png";
 import me from "../assets/me.png";
-import abba from "../assets/abba.jpg";
-import { Navbar, Button, ROPChart, ColorPicker } from "@/components";
+import { Navbar, Button, ROPChart, ColorPicker, MusicPlayer } from "@/components";
 import { BentoSection } from "@/sections/BentoSection";
 import { FooterSection } from "@/sections/FooterSection";
-import { Play, SkipBack, SkipForward } from "lucide-react";
 
 export default function Home() {
   return (
@@ -27,37 +25,15 @@ export default function Home() {
           className="bottom-0 left-1/2 -z-1 absolute blur-[.5px] w-[80%] object-cover -translate-x-1/2 mix-blend-darken"
         />
         {/* UI Components */}
-        <div className="right-6 bottom-6 absolute justify-end gap-2 grid grid-cols-2 transition-all duration-500">
+        <div className="right-6 bottom-6 absolute flex flex-col justify-end gap-2 transition-all duration-500">
           {/* chart */}
-          <ROPChart />
+          {/* <ROPChart /> */}
 
           {/* color picker */}
           <ColorPicker />
 
           {/* music player */}
-          <div className="z-10 relative flex flex-row items-center gap-2 col-start-2 row-start-1 bg-stone-900/20 backdrop-blur-md p-3 pb-4 rounded-2xl w-full overflow-hidden music-player">
-            <Image src={abba} alt="Album" className="rounded-md w-12 h-12" />
-            <div className="flex flex-col flex-1">
-              <p className="font-medium text-md text-stone-50">
-                The Winner Takes It All
-              </p>
-              <p className="font-regular text-stone-400 text-xs">ABBA</p>
-              <p className="font-regular text-stone-300 text-sm">1:36 / 4:55</p>
-            </div>
-            <div className="bg-transparent p-2 rounded-full text-stone-200 cursor-pointer">
-              <SkipBack size={16} />
-            </div>
-            <div className="bg-white shadow-white/60 hover:shadow-md p-2 rounded-full text-stone-800 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer">
-              <Play />
-            </div>
-            <div className="bg-transparent p-2 rounded-full text-stone-200 cursor-pointer">
-              <SkipForward size={16} />
-            </div>
-            {/* Progress bar */}
-            <div className="bottom-0 left-0 absolute flex items-end bg-transparent w-full h-2 hover:h-4 transition-all duration-300 ease-in-out cursor-pointer">
-              <div className="bg-white w-[33%] h-1/2" />
-            </div>
-          </div>
+          <MusicPlayer />
         </div>
 
         <div className="-z-2 absolute bg-stone-950/10 w-full h-full" />
