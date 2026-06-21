@@ -108,33 +108,26 @@ export const MusicPlayer = () => {
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="group z-10 relative flex flex-row items-center gap-2 col-start-2 row-start-1 bg-white shadow-xl backdrop-blur-md p-3 pb-4 rounded-2xl w-full overflow-hidden music-player"
+      className="group z-10 relative flex flex-row items-center gap-2 col-start-2 row-start-1 bg-white/10 backdrop-blur-2xl rounded-2xl w-full overflow-hidden music-player p-3 ps-0"
     >
-      <div className="relative rounded-md w-12 h-12 overflow-hidden shrink-0">
+      <div className="relative h-32 aspect-1/2">
         <Image
           src={abba}
           alt="Album"
-          className={`rounded-md w-full h-full object-cover transition-transform duration-1000 ${isPlaying ? "scale-110 rotate-[5deg]" : "scale-100"
+          className={`absolute top-0 left-0 -translate-x-1/2 !h-32 !max-w-32 !aspect-square   rounded-full object-cover shadow-2xl transition-transform duration-1000 ${isPlaying ? "animate-[spin_10s_linear_infinite]" : ""
             }`}
         />
-        {isPlaying && (
-          <div className="absolute inset-0 flex justify-center items-center bg-black/25">
-            {/* Equalizer animation bars */}
-            <div className="flex items-end gap-[2px] h-4">
-              <div className="bg-white rounded-full w-[2.5px] h-full animate-bounce [animation-duration:0.6s]" />
-              <div className="bg-white rounded-full w-[2.5px] h-[60%] animate-bounce [animation-delay:0.2s] [animation-duration:0.4s]" />
-              <div className="bg-white rounded-full w-[2.5px] h-[80%] animate-bounce [animation-delay:0.1s] [animation-duration:0.5s]" />
-            </div>
-          </div>
-        )}
+        <span className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 h-12 aspect-square rounded-full bg-white/20 border border-white/10 backdrop-blur-2xl"></span>
+        <span className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 h-10 aspect-square rounded-full bg-stone-400"></span>
+        <span className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 h-6 aspect-square rounded-full bg-stone-100 shadow-inner"></span>
       </div>
 
       <div className="flex flex-col flex-1 min-w-0">
-        <p className="font-semibold text-md text-stone-900 truncate">
+        <p className="font-semibold text-md text-stone-50 truncate">
           The Winner Takes It All
         </p>
         <div className="flex items-center gap-1">
-          <p className="font-medium text-stone-500 text-xs">ABBA</p>
+          <p className="font-medium text-stone-400 text-xs">ABBA</p>
           {isPlaying && (
             <span className="flex items-center gap-[1px] h-2">
               <span className="bg-stone-500 rounded-full w-[1.5px] h-[3px] animate-[pulse_0.6s_infinite_alternate]" />
@@ -143,35 +136,35 @@ export const MusicPlayer = () => {
             </span>
           )}
         </div>
-        <p className="mt-0.5 font-regular font-mono text-stone-600 text-xs">
+        <p className="mt-0.5 font-regular font-mono text-stone-200 text-xs">
           {currentTime} / {duration}
         </p>
+
+        {/* Progress bar container */}
+        <div
+          onClick={handleProgressBarClick}
+          className="mt-4 bg-stone-200/30 rounded-full hover:bg-stone-50/40 w-full h-1 transition-colors cursor-pointer overflow-hidden"
+        >
+          <div
+            className="bg-stone-50 h-full transition-all duration-300 ease-out"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
       </div>
 
-      <div className="bg-transparent hover:bg-stone-100/50 p-2 rounded-full text-stone-600 hover:text-stone-900 transition-colors cursor-pointer shrink-0">
+      <div className="bg-transparent hover:bg-stone-50/10 p-2 rounded-full text-stone-50/80 transition-colors cursor-pointer shrink-0">
         <SkipBack size={16} />
       </div>
 
       <button
         onClick={handlePlayClick}
-        className="flex justify-center items-center bg-stone-900 hover:bg-stone-800 shadow-lg shadow-stone-900/10 hover:shadow-xl p-2.5 rounded-full w-9 h-9 text-white hover:scale-105 active:scale-95 transition-all duration-300 ease-in-out cursor-pointer shrink-0"
+        className="flex justify-center items-center bg-stone-50 hover:scale-105 shadow-lg shadow-stone-900/10 hover:shadow-xl p-2.5 rounded-full w-9 h-9 text-white hover:scale-105 active:scale-95 transition-all duration-300 ease-in-out cursor-pointer shrink-0"
       >
-        {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} className="ml-[1px]" fill="currentColor" />}
+        {isPlaying ? <Pause size={14} fill="#000" /> : <Play size={14} className="ml-[1px]" fill="#000" />}
       </button>
 
-      <div className="bg-transparent hover:bg-stone-100/50 p-2 rounded-full text-stone-600 hover:text-stone-900 transition-colors cursor-pointer shrink-0">
+      <div className="bg-transparent hover:bg-stone-50/10 p-2 rounded-full text-stone-50/80 transition-colors cursor-pointer shrink-0">
         <SkipForward size={16} />
-      </div>
-
-      {/* Progress bar container */}
-      <div
-        onClick={handleProgressBarClick}
-        className="bottom-0 left-0 absolute bg-stone-200/50 hover:bg-stone-200/80 w-full h-1.5 transition-colors cursor-pointer"
-      >
-        <div
-          className="bg-stone-800 h-full transition-all duration-300 ease-out"
-          style={{ width: `${progress}%` }}
-        />
       </div>
     </div>
   );

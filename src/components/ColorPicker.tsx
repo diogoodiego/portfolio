@@ -97,183 +97,185 @@ export const ColorPicker = () => {
   };
 
   return (
-    <div className="z-20 flex flex-col gap-4 col-start-1 row-start-2 bg-stone-950/90 p-3 rounded-2xl w-[420px] transition-all duration-300">
+    <div className="z-20 flex flex-col col-start-1 row-start-2 bg-white shadow-2xl border border-stone-200/50 backdrop-blur-md p-3 rounded-2xl w-[420px] transition-all duration-300">
       {/* Header with Accordion Toggle */}
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="group flex justify-between items-center cursor-pointer select-none"
+        className="group flex justify-between items-center cursor-pointer select-none py-1"
       >
         <div className="flex items-center gap-2.5">
           <div
-            className="shadow border border-white/10 rounded-full w-3.5 h-3.5 transition-colors duration-200"
+            className="shadow border border-stone-200 rounded-full w-3.5 h-3.5 transition-colors duration-200"
             style={{ backgroundColor: hexInput }}
           />
-          <span className="font-semibold text-white group-hover:text-white/90 text-sm tracking-wide transition-colors">
+          <span className="font-semibold text-stone-900 group-hover:text-stone-700 text-sm tracking-wide transition-colors">
             Theme Color
           </span>
         </div>
-        <div className="text-zinc-400 group-hover:text-white transition-colors">
-          {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+        <div className={`text-stone-400 group-hover:text-stone-900 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}>
+          <ChevronDown size={16} />
         </div>
       </div>
 
       {/* Expanded Accordion Area */}
-      {isOpen && (
-        <div className="flex flex-col gap-4 animate-fadeIn">
-          {/* Saturation-Value Board Canvas */}
-          <div
-            ref={canvasRef}
-            onMouseDown={handleCanvasMouseDown}
-            onTouchStart={handleCanvasTouchStart}
-            className="relative m-0 p-0 rounded-xl w-full h-36 overflow-hidden cursor-crosshair select-none"
-            style={{ backgroundColor: `hsl(${h}, 100%, 50%)` }}
-          >
-            {/* White-to-transparent overlay gradient (X axis) */}
-            <div className="top-0 left-0 absolute bg-gradient-to-r from-white to-transparent w-full h-full" />
-            {/* Transparent-to-black overlay gradient (Y axis) */}
-            <div className="top-0 left-0 absolute bg-gradient-to-t from-black to-transparent w-full h-full" />
-
-            {/* Selection Ring */}
+      <div className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+        <div className="overflow-hidden">
+          <div className="flex flex-col gap-4 pt-2">
+            {/* Saturation-Value Board Canvas */}
             <div
-              className="absolute shadow-[0_0_4px_rgba(0,0,0,0.5)] border-2 border-white rounded-full w-4 h-4 -translate-x-1/2 translate-y-1/2 pointer-events-none"
-              style={{
-                left: `${s}%`,
-                bottom: `${v}%`,
-              }}
-            />
-          </div>
-
-          {/* Hue, Saturation, Value Sliders + Hex Display */}
-          <div className="flex items-center gap-4">
-            {/* Stacked HSV Sliders */}
-            <div className="flex flex-col flex-1 gap-2.5">
-              {/* Hue Slider */}
-              <div className="relative flex items-center rounded-full w-full h-2 overflow-visible">
-                <input
-                  type="range"
-                  min="0"
-                  max="360"
-                  value={h}
-                  onChange={(e) => setH(Number(e.target.value))}
-                  className="border border-white/5 rounded-full outline-none w-full h-1.5 accent-white appearance-none cursor-pointer pointer-events-auto"
-                  style={{
-                    background: "linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)",
-                  }}
-                />
-              </div>
-
-              {/* Saturation Slider */}
-              <div className="relative flex items-center rounded-full w-full h-2 overflow-visible">
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={s}
-                  onChange={(e) => setS(Number(e.target.value))}
-                  className="border border-white/5 rounded-full outline-none w-full h-1.5 accent-white appearance-none cursor-pointer pointer-events-auto"
-                  style={{
-                    background: `linear-gradient(to right, #808080, hsl(${h}, 100%, 50%))`,
-                  }}
-                />
-              </div>
-
-              {/* Value/Brightness Slider */}
-              <div className="relative flex items-center rounded-full w-full h-2 overflow-visible">
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={v}
-                  onChange={(e) => setV(Number(e.target.value))}
-                  className="border border-white/5 rounded-full outline-none w-full h-1.5 accent-white appearance-none cursor-pointer pointer-events-auto"
-                  style={{
-                    background: `linear-gradient(to right, #000000, hsl(${h}, 100%, 50%))`,
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* Hex Input Display (right of the sliders) */}
-            <div className="flex items-center gap-1 bg-stone-900/60 p-2 border border-white/5 rounded-xl w-32 h-10 shrink-0">
-              <span className="font-mono text-zinc-500 text-xs select-none">#</span>
-              <input
-                type="text"
-                value={hexInput.replace("#", "")}
-                onChange={(e) => handleHexInputChange(e.target.value)}
-                maxLength={6}
-                className="bg-transparent border-none outline-none focus:ring-0 w-full font-mono font-semibold text-white text-xs uppercase tracking-wider"
-              />
-              <button
-                onClick={handleCopy}
-                className="ml-1 text-zinc-500 hover:text-white transition-colors cursor-pointer shrink-0"
-                title="Copy HEX"
-              >
-                {copied ? <Check size={12} className="text-emerald-400" /> : <Copy size={12} />}
-              </button>
-            </div>
-          </div>
-
-          {/* Steps Control */}
-          <div className="flex flex-col gap-1.5">
-            <span className="font-normal text-[13px] text-zinc-200">Steps</span>
-            <div
-              ref={stepsRef}
-              className="relative flex items-center bg-stone-900/60 mt-1 p-[2px] border border-white/10 rounded-full w-full h-7 cursor-pointer select-none"
-              onMouseDown={handleStepsMouseDown}
-              onTouchStart={handleStepsTouchStart}
+              ref={canvasRef}
+              onMouseDown={handleCanvasMouseDown}
+              onTouchStart={handleCanvasTouchStart}
+              className="relative m-0 p-0 rounded-xl w-full h-36 overflow-hidden cursor-crosshair select-none"
+              style={{ backgroundColor: `hsl(${h}, 100%, 50%)` }}
             >
-              {/* Slider handle with double chevron icon */}
+              {/* White-to-transparent overlay gradient (X axis) */}
+              <div className="top-0 left-0 absolute bg-gradient-to-r from-white to-transparent w-full h-full" />
+              {/* Transparent-to-black overlay gradient (Y axis) */}
+              <div className="top-0 left-0 absolute bg-gradient-to-t from-black to-transparent w-full h-full" />
+
+              {/* Selection Ring */}
               <div
-                className="top-1/2 absolute flex justify-center items-center bg-white shadow-md rounded-full w-6 h-6 hover:scale-105 transition-transform -translate-y-1/2 cursor-grab active:cursor-grabbing"
-                style={{ left: `calc(2px + ${(steps - 2) / 9} * (100% - 28px))` }}
-              >
-                <svg className="w-3 h-3 text-stone-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M8 9l-3 3 3 3m8-6l3 3-3 3" />
-                </svg>
+                className="absolute shadow-[0_0_4px_rgba(0,0,0,0.5)] border-2 border-white rounded-full w-4 h-4 -translate-x-1/2 translate-y-1/2 pointer-events-none"
+                style={{
+                  left: `${s}%`,
+                  bottom: `${v}%`,
+                }}
+              />
+            </div>
+
+            {/* Hue, Saturation, Value Sliders + Hex Display */}
+            <div className="flex items-center gap-4">
+              {/* Stacked HSV Sliders */}
+              <div className="flex flex-col flex-1 gap-2.5">
+                {/* Hue Slider */}
+                <div className="relative flex items-center rounded-full w-full h-2 overflow-visible">
+                  <input
+                    type="range"
+                    min="0"
+                    max="360"
+                    value={h}
+                    onChange={(e) => setH(Number(e.target.value))}
+                    className="border border-stone-200/60 rounded-full outline-none w-full h-1.5 accent-stone-800 appearance-none cursor-pointer pointer-events-auto"
+                    style={{
+                      background: "linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)",
+                    }}
+                  />
+                </div>
+
+                {/* Saturation Slider */}
+                <div className="relative flex items-center rounded-full w-full h-2 overflow-visible">
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={s}
+                    onChange={(e) => setS(Number(e.target.value))}
+                    className="border border-stone-200/60 rounded-full outline-none w-full h-1.5 accent-stone-800 appearance-none cursor-pointer pointer-events-auto"
+                    style={{
+                      background: `linear-gradient(to right, #808080, hsl(${h}, 100%, 50%))`,
+                    }}
+                  />
+                </div>
+
+                {/* Value/Brightness Slider */}
+                <div className="relative flex items-center rounded-full w-full h-2 overflow-visible">
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={v}
+                    onChange={(e) => setV(Number(e.target.value))}
+                    className="border border-stone-200/60 rounded-full outline-none w-full h-1.5 accent-stone-800 appearance-none cursor-pointer pointer-events-auto"
+                    style={{
+                      background: `linear-gradient(to right, #000000, hsl(${h}, 100%, 50%))`,
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Hex Input Display (right of the sliders) */}
+              <div className="flex items-center gap-1 bg-stone-100 p-2 border border-stone-200 rounded-xl w-32 h-10 shrink-0">
+                <span className="font-mono text-zinc-500 text-xs select-none">#</span>
+                <input
+                  type="text"
+                  value={hexInput.replace("#", "")}
+                  onChange={(e) => handleHexInputChange(e.target.value)}
+                  maxLength={6}
+                  className="bg-transparent border-none outline-none focus:ring-0 w-full font-mono font-semibold text-stone-900 text-xs uppercase tracking-wider"
+                />
+                <button
+                  onClick={handleCopy}
+                  className="ml-1 text-zinc-500 hover:text-stone-900 transition-colors cursor-pointer shrink-0"
+                  title="Copy HEX"
+                >
+                  {copied ? <Check size={12} className="text-emerald-500" /> : <Copy size={12} />}
+                </button>
               </div>
             </div>
-            {/* Steps labels */}
-            <div className="flex justify-between items-center mt-1 font-sans text-zinc-400 text-xs">
-              <span>2</span>
-              <span>11</span>
-            </div>
-          </div>
 
-          {/* Easing Dropdown */}
-          <div className="relative flex flex-col gap-1.5">
-            <span className="font-normal text-[13px] text-zinc-200">Generation Easing</span>
-            <div
-              ref={dropdownRef}
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex justify-between items-center bg-stone-900/60 hover:bg-stone-900/80 px-3.5 py-2 border border-white/5 rounded-xl w-full h-9 font-medium text-white text-xs transition-colors cursor-pointer select-none"
-            >
-              <span>{easing}</span>
-              <ChevronDown size={14} className={`text-zinc-400 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`} />
-
-              {/* Dropdown Options List */}
-              {isDropdownOpen && (
-                <div className="top-[calc(100%+4px)] left-0 z-20 absolute bg-stone-900 shadow-2xl py-1 border border-white/10 rounded-xl w-full overflow-hidden">
-                  {(["Sine", "Linear", "Quad", "Cubic"] as EasingType[]).map((type) => (
-                    <div
-                      key={type}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setEasing(type);
-                        setIsDropdownOpen(false);
-                      }}
-                      className={`px-3.5 py-2 text-xs transition-colors hover:bg-white/5 cursor-pointer ${easing === type ? "text-white font-semibold" : "text-zinc-400"
-                        }`}
-                      style={easing === type ? { color: hexInput } : {}}
-                    >
-                      {type}
-                    </div>
-                  ))}
+            {/* Steps Control */}
+            <div className="flex flex-col gap-1.5">
+              <span className="font-normal text-[13px] text-stone-700">Steps</span>
+              <div
+                ref={stepsRef}
+                className="relative flex items-center bg-stone-100 mt-1 p-[2px] border border-stone-200 rounded-full w-full h-7 cursor-pointer select-none"
+                onMouseDown={handleStepsMouseDown}
+                onTouchStart={handleStepsTouchStart}
+              >
+                {/* Slider handle with double chevron icon */}
+                <div
+                  className="top-1/2 absolute flex justify-center items-center bg-white shadow-md border border-stone-200 rounded-full w-6 h-6 hover:scale-105 transition-transform -translate-y-1/2 cursor-grab active:cursor-grabbing"
+                  style={{ left: `calc(2px + ${(steps - 2) / 9} * (100% - 28px))` }}
+                >
+                  <svg className="w-3 h-3 text-stone-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M8 9l-3 3 3 3m8-6l3 3-3 3" />
+                  </svg>
                 </div>
-              )}
+              </div>
+              {/* Steps labels */}
+              <div className="flex justify-between items-center mt-1 font-sans text-stone-500 text-xs">
+                <span>2</span>
+                <span>11</span>
+              </div>
+            </div>
+
+            {/* Easing Dropdown */}
+            <div className="relative flex flex-col gap-1.5">
+              <span className="font-normal text-[13px] text-stone-700">Generation Easing</span>
+              <div
+                ref={dropdownRef}
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex justify-between items-center bg-stone-100 hover:bg-stone-200/70 px-3.5 py-2 border border-stone-200 rounded-xl w-full h-9 font-medium text-stone-900 text-xs transition-colors cursor-pointer select-none"
+              >
+                <span>{easing}</span>
+                <ChevronDown size={14} className={`text-stone-500 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`} />
+
+                {/* Dropdown Options List */}
+                {isDropdownOpen && (
+                  <div className="top-[calc(100%+4px)] left-0 z-20 absolute bg-white shadow-xl py-1 border border-stone-200 rounded-xl w-full overflow-hidden">
+                    {(["Sine", "Linear", "Quad", "Cubic"] as EasingType[]).map((type) => (
+                      <div
+                        key={type}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setEasing(type);
+                          setIsDropdownOpen(false);
+                        }}
+                        className={`px-3.5 py-2 text-xs transition-colors hover:bg-stone-50 cursor-pointer ${easing === type ? "text-stone-900 font-semibold" : "text-stone-500"
+                          }`}
+                        style={easing === type ? { color: hexInput } : {}}
+                      >
+                        {type}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
 
       {/* Swatches (always visible at the bottom) */}
       <div className="relative flex justify-between items-center gap-1.5 mt-1 w-full select-none">
@@ -313,7 +315,7 @@ export const ColorPicker = () => {
 
           return (
             <div
-              className="bottom-9 z-30 absolute flex flex-col gap-3 bg-stone-950/95 shadow-[0_12px_40px_rgba(0,0,0,0.65)] backdrop-blur-xl p-4 border border-white/10 rounded-2xl w-[330px] transition-all animate-fadeIn duration-200 pointer-events-auto select-text"
+              className="bottom-9 z-30 absolute flex flex-col gap-3 bg-white/95 shadow-xl backdrop-blur-xl p-4 border border-stone-200/80 rounded-2xl w-[330px] transition-all animate-fadeIn duration-200 pointer-events-auto select-text"
               style={{
                 left: `${left}px`,
                 transform: "translateY(-4px)",
@@ -322,17 +324,17 @@ export const ColorPicker = () => {
               onMouseLeave={handlePopoverMouseLeave}
             >
               {/* Header */}
-              <div className="flex justify-between items-center pb-2 border-white/10 border-b">
+              <div className="flex justify-between items-center pb-2 border-stone-100 border-b">
                 <div className="flex items-center gap-2">
-                  <span className="font-semibold text-white text-sm">
+                  <span className="font-semibold text-stone-900 text-sm">
                     Tom {weight}
                   </span>
-                  <span className="bg-white/10 px-1.5 py-0.5 rounded font-mono text-[10px] text-zinc-400">
+                  <span className="bg-stone-100 px-1.5 py-0.5 rounded font-mono text-[10px] text-stone-500">
                     Swatch {hoveredIndex + 1}/{N}
                   </span>
                 </div>
                 <div
-                  className="shadow-inner border border-white/10 rounded-md w-5 h-5"
+                  className="shadow-inner border border-stone-200 rounded-md w-5 h-5"
                   style={{ backgroundColor: hoveredColor }}
                 />
               </div>
@@ -343,14 +345,14 @@ export const ColorPicker = () => {
                 <div className="group/row flex justify-between items-center">
                   <span className="text-zinc-500">HEX</span>
                   <div className="flex items-center gap-1.5">
-                    <span className="font-semibold text-white uppercase">{hoveredColor}</span>
+                    <span className="font-semibold text-stone-800 uppercase">{hoveredColor}</span>
                     <button
                       onClick={() => handlePopoverCopy(hoveredColor, "hex")}
-                      className="text-zinc-500 hover:text-white transition-colors cursor-pointer"
+                      className="text-zinc-500 hover:text-stone-900 transition-colors cursor-pointer"
                       title="Copiar HEX"
                     >
                       {popoverCopiedField === "hex" ? (
-                        <Check size={10} className="text-emerald-400" />
+                        <Check size={10} className="text-emerald-500" />
                       ) : (
                         <Copy size={10} />
                       )}
@@ -362,14 +364,14 @@ export const ColorPicker = () => {
                 <div className="group/row flex justify-between items-center">
                   <span className="text-zinc-500">RGB</span>
                   <div className="flex items-center gap-1.5">
-                    <span className="font-semibold text-white">{rgbString}</span>
+                    <span className="font-semibold text-stone-800">{rgbString}</span>
                     <button
                       onClick={() => handlePopoverCopy(rgbString, "rgb")}
-                      className="text-zinc-500 hover:text-white transition-colors cursor-pointer"
+                      className="text-zinc-500 hover:text-stone-900 transition-colors cursor-pointer"
                       title="Copiar RGB"
                     >
                       {popoverCopiedField === "rgb" ? (
-                        <Check size={10} className="text-emerald-400" />
+                        <Check size={10} className="text-emerald-500" />
                       ) : (
                         <Copy size={10} />
                       )}
@@ -381,14 +383,14 @@ export const ColorPicker = () => {
                 <div className="group/row flex justify-between items-center">
                   <span className="text-zinc-500">HSL</span>
                   <div className="flex items-center gap-1.5">
-                    <span className="font-semibold text-white">{hslString}</span>
+                    <span className="font-semibold text-stone-800">{hslString}</span>
                     <button
                       onClick={() => handlePopoverCopy(hslString, "hsl")}
-                      className="text-zinc-500 hover:text-white transition-colors cursor-pointer"
+                      className="text-zinc-500 hover:text-stone-900 transition-colors cursor-pointer"
                       title="Copiar HSL"
                     >
                       {popoverCopiedField === "hsl" ? (
-                        <Check size={10} className="text-emerald-400" />
+                        <Check size={10} className="text-emerald-500" />
                       ) : (
                         <Copy size={10} />
                       )}
@@ -398,9 +400,9 @@ export const ColorPicker = () => {
               </div>
 
               {/* APCA Contrast Checker */}
-              <div className="flex flex-col gap-2 pt-2.5 pb-1 border-white/10 border-t">
+              <div className="flex flex-col gap-2 pt-2.5 pb-1 border-stone-100 border-t">
                 <div className="flex justify-between items-center">
-                  <span className="font-semibold text-[10px] text-zinc-400 uppercase tracking-wider">
+                  <span className="font-semibold text-[10px] text-stone-500 uppercase tracking-wider">
                     Contraste APCA (Readability)
                   </span>
                   <span title="APCA mede a legibilidade percebida pelo olho humano." className="cursor-help">
@@ -410,9 +412,9 @@ export const ColorPicker = () => {
 
                 <div className="gap-2 grid grid-cols-2 mt-1">
                   {/* White Text on Background */}
-                  <div className="flex flex-col bg-white/5 p-2 border border-white/5 rounded-xl">
+                  <div className="flex flex-col bg-stone-50 p-2 border border-stone-100 rounded-xl">
                     <div className="flex justify-between items-center mb-1.5">
-                      <span className="font-medium text-[10px] text-zinc-400">Texto Branco</span>
+                      <span className="font-medium text-[10px] text-stone-500">Texto Branco</span>
                       <span className={`text-[9px] px-1 py-0.2 rounded-full border ${whiteRead.badgeColor} font-semibold`}>
                         {whiteRead.level}
                       </span>
@@ -424,16 +426,16 @@ export const ColorPicker = () => {
                       >
                         Aa
                       </div>
-                      <span className="font-mono font-bold text-white text-xs">
+                      <span className="font-mono font-bold text-stone-800 text-xs">
                         Lc {whiteRead.score > 0 ? `+${whiteRead.score}` : whiteRead.score}
                       </span>
                     </div>
                   </div>
 
                   {/* Black Text on Background */}
-                  <div className="flex flex-col bg-white/5 p-2 border border-white/5 rounded-xl">
+                  <div className="flex flex-col bg-stone-50 p-2 border border-stone-100 rounded-xl">
                     <div className="flex justify-between items-center mb-1.5">
-                      <span className="font-medium text-[10px] text-zinc-400">Texto Preto</span>
+                      <span className="font-medium text-[10px] text-stone-500">Texto Preto</span>
                       <span className={`text-[9px] px-1 py-0.2 rounded-full border ${blackRead.badgeColor} font-semibold`}>
                         {blackRead.level}
                       </span>
@@ -445,7 +447,7 @@ export const ColorPicker = () => {
                       >
                         Aa
                       </div>
-                      <span className="font-mono font-bold text-white text-xs">
+                      <span className="font-mono font-bold text-stone-800 text-xs">
                         Lc {blackRead.score > 0 ? `+${blackRead.score}` : blackRead.score}
                       </span>
                     </div>
@@ -454,13 +456,13 @@ export const ColorPicker = () => {
               </div>
 
               {/* Didactic Description */}
-              <div className="bg-white/5 p-2.5 border border-white/5 rounded-xl font-sans text-[10px] text-zinc-400 leading-relaxed">
-                <span className="font-semibold text-zinc-200">Sobre o APCA:</span> O algoritmo calcula o contraste de forma perceptiva. Valores <span className="text-zinc-200">Lc &gt; 75</span> são adequados para corpo de texto, <span className="text-zinc-200">Lc &gt; 45</span> para títulos e <span className="text-zinc-200">Lc &gt; 30</span> apenas para bordas e ícones.
+              <div className="bg-stone-50 p-2.5 border border-stone-100 rounded-xl font-sans text-[10px] text-stone-600 leading-relaxed">
+                <span className="font-semibold text-stone-800">Sobre o APCA:</span> O algoritmo calcula o contraste de forma perceptiva. Valores <span className="text-stone-800">Lc &gt; 75</span> são adequados para corpo de texto, <span className="text-stone-800">Lc &gt; 45</span> para títulos e <span className="text-stone-800">Lc &gt; 30</span> apenas para bordas e ícones.
               </div>
 
               {/* Arrow */}
               <div
-                className="bottom-[-5px] absolute bg-stone-950 border-white/10 border-t border-r w-2.5 h-2.5 rotate-45 -translate-x-1/2"
+                className="bottom-[-5px] absolute bg-white border-stone-200 border-t border-r w-2.5 h-2.5 rotate-45 -translate-x-1/2"
                 style={{ left: `${arrowLeft}px` }}
               />
             </div>
