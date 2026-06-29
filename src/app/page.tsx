@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="h-screen overflow-y-auto scroll-auto snap-mandatory snap-y scrollbar-thumb-white/20 scrollbar-thin">
       <Navbar />
-      <div id="home" className="relative w-full h-screen snap-start">
+      <div id="home" className="relative w-full h-screen snap-start border-16 border-zinc-950 rounded-4xl">
         <video
           src="/assets/red_nebula2.mp4"
           poster={background.src}
@@ -25,12 +25,12 @@ export default function Home() {
           className="bottom-0 left-1/2 -z-1 absolute blur-[.5px] w-[80%] object-cover -translate-x-1/2 mix-blend-darken"
         />
         {/* UI Components */}
-        <div className="right-6 bottom-6 absolute flex flex-col justify-end gap-2 transition-all duration-500">
+        <div className="right-0 bottom-0 absolute flex flex-col justify-end gap-2 transition-all duration-500">
           {/* chart */}
           {/* <ROPChart /> */}
 
           {/* color picker */}
-          <ColorPicker />
+          {/* <ColorPicker /> */}
 
           {/* music player */}
           <MusicPlayer />

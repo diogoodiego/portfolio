@@ -11,12 +11,11 @@ export const Navbar: React.FC = () => {
       <div className="shrink-0 -mr-[1px] h-12">
         <svg width="64" height="48" viewBox="0 0 64 48" fill="none" className="w-16 h-12">
           <path d="M64 0 H0 C32 0 32 48 64 48 Z" fill="#09090b" />
-          <path d="M0 0.5 C32 0.5 32 47.5 64 47.5" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
         </svg>
       </div>
 
       {/* Corpo Central da Navbar */}
-      <div className="flex-1 h-12 flex flex-row justify-between items-center bg-zinc-950 border-b border-white/10 ps-5 pe-2 transition-all duration-400">
+      <div className="flex-1 h-12 flex flex-row justify-between items-center bg-zinc-950 ps-5 pe-2 transition-all duration-400">
         <Link
           href="/"
           className="text-2xl font-bold text-white no-underline tracking-tight flex items-center gap-2"
@@ -37,7 +36,6 @@ export const Navbar: React.FC = () => {
       <div className="shrink-0 -ml-[1px] h-12">
         <svg width="64" height="48" viewBox="0 0 64 48" fill="none" className="w-16 h-12">
           <path d="M0 0 H64 C32 0 32 48 0 48 Z" fill="#09090b" />
-          <path d="M64 0.5 C32 0.5 32 47.5 0 47.5" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
         </svg>
       </div>
     </nav>
