@@ -216,7 +216,7 @@ const InfoList = ({ title, items }: { title: string; items: InfoItem[] }) => (
 export const FooterSection = () => {
   return (
     <footer
-      id="contato"
+      id="contact"
       className="relative flex lg:flex-row flex-col justify-center items-center gap-8 bg-stone-950 p-24 w-full min-h-screen overflow-hidden animate-fade-in snap-start"
     >
       {/* Left Side: Editorial Bio/About Hero Card */}
@@ -251,7 +251,7 @@ export const FooterSection = () => {
         {/* Bottom Biography Area */}
         <div className="z-10 relative mt-auto pt-48">
           <p className="mb-2 font-regular text-md text-white/60 uppercase tracking-wider">
-            Sobre mim
+            About me
           </p>
           <p className="max-w-[360px] font-medium text-white text-base md:text-lg leading-snug">
             I'm Diogo! A designer with over 5 years of experience, specializing

@@ -327,7 +327,7 @@ export const ColorPicker = () => {
               <div className="flex justify-between items-center pb-2 border-stone-100 border-b">
                 <div className="flex items-center gap-2">
                   <span className="font-semibold text-stone-900 text-sm">
-                    Tom {weight}
+                    Shade {weight}
                   </span>
                   <span className="bg-stone-100 px-1.5 py-0.5 rounded font-mono text-[10px] text-stone-500">
                     Swatch {hoveredIndex + 1}/{N}
@@ -349,7 +349,7 @@ export const ColorPicker = () => {
                     <button
                       onClick={() => handlePopoverCopy(hoveredColor, "hex")}
                       className="text-zinc-500 hover:text-stone-900 transition-colors cursor-pointer"
-                      title="Copiar HEX"
+                      title="Copy HEX"
                     >
                       {popoverCopiedField === "hex" ? (
                         <Check size={10} className="text-emerald-500" />
@@ -368,7 +368,7 @@ export const ColorPicker = () => {
                     <button
                       onClick={() => handlePopoverCopy(rgbString, "rgb")}
                       className="text-zinc-500 hover:text-stone-900 transition-colors cursor-pointer"
-                      title="Copiar RGB"
+                      title="Copy RGB"
                     >
                       {popoverCopiedField === "rgb" ? (
                         <Check size={10} className="text-emerald-500" />
@@ -387,7 +387,7 @@ export const ColorPicker = () => {
                     <button
                       onClick={() => handlePopoverCopy(hslString, "hsl")}
                       className="text-zinc-500 hover:text-stone-900 transition-colors cursor-pointer"
-                      title="Copiar HSL"
+                      title="Copy HSL"
                     >
                       {popoverCopiedField === "hsl" ? (
                         <Check size={10} className="text-emerald-500" />
@@ -403,9 +403,9 @@ export const ColorPicker = () => {
               <div className="flex flex-col gap-2 pt-2.5 pb-1 border-stone-100 border-t">
                 <div className="flex justify-between items-center">
                   <span className="font-semibold text-[10px] text-stone-500 uppercase tracking-wider">
-                    Contraste APCA (Readability)
+                    APCA Contrast (Readability)
                   </span>
-                  <span title="APCA mede a legibilidade percebida pelo olho humano." className="cursor-help">
+                  <span title="APCA measures readability as perceived by the human eye." className="cursor-help">
                     <Info size={11} className="text-zinc-500" />
                   </span>
                 </div>
@@ -414,7 +414,7 @@ export const ColorPicker = () => {
                   {/* White Text on Background */}
                   <div className="flex flex-col bg-stone-50 p-2 border border-stone-100 rounded-xl">
                     <div className="flex justify-between items-center mb-1.5">
-                      <span className="font-medium text-[10px] text-stone-500">Texto Branco</span>
+                      <span className="font-medium text-[10px] text-stone-500">White Text</span>
                       <span className={`text-[9px] px-1 py-0.2 rounded-full border ${whiteRead.badgeColor} font-semibold`}>
                         {whiteRead.level}
                       </span>
@@ -435,7 +435,7 @@ export const ColorPicker = () => {
                   {/* Black Text on Background */}
                   <div className="flex flex-col bg-stone-50 p-2 border border-stone-100 rounded-xl">
                     <div className="flex justify-between items-center mb-1.5">
-                      <span className="font-medium text-[10px] text-stone-500">Texto Preto</span>
+                      <span className="font-medium text-[10px] text-stone-500">Black Text</span>
                       <span className={`text-[9px] px-1 py-0.2 rounded-full border ${blackRead.badgeColor} font-semibold`}>
                         {blackRead.level}
                       </span>
@@ -457,7 +457,7 @@ export const ColorPicker = () => {
 
               {/* Didactic Description */}
               <div className="bg-stone-50 p-2.5 border border-stone-100 rounded-xl font-sans text-[10px] text-stone-600 leading-relaxed">
-                <span className="font-semibold text-stone-800">Sobre o APCA:</span> O algoritmo calcula o contraste de forma perceptiva. Valores <span className="text-stone-800">Lc &gt; 75</span> são adequados para corpo de texto, <span className="text-stone-800">Lc &gt; 45</span> para títulos e <span className="text-stone-800">Lc &gt; 30</span> apenas para bordas e ícones.
+                <span className="font-semibold text-stone-800">About APCA:</span> The algorithm calculates contrast perceptually. Values <span className="text-stone-800">Lc &gt; 75</span> are suitable for body text, <span className="text-stone-800">Lc &gt; 45</span> for headings, and <span className="text-stone-800">Lc &gt; 30</span> only for borders and icons.
               </div>
 
               {/* Arrow */}

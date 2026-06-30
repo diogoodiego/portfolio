@@ -27,8 +27,8 @@ export const Navbar: React.FC = () => {
           <NavItem href="#home" isActive>
             Home
           </NavItem>
-          <NavItem href="#projetos">Projetos</NavItem>
-          <NavItem href="#contato">Contato</NavItem>
+          <NavItem href="#projects">Projects</NavItem>
+          <NavItem href="#contact">Contact</NavItem>
         </div>
       </div>
 

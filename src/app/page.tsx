@@ -39,20 +39,20 @@ export default function Home() {
         <div className="-z-2 absolute bg-stone-950/10 w-full h-full" />
         <div className="relative flex flex-col justify-end items-start gap-8 p-12 px-24 lg:w-2/5 h-full">
           <h1 className="drop-shadow-lg max-w-4xl font-medium text-white text-5xl text-start leading-tight tracking-tight">
-            Criando produtos digitais focados em utilidade, estética e precisão
+            Crafting digital products focused on utility, aesthetics, and precision
           </h1>
           <p className="font-abeezee font-regular text-regular text-white/80 leading-relaxed">
-            Olá, sou o Dio! Desenho interfaces intuitivas, sistemas de design
-            robustos e soluções visuais de alta fidelidade para indústrias
-            complexas e startups inovadoras.
+            Hi, I'm Dio! I design intuitive interfaces, robust design systems,
+            and high-fidelity visual solutions for complex industries and
+            innovative startups.
           </p>
           <div className="flex gap-4">
-            <a href="#projetos">
-              <Button size="lg">Ver Projetos</Button>
+            <a href="#projects">
+              <Button size="lg">View Projects</Button>
             </a>
-            <a href="#contato">
+            <a href="#contact">
               <Button variant="secondary" size="lg">
-                Fale Comigo
+                Get in Touch
               </Button>
             </a>
           </div>

@@ -56,14 +56,14 @@ const BentoItem = ({
 
 export const BentoSection = () => {
   return (
-    <section id="projetos" className="bg-stone-950 p-12 px-24 pt-24 snap-start">
+    <section id="projects" className="bg-stone-950 p-12 px-24 pt-24 snap-start">
       <div className="mb-8">
         <h2 className="mb-4 font-bold text-white text-4xl md:text-5xl tracking-tight">
-          Projetos em Destaque
+          Featured Projects
         </h2>
         <p className="text-zinc-400 text-lg">
-          Uma seleção de projetos de design de produto, sistemas de design e
-          pesquisa de usabilidade.
+          A curated selection of product design, design systems, and usability
+          research projects.
         </p>
       </div>
 
@@ -82,7 +82,7 @@ export const BentoSection = () => {
         {/* Item 2 - Ceni */}
         <BentoItem
           title="Ceni"
-          description="Interfaces refinadas e consistentes com alto rigor estético, foco em tipografia, contraste e micro-interações fluidas."
+          description="Refined and consistent interfaces with high aesthetic rigor, focusing on typography, contrast, and fluid micro-interactions."
           className="lg:col-span-1 lg:row-span-2"
           badge={{
             text: "Figma Plugin",
@@ -191,8 +191,8 @@ export const BentoSection = () => {
 
         {/* Item 3 - User Research */}
         <BentoItem
-          title="Stream 5.0 - IA para streaming"
-          description="Decisões estratégicas fundamentadas em pesquisas com usuários, testes de usabilidade, análises de dados e mapeamento de jornadas."
+          title="Stream 5.0 - AI for Streaming"
+          description="Strategic decisions driven by user research, usability testing, data analysis, and journey mapping."
           className="lg:col-span-1 lg:row-span-1"
           icon={<div className="font-black text-7xl">@</div>}
         />

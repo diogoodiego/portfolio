@@ -105,17 +105,28 @@ export const MusicPlayer = () => {
     }
   };
 
-  const handleWheel = (e: React.WheelEvent) => {
-    e.preventDefault();
-    const delta = -e.deltaY * 0.001; // Sensitivity
-    setVolume((prev) => {
-      const newVal = Math.max(0, Math.min(1, prev + delta));
-      if (audioRef.current) {
-        audioRef.current.volume = newVal;
-      }
-      return newVal;
-    });
-  };
+  useEffect(() => {
+    const knob = knobRef.current;
+    if (!knob) return;
+
+    const handleWheelNative = (e: WheelEvent) => {
+      e.preventDefault();
+      const delta = -e.deltaY * 0.001; // Sensitivity
+      setVolume((prev) => {
+        const newVal = Math.max(0, Math.min(1, prev + delta));
+        if (audioRef.current) {
+          audioRef.current.volume = newVal;
+        }
+        return newVal;
+      });
+    };
+
+    knob.addEventListener("wheel", handleWheelNative, { passive: false });
+
+    return () => {
+      knob.removeEventListener("wheel", handleWheelNative);
+    };
+  }, []);
 
   useEffect(() => {
     if (isFirstVolumeChange.current) {
@@ -311,7 +322,6 @@ export const MusicPlayer = () => {
               className="knob"
               onMouseDown={handleMouseDown}
               onTouchStart={handleTouchStart}
-              onWheel={handleWheel}
               style={{ transform: `rotate(${rotation}deg)` }}
               role="slider"
               aria-valuenow={Math.round(volume * 100)}
