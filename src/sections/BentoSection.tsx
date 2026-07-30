@@ -56,7 +56,7 @@ const BentoItem = ({
 
 export const BentoSection = () => {
   return (
-    <section id="projects" className="bg-stone-950 p-12 px-24 pt-24 snap-start">
+    <section id="projects" className="bg-stone-950 p-6 py-16 md:p-12 md:px-16 lg:px-24 lg:pt-24 snap-start">
       <div className="mb-8">
         <h2 className="mb-4 font-bold text-white text-4xl md:text-5xl tracking-tight">
           Featured Projects
@@ -67,12 +67,12 @@ export const BentoSection = () => {
         </p>
       </div>
 
-      <div className="gap-4 grid grid-cols-1 md:grid-cols-4">
+      <div className="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {/* Item 1 - Croft Design System (Work) */}
         <BentoItem
           title="Croft - Design System"
           description="The Croft Design System was created to provide a cohesive and flexible system that could be used to build interfaces for various company solutions, ranging from complex dashboards for drilling monitoring to landing pages aimed at presenting new technologies."
-          className="lg:col-span-3 lg:row-span-1"
+          className="md:col-span-2 lg:col-span-3 lg:row-span-1"
           badge={{
             text: "Work",
             dotColor: "bg-[#db2777]",
@@ -83,7 +83,7 @@ export const BentoSection = () => {
         <BentoItem
           title="Ceni"
           description="Refined and consistent interfaces with high aesthetic rigor, focusing on typography, contrast, and fluid micro-interactions."
-          className="lg:col-span-1 lg:row-span-2"
+          className="md:col-span-2 lg:col-span-1 lg:row-span-2"
           badge={{
             text: "Figma Plugin",
             dotColor: "bg-[#ea580c]",
@@ -97,7 +97,7 @@ export const BentoSection = () => {
                 <span className="bg-theme-accent rounded-full w-1.5 h-1.5 animate-pulse" />
                 <span className="font-mono font-bold text-[9px] text-white uppercase tracking-wide">Ceni UI Kit</span>
               </div>
-              <span className="font-mono text-[8px] text-stone-500">v1.2.0</span>
+              <span className="font-mono text-[8px] text-stone-50">v1.2.0</span>
             </div>
 
             <div className="gap-2 grid grid-cols-2">
@@ -181,7 +181,7 @@ export const BentoSection = () => {
         <BentoItem
           title="Heuristic Evaluation of the IFSolve Platform"
           description="This case study presents an in-depth analysis of the IFSolve platform's interface through a heuristic evaluation, a technique widely used to identify usability issues."
-          className="lg:col-span-2 lg:row-span-1"
+          className="md:col-span-1 lg:col-span-2 lg:row-span-1"
           badge={{
             text: "Case Study",
             dotColor: "bg-[#ea580c]",
@@ -189,11 +189,11 @@ export const BentoSection = () => {
           }}
         />
 
-        {/* Item 3 - User Research */}
+        {/* Item 4 - User Research */}
         <BentoItem
           title="Stream 5.0 - AI for Streaming"
           description="Strategic decisions driven by user research, usability testing, data analysis, and journey mapping."
-          className="lg:col-span-1 lg:row-span-1"
+          className="md:col-span-1 lg:col-span-1 lg:row-span-1"
           icon={<div className="font-black text-7xl">@</div>}
         />
       </div>

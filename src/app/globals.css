@@ -21,9 +21,11 @@
 .shadow-theme-glow {
   box-shadow: 0 0 12px rgba(var(--theme-color-rgb), 0.65);
 }
+
 .shadow-theme-glow-sm {
   box-shadow: 0 0 8px rgba(var(--theme-color-rgb), 0.8);
 }
+
 .shadow-theme-glow-lg {
   box-shadow: 0 0 20px rgba(var(--theme-color-rgb), 0.3);
 }
@@ -61,6 +63,8 @@ body {
   }
 }
 
+
+
 /* Brushed Metal Volume Knob Styles */
 :root {
   --knob-size: 72px;
@@ -87,30 +91,35 @@ body {
   cursor: grab;
   touch-action: none;
   transition: transform 0.05s linear;
-  
+
   /* 1. O Reflexo da Luz (Conic Gradient) */
-  background: conic-gradient(
-    from 45deg,
-    #f5f5f5 0%,   /* Brilho máximo */
-    #cccccc 5%,
-    #8a8a8a 15%,
-    #555555 22%,  /* Sombra máxima */
-    #8a8a8a 30%,
-    #cccccc 45%,
-    #f5f5f5 50%,  /* Brilho oposto */
-    #cccccc 55%,
-    #8a8a8a 65%,
-    #555555 72%,  /* Sombra oposta */
-    #8a8a8a 80%,
-    #cccccc 95%,
-    #f5f5f5 100%
-  );
+  background: conic-gradient(from 45deg,
+      #f5f5f5 0%,
+      /* Brilho máximo */
+      #cccccc 5%,
+      #8a8a8a 15%,
+      #555555 22%,
+      /* Sombra máxima */
+      #8a8a8a 30%,
+      #cccccc 45%,
+      #f5f5f5 50%,
+      /* Brilho oposto */
+      #cccccc 55%,
+      #8a8a8a 65%,
+      #555555 72%,
+      /* Sombra oposta */
+      #8a8a8a 80%,
+      #cccccc 95%,
+      #f5f5f5 100%);
 
   /* 3. Sombras combinadas para chanfro e volume */
-  box-shadow: 
-    0 6px 12px rgba(0, 0, 0, 0.5),           /* Sombra projetada para baixo */
-    inset 0 1px 1px rgba(255, 255, 255, 0.7), /* Brilho interior no topo da aresta */
-    inset 0 -1.5px 2px rgba(0, 0, 0, 0.4);    /* Sombra interior no fundo da aresta */
+  box-shadow:
+    0 6px 12px rgba(0, 0, 0, 0.5),
+    /* Sombra projetada para baixo */
+    inset 0 1px 1px rgba(255, 255, 255, 0.7),
+    /* Brilho interior no topo da aresta */
+    inset 0 -1.5px 2px rgba(0, 0, 0, 0.4);
+  /* Sombra interior no fundo da aresta */
 }
 
 .knob:active {
@@ -121,16 +130,18 @@ body {
 .knob::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border-radius: 50%;
-  background: repeating-radial-gradient(
-    circle at center,
-    transparent 0px,
-    transparent 1px,
-    rgba(0, 0, 0, 0.05) 1px,
-    rgba(0, 0, 0, 0.05) 2px
-  );
-  mix-blend-mode: multiply; /* Funde os sulcos com o gradiente metálico abaixo */
+  background: repeating-radial-gradient(circle at center,
+      transparent 0px,
+      transparent 1px,
+      rgba(0, 0, 0, 0.05) 1px,
+      rgba(0, 0, 0, 0.05) 2px);
+  mix-blend-mode: multiply;
+  /* Funde os sulcos com o gradiente metálico abaixo */
   pointer-events: none;
 }
 
@@ -138,14 +149,17 @@ body {
 .knob::after {
   content: '';
   position: absolute;
-  top: calc(var(--knob-size) * 0.125); /* 12.5% from top */
+  top: calc(var(--knob-size) * 0.125);
+  /* 12.5% from top */
   left: 50%;
   transform: translateX(-50%);
   width: calc(var(--knob-size) * 0.05 + 1px);
   height: calc(var(--knob-size) * 0.05 + 1px);
   border-radius: 50%;
   background: linear-gradient(135deg, #333 0%, #111 100%);
-  box-shadow: 
-    inset 0 0.5px 0.5px rgba(0, 0, 0, 0.6), /* Buraco interno */
-    0 0.5px 0.5px rgba(255, 255, 255, 0.4); /* Reflexo da luz na borda do buraco */
+  box-shadow:
+    inset 0 0.5px 0.5px rgba(0, 0, 0, 0.6),
+    /* Buraco interno */
+    0 0.5px 0.5px rgba(255, 255, 255, 0.4);
+  /* Reflexo da luz na borda do buraco */
 }

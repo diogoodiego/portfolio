@@ -91,39 +91,6 @@ const PROJECTS: InfoItem[] = [
   { name: "Vortx Fintech App", meta: "24" },
 ];
 
-const STACK: InfoItem[] = [
-  { name: "Figma & Design Tokens", meta: "UI/UX Design" },
-  { name: "Prototyping & Motion", meta: "Framer / Principle" },
-  { name: "Design Systems", meta: "Design Ops" },
-  { name: "Design Engineering", meta: "Next.js / React" },
-  { name: "Data Visualization", meta: "D3.js / SVG" },
-  { name: "User Research", meta: "Maze / Hotjar" },
-];
-
-const CHANNELS: InfoItem[] = [
-  { name: "LinkedIn", meta: "Professional" },
-  { name: "Bento.me", meta: "Link-in-bio" },
-  { name: "Behance", meta: "Case Studies" },
-  { name: "Dribbble", meta: "UI Interactions" },
-  { name: "Read.cv", meta: "Resumé" },
-];
-
-const FEATURES: InfoItem[] = [
-  { name: "Figma Config", meta: "24" },
-  { name: "Awwwards SOTD", meta: "24" },
-  { name: "CSS Design Awards", meta: "24" },
-  { name: "UX Collective", meta: "23" },
-  { name: "Adobe Design Arena", meta: "23" },
-];
-
-const CLIENTS: InfoItem[] = [
-  { name: "Petrobras", meta: "Energy Sector" },
-  { name: "IFSolve", meta: "EdTech Startup" },
-  { name: "Croft Technology", meta: "Deep Tech" },
-  { name: "Vortx", meta: "Fintech Industry" },
-  { name: "StreamTV", meta: "Entertainment" },
-];
-
 // ==========================================
 // Sub-Components
 // ==========================================
@@ -217,10 +184,10 @@ export const FooterSection = () => {
   return (
     <footer
       id="contact"
-      className="relative flex lg:flex-row flex-col justify-center items-center gap-8 bg-stone-950 p-24 w-full min-h-screen overflow-hidden animate-fade-in snap-start"
+      className="relative flex lg:flex-row flex-col justify-center lg:items-stretch items-center gap-8 bg-stone-950 p-6 py-16 md:p-12 lg:p-24 w-full min-h-screen overflow-hidden animate-fade-in snap-start"
     >
       {/* Left Side: Editorial Bio/About Hero Card */}
-      <div className="group relative flex flex-col justify-between lg:self-stretch bg-gradient-to-b from-[#a3060e] to-[#CB1019] shadow-2xl p-8 rounded-[24px] overflow-hidden shrink-0">
+      <div className="group relative flex flex-col justify-between w-full max-w-2xl lg:w-[380px] lg:max-w-none lg:self-stretch bg-gradient-to-b from-[#a3060e] to-[#CB1019] shadow-2xl p-8 rounded-[24px] overflow-hidden shrink-0">
         {/* Subtle noise/mesh background texture */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-stone-950/20 pointer-events-none mix-blend-overlay" />
 
@@ -254,7 +221,7 @@ export const FooterSection = () => {
             About me
           </p>
           <p className="max-w-[360px] font-medium text-white text-base md:text-lg leading-snug">
-            I'm Diogo! A designer with over 5 years of experience, specializing
+            I&apos;m Diogo! A designer with over 5 years of experience, specializing
             in creating intuitive interfaces and visual solutions for the energy
             industry.
           </p>
@@ -294,15 +261,9 @@ export const FooterSection = () => {
             </div>
           </div>
 
-          {/* Right Part (Col 4-5): Original Navigation Info Lists (Compact 2-column layout) */}
-          <div className="gap-x-6 gap-y-8 grid grid-cols-2 xl:col-span-2 xl:pl-8 xl:border-white/5 xl:border-l">
+          {/* Right Part (Col 4-5): Original Navigation Info Lists */}
+          <div className="xl:col-span-2 xl:pl-8 xl:border-white/5 xl:border-l">
             <InfoList title="Projects" items={PROJECTS} />
-            <InfoList title="Stack" items={STACK} />
-            <InfoList title="Channels" items={CHANNELS} />
-            <InfoList title="Features" items={FEATURES} />
-            <div className="col-span-2">
-              <InfoList title="Clients" items={CLIENTS} />
-            </div>
           </div>
         </div>
 
