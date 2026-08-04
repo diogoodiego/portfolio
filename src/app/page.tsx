@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <main className="h-screen overflow-y-auto scroll-auto snap-mandatory snap-y scrollbar-thumb-white/20 scrollbar-thin">
       <Navbar />
-      <div id="home" className="relative border-4 border-zinc-950 sm:border-8 rounded-3xl sm:rounded-4xl w-full h-screen overflow-hidden snap-start">
+      <div id="home" className="relative border-4 border-stone-950 sm:border-8 rounded-3xl sm:rounded-4xl w-full h-screen overflow-hidden snap-start">
         <video
           src="/assets/red_nebula2.mp4"
           autoPlay
@@ -71,7 +71,7 @@ export default function Home() {
           className="right-0 bottom-0 absolute flex flex-col justify-end gap-2"
         >
           {/* music player */}
-          <MusicPlayer />
+          {/* <MusicPlayer /> */}
         </motion.div>
 
         <div className="-z-2 absolute bg-stone-950/10 w-full h-full" />

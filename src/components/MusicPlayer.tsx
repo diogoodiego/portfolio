@@ -226,9 +226,9 @@ export const MusicPlayer = () => {
   const rotation = -135 + volume * 270;
 
   return (
-    <div className="group z-10 relative flex flex-row items-stretch gap-0 bg-zinc-950 p-2 pr-0 rounded-tl-2xl overflow-hidden">
-      <div className="flex flex-row items-center gap-1 bg-zinc-900 p-1 rounded-lg">
-        <div className="relative flex flex-col items-center gap-2 bg-zinc-950 m-0 p-3 border-4 border-zinc-950 rounded-lg overflow-hidden">
+    <div className="group z-10 relative flex flex-row items-stretch gap-0 bg-stone-950 p-2 pr-0 rounded-tl-2xl overflow-hidden">
+      <div className="flex flex-row items-center gap-1 bg-stone-900 p-1 rounded-lg">
+        <div className="relative flex flex-col items-center gap-2 bg-stone-950 m-0 p-3 border-4 border-stone-950 rounded-lg overflow-hidden">
           <div className="top-0 left-0 z-2 absolute bg-linear-to-bl from-30% from-white/0 via-white/8 to-80% to-white/0 w-full h-full pointer-events-none"></div>
 
           <div className="flex flex-row items-center gap-3">
@@ -314,7 +314,7 @@ export const MusicPlayer = () => {
         </div>
 
         {/* Volume Knob */}
-        <div className="flex flex-col justify-center items-center gap-1.5 bg-linear-to-br from-zinc-400 via-zinc-600 to-zinc-500 p-4 border border-white/2 rounded-lg h-full select-none shrink-0">
+        <div className="flex flex-col justify-center items-center gap-1.5 bg-linear-to-br from-stone-400 via-stone-600 to-stone-500 p-4 border border-white/2 rounded-lg h-full select-none shrink-0">
           <div className="knob-bezel">
             <div
               ref={knobRef}
@@ -331,7 +331,7 @@ export const MusicPlayer = () => {
               tabIndex={0}
             />
           </div>
-          <span className="font-mono font-semibold text-[10px] text-zinc-900 uppercase tracking-widest">Vol</span>
+          <span className="font-mono font-semibold text-[10px] text-stone-900 uppercase tracking-widest">Vol</span>
         </div>
       </div>
     </div>

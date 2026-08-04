@@ -97,7 +97,7 @@ const PROJECTS: InfoItem[] = [
 
 const ContactItem = ({ label, action, value, href }: ContactInfo) => (
   <div>
-    <h4 className="mb-2 font-mono font-bold text-[10px] text-zinc-500 uppercase tracking-widest">
+    <h4 className="mb-2 font-mono font-bold text-[10px] text-stone-500 uppercase tracking-widest">
       {label}
     </h4>
     <a
@@ -107,7 +107,7 @@ const ContactItem = ({ label, action, value, href }: ContactInfo) => (
       className="group block font-medium text-white hover:text-[#f85c37] text-xs transition-colors duration-200"
     >
       {action} &rarr;{" "}
-      <span className="block mt-0.5 font-mono text-zinc-400 group-hover:text-zinc-300 transition-colors duration-200">
+      <span className="block mt-0.5 font-mono text-stone-400 group-hover:text-stone-300 transition-colors duration-200">
         {value}
       </span>
     </a>
@@ -142,11 +142,11 @@ const ResumeItemComponent = ({ institution, role, period }: ResumeItem) => (
         <h5 className="font-bold text-white group-hover:text-[#f85c37] text-sm sm:text-base tracking-wide transition-colors duration-200">
           {institution}
         </h5>
-        <span className="font-mono text-zinc-500 group-hover:text-zinc-400 text-xs transition-colors duration-200 shrink-0">
+        <span className="font-mono text-stone-500 group-hover:text-stone-400 text-xs transition-colors duration-200 shrink-0">
           {period}
         </span>
       </div>
-      <p className="mt-1 text-zinc-400 group-hover:text-zinc-300 text-xs sm:text-sm leading-relaxed transition-colors duration-200">
+      <p className="mt-1 text-stone-400 group-hover:text-stone-300 text-xs sm:text-sm leading-relaxed transition-colors duration-200">
         {role}
       </p>
     </div>
@@ -155,7 +155,7 @@ const ResumeItemComponent = ({ institution, role, period }: ResumeItem) => (
 
 const InfoList = ({ title, items }: { title: string; items: InfoItem[] }) => (
   <div className="flex flex-col gap-3">
-    <h5 className="font-mono font-bold text-[10px] text-zinc-500 uppercase tracking-widest">
+    <h5 className="font-mono font-bold text-[10px] text-stone-500 uppercase tracking-widest">
       {title}
     </h5>
     <ul className="flex flex-col gap-2">
@@ -164,10 +164,10 @@ const InfoList = ({ title, items }: { title: string; items: InfoItem[] }) => (
           key={idx}
           className="group/item flex justify-between items-center text-xs cursor-pointer"
         >
-          <span className="text-zinc-400 group-hover/item:text-[#f85c37] transition-colors duration-200">
+          <span className="text-stone-400 group-hover/item:text-[#f85c37] transition-colors duration-200">
             {item.name}
           </span>
-          <span className="font-mono text-[9px] text-zinc-600 sm:text-[10px] group-hover/item:text-zinc-400 text-right transition-colors duration-200">
+          <span className="font-mono text-[9px] text-stone-600 sm:text-[10px] group-hover/item:text-stone-400 text-right transition-colors duration-200">
             {item.meta.match(/^\d+$/) ? `'${item.meta}` : item.meta}
           </span>
         </li>
@@ -184,10 +184,10 @@ export const FooterSection = () => {
   return (
     <footer
       id="contact"
-      className="relative flex lg:flex-row flex-col justify-center lg:items-stretch items-center gap-8 bg-stone-950 p-6 py-16 md:p-12 lg:p-24 w-full min-h-screen overflow-hidden animate-fade-in snap-start"
+      className="relative flex lg:flex-row flex-col justify-center items-center lg:items-stretch gap-8 bg-stone-950 p-6 md:p-12 lg:p-24 py-16 w-full min-h-screen overflow-hidden animate-fade-in snap-start"
     >
       {/* Left Side: Editorial Bio/About Hero Card */}
-      <div className="group relative flex flex-col justify-between w-full max-w-2xl lg:w-[380px] lg:max-w-none lg:self-stretch bg-gradient-to-b from-[#a3060e] to-[#CB1019] shadow-2xl p-8 rounded-[24px] overflow-hidden shrink-0">
+      <div className="group relative flex flex-col justify-between lg:self-stretch bg-gradient-to-b from-[#a3060e] to-[#CB1019] shadow-2xl p-8 rounded-[24px] w-full lg:w-[380px] lg:max-w-none max-w-2xl overflow-hidden shrink-0">
         {/* Subtle noise/mesh background texture */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-stone-950/20 pointer-events-none mix-blend-overlay" />
 
@@ -237,7 +237,7 @@ export const FooterSection = () => {
             <div className="relative gap-6 grid grid-cols-1 sm:grid-cols-2 pt-4">
               {/* Education */}
               <div className="flex flex-col gap-4">
-                <h4 className="font-mono font-bold text-zinc-500 text-xs uppercase tracking-widest">
+                <h4 className="font-mono font-bold text-stone-500 text-xs uppercase tracking-widest">
                   Education
                 </h4>
                 <div className="flex flex-col gap-4">
@@ -249,7 +249,7 @@ export const FooterSection = () => {
 
               {/* Experience */}
               <div className="flex flex-col gap-4 sm:pl-6 sm:border-white/5 sm:border-l">
-                <h4 className="font-mono font-bold text-zinc-500 text-xs uppercase tracking-widest">
+                <h4 className="font-mono font-bold text-stone-500 text-xs uppercase tracking-widest">
                   Experience
                 </h4>
                 <div className="flex flex-col gap-4">

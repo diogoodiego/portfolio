@@ -97,11 +97,11 @@ export const ColorPicker = () => {
   };
 
   return (
-    <div className="z-20 flex flex-col col-start-1 row-start-2 bg-white shadow-2xl border border-stone-200/50 backdrop-blur-md p-3 rounded-2xl w-[420px] transition-all duration-300">
+    <div className="z-20 flex flex-col col-start-1 row-start-2 bg-white shadow-2xl backdrop-blur-md p-3 border border-stone-200/50 rounded-2xl w-[420px] transition-all duration-300">
       {/* Header with Accordion Toggle */}
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="group flex justify-between items-center cursor-pointer select-none py-1"
+        className="group flex justify-between items-center py-1 cursor-pointer select-none"
       >
         <div className="flex items-center gap-2.5">
           <div
@@ -196,7 +196,7 @@ export const ColorPicker = () => {
 
               {/* Hex Input Display (right of the sliders) */}
               <div className="flex items-center gap-1 bg-stone-100 p-2 border border-stone-200 rounded-xl w-32 h-10 shrink-0">
-                <span className="font-mono text-zinc-500 text-xs select-none">#</span>
+                <span className="font-mono text-stone-500 text-xs select-none">#</span>
                 <input
                   type="text"
                   value={hexInput.replace("#", "")}
@@ -206,7 +206,7 @@ export const ColorPicker = () => {
                 />
                 <button
                   onClick={handleCopy}
-                  className="ml-1 text-zinc-500 hover:text-stone-900 transition-colors cursor-pointer shrink-0"
+                  className="ml-1 text-stone-500 hover:text-stone-900 transition-colors cursor-pointer shrink-0"
                   title="Copy HEX"
                 >
                   {copied ? <Check size={12} className="text-emerald-500" /> : <Copy size={12} />}
@@ -343,12 +343,12 @@ export const ColorPicker = () => {
               <div className="flex flex-col gap-2 font-mono text-[11px]">
                 {/* Hex */}
                 <div className="group/row flex justify-between items-center">
-                  <span className="text-zinc-500">HEX</span>
+                  <span className="text-stone-500">HEX</span>
                   <div className="flex items-center gap-1.5">
                     <span className="font-semibold text-stone-800 uppercase">{hoveredColor}</span>
                     <button
                       onClick={() => handlePopoverCopy(hoveredColor, "hex")}
-                      className="text-zinc-500 hover:text-stone-900 transition-colors cursor-pointer"
+                      className="text-stone-500 hover:text-stone-900 transition-colors cursor-pointer"
                       title="Copy HEX"
                     >
                       {popoverCopiedField === "hex" ? (
@@ -362,12 +362,12 @@ export const ColorPicker = () => {
 
                 {/* RGB */}
                 <div className="group/row flex justify-between items-center">
-                  <span className="text-zinc-500">RGB</span>
+                  <span className="text-stone-500">RGB</span>
                   <div className="flex items-center gap-1.5">
                     <span className="font-semibold text-stone-800">{rgbString}</span>
                     <button
                       onClick={() => handlePopoverCopy(rgbString, "rgb")}
-                      className="text-zinc-500 hover:text-stone-900 transition-colors cursor-pointer"
+                      className="text-stone-500 hover:text-stone-900 transition-colors cursor-pointer"
                       title="Copy RGB"
                     >
                       {popoverCopiedField === "rgb" ? (
@@ -381,12 +381,12 @@ export const ColorPicker = () => {
 
                 {/* HSL */}
                 <div className="group/row flex justify-between items-center">
-                  <span className="text-zinc-500">HSL</span>
+                  <span className="text-stone-500">HSL</span>
                   <div className="flex items-center gap-1.5">
                     <span className="font-semibold text-stone-800">{hslString}</span>
                     <button
                       onClick={() => handlePopoverCopy(hslString, "hsl")}
-                      className="text-zinc-500 hover:text-stone-900 transition-colors cursor-pointer"
+                      className="text-stone-500 hover:text-stone-900 transition-colors cursor-pointer"
                       title="Copy HSL"
                     >
                       {popoverCopiedField === "hsl" ? (
@@ -406,7 +406,7 @@ export const ColorPicker = () => {
                     APCA Contrast (Readability)
                   </span>
                   <span title="APCA measures readability as perceived by the human eye." className="cursor-help">
-                    <Info size={11} className="text-zinc-500" />
+                    <Info size={11} className="text-stone-500" />
                   </span>
                 </div>
 
