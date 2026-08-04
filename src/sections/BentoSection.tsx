@@ -1,21 +1,70 @@
-import React from "react";
+"use client";
 
-// Project Card Component (minimal with reduced border radius and no hover)
+import React, { useRef, useState } from "react";
+
+// Project Card Component with 1st frame preview, non-looping video on hover
 const ProjectCard = ({
   title,
+  videoSrc = "/assets/croft-mockup.mp4",
   className = "",
 }: {
   title: string;
+  videoSrc?: string;
   className?: string;
-}) => (
-  <div
-    className={`relative overflow-hidden bg-stone-900/60 p-6 sm:p-8 flex flex-col justify-start h-full ${className}`}
-  >
-    <h3 className="font-bold text-white text-xl sm:text-2xl tracking-tight">
-      {title}
-    </h3>
-  </div>
-);
+}) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (videoRef.current) {
+      if (videoRef.current.ended) {
+        videoRef.current.currentTime = 0;
+      }
+      videoRef.current.play().catch(() => { });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
+
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={`group relative overflow-hidden bg-stone-900/60 p-6 sm:p-8 flex flex-col justify-end h-full cursor-pointer transition-colors duration-300 ${className}`}
+    >
+      {/* Background Video (previews 1st frame, non-looping, stops on last frame) */}
+      {videoSrc && (
+        <video
+          ref={videoRef}
+          src={videoSrc}
+          muted
+          playsInline
+          preload="auto"
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 pointer-events-none ${isHovered ? "opacity-75 scale-105" : "opacity-35 scale-100"
+            }`}
+        />
+      )}
+
+      {/* Dark Overlay for Text Readability */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-b from-stone-950/90 via-stone-950/40 to-stone-950/90 transition-opacity duration-300 pointer-events-none ${isHovered ? "opacity-70" : "opacity-85"
+          }`}
+      />
+
+      {/* Card Title */}
+      <h3 className="z-10 relative drop-shadow-md font-bold text-white text-xl sm:text-3xl tracking-tight">
+        {title}
+      </h3>
+    </div>
+  );
+};
+
 
 export const BentoSection = () => {
   return (
@@ -32,12 +81,13 @@ export const BentoSection = () => {
 
       {/* 3 Vertical Cards Grid */}
       <div className="flex-1 items-stretch gap-6 lg:gap-4 grid grid-cols-1 md:grid-cols-3 h-full min-h-0">
-        <ProjectCard title="Croft — Design System" />
-        <ProjectCard title="Ceni — UI Kit" />
-        <ProjectCard title="Heuristic Evaluation — IFSolve" />
+        <ProjectCard title="Croft" videoSrc="/assets/croft-mockup.mp4" />
+        <ProjectCard title="Ceni" videoSrc="/assets/ceni.mp4" />
+        <ProjectCard title="IFSolve" videoSrc="/assets/ifsolve.mp4" />
       </div>
     </section>
   );
 };
+
 
 
