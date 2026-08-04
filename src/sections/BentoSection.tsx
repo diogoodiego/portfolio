@@ -1,15 +1,18 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import Link from "next/link";
 
-// Project Card Component with 1st frame preview, non-looping video on hover
+// Project Card Component with 1st frame preview, non-looping video on hover and link support
 const ProjectCard = ({
   title,
   videoSrc = "/assets/croft-mockup.mp4",
+  href,
   className = "",
 }: {
   title: string;
   videoSrc?: string;
+  href?: string;
   className?: string;
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -32,7 +35,7 @@ const ProjectCard = ({
     }
   };
 
-  return (
+  const CardContent = (
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -46,15 +49,17 @@ const ProjectCard = ({
           muted
           playsInline
           preload="auto"
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 pointer-events-none ${isHovered ? "opacity-75 scale-105" : "opacity-35 scale-100"
-            }`}
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 pointer-events-none ${
+            isHovered ? "opacity-75 scale-105" : "opacity-35 scale-100"
+          }`}
         />
       )}
 
       {/* Dark Overlay for Text Readability */}
       <div
-        className={`absolute inset-0 bg-gradient-to-b from-stone-950/90 via-stone-950/40 to-stone-950/90 transition-opacity duration-300 pointer-events-none ${isHovered ? "opacity-70" : "opacity-85"
-          }`}
+        className={`absolute inset-0 bg-gradient-to-b from-stone-950/90 via-stone-950/40 to-stone-950/90 transition-opacity duration-300 pointer-events-none ${
+          isHovered ? "opacity-70" : "opacity-85"
+        }`}
       />
 
       {/* Card Title */}
@@ -63,8 +68,17 @@ const ProjectCard = ({
       </h3>
     </div>
   );
-};
 
+  if (href) {
+    return (
+      <Link href={href} className="block h-full no-underline">
+        {CardContent}
+      </Link>
+    );
+  }
+
+  return CardContent;
+};
 
 export const BentoSection = () => {
   return (
@@ -81,13 +95,14 @@ export const BentoSection = () => {
 
       {/* 3 Vertical Cards Grid */}
       <div className="flex-1 items-stretch gap-6 lg:gap-4 grid grid-cols-1 md:grid-cols-3 h-full min-h-0">
-        <ProjectCard title="Croft" videoSrc="/assets/croft-mockup.mp4" />
+        <ProjectCard title="Croft" videoSrc="/assets/croft-mockup.mp4" href="/croft" />
         <ProjectCard title="Ceni" videoSrc="/assets/ceni.mp4" />
         <ProjectCard title="IFSolve" videoSrc="/assets/ifsolve.mp4" />
       </div>
     </section>
   );
 };
+
 
 
 
