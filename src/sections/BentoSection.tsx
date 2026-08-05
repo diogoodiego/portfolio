@@ -96,7 +96,7 @@ export const BentoSection = () => {
       {/* 3 Vertical Cards Grid */}
       <div className="flex-1 items-stretch gap-6 lg:gap-4 grid grid-cols-1 md:grid-cols-3 h-full min-h-0">
         <ProjectCard title="Croft" videoSrc="/assets/croft-mockup.mp4" href="/croft" />
-        <ProjectCard title="Ceni" videoSrc="/assets/ceni.mp4" />
+        <ProjectCard title="Ceni" videoSrc="/assets/ceni.mp4" href="/ceni" />
         <ProjectCard title="IFSolve" videoSrc="/assets/ifsolve.mp4" />
       </div>
     </section>
