@@ -2,8 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import me from "../assets/me.png";
 import side from "../assets/side.png";
+import { StoryCard, BentoCard } from "@/components";
 
 // ==========================================
 // Types & Data Contracts
@@ -21,8 +21,14 @@ interface ContactInfo {
   href: string;
 }
 
+interface ResumeItem {
+  institution: string;
+  role: string;
+  period: string;
+}
+
 // ==========================================
-// Static Dataset Configuration (Optimized)
+// Static Dataset Configuration
 // ==========================================
 
 const CONTACTS: ContactInfo[] = [
@@ -45,12 +51,6 @@ const CONTACTS: ContactInfo[] = [
     href: "https://linkedin.com",
   },
 ];
-
-interface ResumeItem {
-  institution: string;
-  role: string;
-  period: string;
-}
 
 const EDUCATION: ResumeItem[] = [
   {
@@ -153,12 +153,9 @@ const ResumeItemComponent = ({ institution, role, period }: ResumeItem) => (
   </div>
 );
 
-const InfoList = ({ title, items }: { title: string; items: InfoItem[] }) => (
+const InfoList = ({ items }: { items: InfoItem[] }) => (
   <div className="flex flex-col gap-3">
-    <h5 className="font-mono font-bold text-[10px] text-stone-500 uppercase tracking-widest">
-      {title}
-    </h5>
-    <ul className="flex flex-col gap-2">
+    <ul className="flex flex-col gap-2.5">
       {items.map((item, idx) => (
         <li
           key={idx}
@@ -184,103 +181,92 @@ export const FooterSection = () => {
   return (
     <footer
       id="contact"
-      className="relative flex lg:flex-row flex-col justify-center items-center lg:items-stretch gap-8 bg-stone-950 p-6 md:p-12 lg:p-24 py-16 w-full min-h-screen overflow-hidden animate-fade-in snap-start"
+      className="relative flex flex-col justify-center bg-stone-950 p-6 md:p-12 lg:p-16 py-16 w-full min-h-screen overflow-hidden animate-fade-in snap-start"
     >
-      {/* Left Side: Editorial Bio/About Hero Card */}
-      <div className="group relative flex flex-col justify-between lg:self-stretch bg-gradient-to-b from-[#a3060e] to-[#CB1019] shadow-2xl p-8 rounded-[24px] w-full lg:w-[380px] lg:max-w-none max-w-2xl overflow-hidden shrink-0">
-        {/* Subtle noise/mesh background texture */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-stone-950/20 pointer-events-none mix-blend-overlay" />
+      {/* Single Flat Bento Grid Container */}
+      <div className="items-stretch gap-4 lg:gap-6 grid grid-cols-1 lg:grid-cols-8 mx-auto w-full">
+        {/* Card 1: Editorial Bio/About Hero Card */}
+        <div className="group relative flex flex-col justify-between lg:col-span-2 lg:row-span-3 bg-gradient-to-b from-[#a3060e] to-[#CB1019] shadow-2xl p-8 rounded-xl w-full min-h-[480px] lg:min-h-full overflow-hidden shrink-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-stone-950/20 pointer-events-none mix-blend-overlay" />
 
-        {/* Profile cutout blend overlay */}
-        <Image
-          src={side}
-          alt="Diogo profile picture"
-          className="-bottom-2 -left-2 z-3 absolute w-[75%] group-hover:w-[76%] scale-x-[-1] transition-all duration-300"
-          priority
-        />
-        <Image
-          src={side}
-          alt="Diogo profile picture"
-          className="-bottom-2 -left-2 z-2 absolute blur-[3px] w-[75%] group-hover:w-[76%] scale-x-[-1] transition-all duration-300"
-          priority
-        />
-        <Image
-          src={side}
-          alt="Shadow"
-          className="-bottom-2 -left-2 z-1 absolute opacity-20 group-hover:opacity-60 blur-lg w-80 scale-x-[-1] transition-all duration-300 mix-blend-plus-darker"
-          priority
-        />
-        <div className="top-0 left-0 z-4 absolute bg-gradient-to-b from-80% from-orange-700/0 to-red-700/90 w-full h-full"></div>
-        <div className="top-[50%] group-hover:top-[35%] left-1/2 z-0 absolute font-black text-[280px] rotate-6 group-hover:rotate-45 transition-all -translate-x-1/2 -translate-y-1/2 duration-300">
-          DIO
-        </div>
-
-        {/* Bottom Biography Area */}
-        <div className="z-10 relative mt-auto pt-48">
-          <p className="mb-2 font-regular text-md text-white/60 uppercase tracking-wider">
-            About me
-          </p>
-          <p className="max-w-[360px] font-medium text-white text-base md:text-lg leading-snug">
-            I&apos;m Diogo! A designer with over 5 years of experience, specializing
-            in creating intuitive interfaces and visual solutions for the energy
-            industry.
-          </p>
-        </div>
-      </div>
-
-      {/* Right Side: Navigation Lists, Metadata & Action button */}
-      <div className="flex flex-col justify-between gap-8 w-full">
-        {/* Middle Row: About Me + Education & Experience Layout and Navigation Info Lists */}
-        <div className="gap-8 grid grid-cols-1 xl:grid-cols-5 py-2">
-          {/* Left Part (Col 1-3): About Me + Education & Experience */}
-          <div className="flex flex-col gap-6 xl:col-span-3">
-            <div className="relative gap-6 grid grid-cols-1 sm:grid-cols-2 pt-4">
-              {/* Education */}
-              <div className="flex flex-col gap-4">
-                <h4 className="font-mono font-bold text-stone-500 text-xs uppercase tracking-widest">
-                  Education
-                </h4>
-                <div className="flex flex-col gap-4">
-                  {EDUCATION.map((item, idx) => (
-                    <ResumeItemComponent key={idx} {...item} />
-                  ))}
-                </div>
-              </div>
-
-              {/* Experience */}
-              <div className="flex flex-col gap-4 sm:pl-6 sm:border-white/5 sm:border-l">
-                <h4 className="font-mono font-bold text-stone-500 text-xs uppercase tracking-widest">
-                  Experience
-                </h4>
-                <div className="flex flex-col gap-4">
-                  {EXPERIENCE.map((item, idx) => (
-                    <ResumeItemComponent key={idx} {...item} />
-                  ))}
-                </div>
-              </div>
-            </div>
+          <Image
+            src={side}
+            alt="Diogo profile picture"
+            className="-bottom-2 -left-2 z-3 absolute w-[75%] group-hover:w-[76%] scale-x-[-1] transition-all duration-300"
+            priority
+          />
+          <Image
+            src={side}
+            alt="Diogo profile picture"
+            className="-bottom-2 -left-2 z-2 absolute blur-[3px] w-[75%] group-hover:w-[76%] scale-x-[-1] transition-all duration-300"
+            priority
+          />
+          <Image
+            src={side}
+            alt="Shadow"
+            className="-bottom-2 -left-2 z-1 absolute opacity-20 group-hover:opacity-60 blur-lg w-80 scale-x-[-1] transition-all duration-300 mix-blend-plus-darker"
+            priority
+          />
+          <div className="top-0 left-0 z-4 absolute bg-gradient-to-b from-80% from-orange-700/0 to-red-700/90 w-full h-full" />
+          <div className="top-[50%] group-hover:top-[35%] left-1/2 z-0 absolute font-black text-[280px] rotate-6 group-hover:rotate-45 transition-all -translate-x-1/2 -translate-y-1/2 duration-300">
+            DIO
           </div>
 
-          {/* Right Part (Col 4-5): Original Navigation Info Lists */}
-          <div className="xl:col-span-2 xl:pl-8 xl:border-white/5 xl:border-l">
-            <InfoList title="Projects" items={PROJECTS} />
+          <div className="z-10 relative mt-auto pt-48">
+            <p className="mb-2 font-regular text-md text-white/60 uppercase tracking-wider">
+              About me
+            </p>
+            <p className="max-w-[360px] font-medium text-white text-base md:text-lg leading-snug">
+              I&apos;m Diogo! A designer with over 5 years of experience, specializing
+              in creating intuitive interfaces and visual solutions for the energy
+              industry.
+            </p>
           </div>
         </div>
 
-        {/* Bottom Section: Footer metadata & Pill Action button */}
-        <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center gap-6 pt-6 border-white/5 border-t">
-          {CONTACTS.map((contact, idx) => (
-            <ContactItem key={idx} {...contact} />
-          ))}
+        {/* Card 2: Experience */}
+        <BentoCard className="lg:col-span-3" title="Experience">
+          <div className="flex flex-col gap-4">
+            {EXPERIENCE.map((item, idx) => (
+              <ResumeItemComponent key={idx} {...item} />
+            ))}
+          </div>
+        </BentoCard>
 
-          {/* Glowing Orange Book Call Action Button */}
+        {/* Card 3: Education */}
+        <BentoCard className="lg:col-span-3" title="Education">
+          <div className="flex flex-col gap-4">
+            {EDUCATION.map((item, idx) => (
+              <ResumeItemComponent key={idx} {...item} />
+            ))}
+          </div>
+        </BentoCard>
+
+        {/* Card 4: Projects */}
+        <BentoCard className="lg:col-span-4" title="Projects">
+          <InfoList items={PROJECTS} />
+        </BentoCard>
+
+        {/* Card 5: Stories Carousel */}
+        <div className="lg:col-span-2 min-h-[300px]">
+          <StoryCard />
+        </div>
+
+        {/* Card 6: Contacts & Action button */}
+        <BentoCard className="flex lg:flex-row flex-col justify-between items-start lg:items-center gap-6 lg:col-span-6">
+          <div className="gap-6 grid grid-cols-1 sm:grid-cols-3 w-full lg:w-auto">
+            {CONTACTS.map((contact, idx) => (
+              <ContactItem key={idx} {...contact} />
+            ))}
+          </div>
+
           <a
             href="mailto:hello@dio.design"
-            className="inline-flex relative justify-center items-center bg-gradient-to-r from-[#e23c14] to-[#f85c37] hover:shadow-[0_0_24px_rgba(248,92,55,0.4)] px-7 py-3.5 rounded-full font-bold text-white text-xs uppercase tracking-wider hover:scale-[1.03] active:scale-[0.98] transition-all duration-300"
+            className="inline-flex relative justify-center items-center bg-gradient-to-r from-[#e23c14] to-[#f85c37] hover:shadow-[0_0_24px_rgba(248,92,55,0.4)] px-7 py-3.5 rounded-full font-bold text-white text-xs uppercase tracking-wider hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 shrink-0"
           >
             Book a session
           </a>
-        </div>
+        </BentoCard>
       </div>
     </footer>
   );

@@ -49,17 +49,15 @@ const ProjectCard = ({
           muted
           playsInline
           preload="auto"
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 pointer-events-none ${
-            isHovered ? "opacity-75 scale-105" : "opacity-35 scale-100"
-          }`}
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 pointer-events-none ${isHovered ? "opacity-75 scale-105" : "opacity-35 scale-100"
+            }`}
         />
       )}
 
       {/* Dark Overlay for Text Readability */}
       <div
-        className={`absolute inset-0 bg-gradient-to-b from-stone-950/90 via-stone-950/40 to-stone-950/90 transition-opacity duration-300 pointer-events-none ${
-          isHovered ? "opacity-70" : "opacity-85"
-        }`}
+        className={`absolute inset-0 bg-gradient-to-b from-stone-950/90 via-stone-950/40 to-stone-950/90 transition-opacity duration-300 pointer-events-none ${isHovered ? "opacity-70" : "opacity-85"
+          }`}
       />
 
       {/* Card Title */}

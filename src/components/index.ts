@@ -5,4 +5,6 @@ export * from './ROPChart';
 export * from './LiquidButton';
 export * from './ColorPicker';
 export * from './MusicPlayer';
+export * from './StoryCard';
+export * from './BentoCard';
 
