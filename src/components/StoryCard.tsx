@@ -169,7 +169,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
                 className="flex-1 bg-white/25 backdrop-blur-sm rounded-full h-1 overflow-hidden"
               >
                 <div
-                  className="bg-gradient-to-r from-[#e23c14] to-[#f85c37] rounded-full h-full transition-all duration-75 ease-linear"
+                  className="bg-gradient-to-r from-white/90 to-white rounded-full h-full transition-all duration-75 ease-linear"
                   style={{ width: barWidth }}
                 />
               </div>
