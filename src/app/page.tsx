@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <main className="h-screen overflow-y-auto scroll-auto snap-mandatory snap-y scrollbar-thumb-white/20 scrollbar-thin">
       <Navbar />
-      <div id="home" className="relative border-4 border-stone-950 sm:border-8 rounded-3xl sm:rounded-4xl w-full h-screen overflow-hidden snap-start">
+      <div id="home" className="relative border-[16px] border-stone-950 rounded-3xl sm:rounded-4xl w-full h-screen overflow-hidden snap-start">
         <video
           src="/assets/red_nebula2.mp4"
           autoPlay

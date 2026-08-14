@@ -146,8 +146,6 @@ export const StoryCard: React.FC<StoryCardProps> = ({
         </motion.div>
       </AnimatePresence>
 
-      {/* Gradient Overlays for UI Readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-stone-950/85 via-stone-950/20 to-stone-950/95 pointer-events-none z-[1]" />
 
       {/* Top Header: Progress Bars + User Info */}
       <div className="z-10 flex flex-col gap-2.5 p-4">
@@ -170,7 +168,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
                   setCurrentIndex(index);
                   setProgress(0);
                 }}
-                className="flex-1 bg-white/25 backdrop-blur-sm rounded-full h-1 overflow-hidden cursor-pointer hover:bg-white/40 transition-colors"
+                className="flex-1 bg-white/25 hover:bg-white/40 backdrop-blur-sm rounded-full h-1 overflow-hidden transition-colors cursor-pointer"
               >
                 <div
                   className="bg-gradient-to-r from-white/90 to-white rounded-full h-full transition-all duration-75 ease-linear"
@@ -180,50 +178,20 @@ export const StoryCard: React.FC<StoryCardProps> = ({
             );
           })}
         </div>
-
-        {/* User Info Header */}
-        <div className="flex items-center gap-2.5 mt-1">
-          <div className="relative w-7 h-7 rounded-full overflow-hidden border border-white/30 shrink-0 shadow-md">
-            <Image src={me} alt="Diogo" fill className="object-cover" />
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-white tracking-wide drop-shadow">
-              Diogo
-            </span>
-            <span className="text-[10px] text-white/60 font-mono">
-              • {activeStory.timestamp}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Content Info */}
-      <div className="z-10 p-5 mt-auto flex flex-col gap-1.5 pointer-events-none">
-        {activeStory.tag && (
-          <span className="px-2 py-0.5 bg-[#f85c37] text-white font-mono text-[9px] uppercase tracking-wider font-semibold rounded-md shadow-sm self-start">
-            {activeStory.tag}
-          </span>
-        )}
-        <h4 className="text-base font-bold text-white leading-snug drop-shadow-md">
-          {activeStory.title}
-        </h4>
-        <p className="text-xs text-stone-300 leading-relaxed line-clamp-2 drop-shadow">
-          {activeStory.caption}
-        </p>
       </div>
 
       {/* Explicit Navigation Controls */}
-      <div className="absolute inset-y-0 left-0 right-0 z-20 flex justify-between items-center px-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+      <div className="right-0 left-0 z-20 absolute inset-y-0 flex justify-between items-center opacity-0 group-hover:opacity-100 px-3 transition-opacity duration-200 pointer-events-none">
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
             prevStory();
           }}
-          className="pointer-events-auto flex justify-center items-center bg-stone-950/60 hover:bg-stone-900/90 text-white rounded-full w-8 h-8 font-bold shadow-lg transition-transform active:scale-95 cursor-pointer backdrop-blur-md border border-white/10"
+          className="flex justify-center items-center bg-stone-950/60 hover:bg-stone-900/90 shadow-lg backdrop-blur-md border border-white/10 rounded-full w-8 h-8 font-bold text-white active:scale-95 transition-transform cursor-pointer pointer-events-auto"
           aria-label="Previous story"
         >
-          <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
+          <ChevronLeft className="stroke-[2.5] w-4 h-4" />
         </button>
         <button
           type="button"
@@ -231,10 +199,10 @@ export const StoryCard: React.FC<StoryCardProps> = ({
             e.stopPropagation();
             nextStory();
           }}
-          className="pointer-events-auto flex justify-center items-center bg-stone-950/60 hover:bg-stone-900/90 text-white rounded-full w-8 h-8 font-bold shadow-lg transition-transform active:scale-95 cursor-pointer backdrop-blur-md border border-white/10"
+          className="flex justify-center items-center bg-stone-950/60 hover:bg-stone-900/90 shadow-lg backdrop-blur-md border border-white/10 rounded-full w-8 h-8 font-bold text-white active:scale-95 transition-transform cursor-pointer pointer-events-auto"
           aria-label="Next story"
         >
-          <ChevronRight className="w-4 h-4 stroke-[2.5]" />
+          <ChevronRight className="stroke-[2.5] w-4 h-4" />
         </button>
       </div>
     </div>
