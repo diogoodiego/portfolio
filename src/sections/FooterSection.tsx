@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import side from "../assets/side.png";
 import { StoryCard, BentoCard } from "@/components";
 
@@ -12,6 +13,7 @@ import { StoryCard, BentoCard } from "@/components";
 interface InfoItem {
   name: string;
   meta: string;
+  href?: string;
 }
 
 interface ContactInfo {
@@ -84,8 +86,9 @@ const EXPERIENCE: ResumeItem[] = [
 ];
 
 const PROJECTS: InfoItem[] = [
-  { name: "Croft Design System", meta: "24" },
-  { name: "IFSolve Platform", meta: "23" },
+  { name: "Croft Design System", meta: "24", href: "/croft" },
+  { name: "Ceni Figma Plugin", meta: "24", href: "/ceni" },
+  { name: "IFSolve Platform", meta: "23", href: "/ifsolve" },
   { name: "Petrobras ROP Console", meta: "24" },
   { name: "StreamTV Streaming", meta: "23" },
   { name: "Vortx Fintech App", meta: "24" },
@@ -156,19 +159,40 @@ const ResumeItemComponent = ({ institution, role, period }: ResumeItem) => (
 const InfoList = ({ items }: { items: InfoItem[] }) => (
   <div className="flex flex-col gap-3">
     <ul className="flex flex-col gap-2.5">
-      {items.map((item, idx) => (
-        <li
-          key={idx}
-          className="group/item flex justify-between items-center text-xs cursor-pointer"
-        >
-          <span className="text-stone-400 group-hover/item:text-[#f85c37] transition-colors duration-200">
-            {item.name}
-          </span>
-          <span className="font-mono text-[9px] text-stone-600 sm:text-[10px] group-hover/item:text-stone-400 text-right transition-colors duration-200">
-            {item.meta.match(/^\d+$/) ? `'${item.meta}` : item.meta}
-          </span>
-        </li>
-      ))}
+      {items.map((item, idx) => {
+        const itemContent = (
+          <>
+            <span className="text-stone-400 group-hover/item:text-[#f85c37] transition-colors duration-200">
+              {item.name}
+            </span>
+            <span className="font-mono text-[9px] text-stone-600 sm:text-[10px] group-hover/item:text-stone-400 text-right transition-colors duration-200">
+              {item.meta.match(/^\d+$/) ? `'${item.meta}` : item.meta}
+            </span>
+          </>
+        );
+
+        if (item.href) {
+          return (
+            <li key={idx}>
+              <Link
+                href={item.href}
+                className="group/item flex justify-between items-center text-xs cursor-pointer no-underline"
+              >
+                {itemContent}
+              </Link>
+            </li>
+          );
+        }
+
+        return (
+          <li
+            key={idx}
+            className="group/item flex justify-between items-center text-xs cursor-pointer"
+          >
+            {itemContent}
+          </li>
+        );
+      })}
     </ul>
   </div>
 );
