@@ -5,4 +5,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ## Design Rules
 - Do not use uppercase text for input labels.
+- Do not use uppercase text for titles.
+- Do not use gradient text.
+- Do not use gradient text.
+- Space Grotesk font.
 <!-- END:nextjs-agent-rules -->

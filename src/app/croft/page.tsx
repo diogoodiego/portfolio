@@ -46,7 +46,7 @@ export default function CroftCaseStudy() {
         {/* Hero Video */}
         <div className="bg-stone-900 rounded-2xl aspect-video overflow-hidden">
           <video
-            src="/assets/croft-mockup.mp4"
+            src="/assets/croft_banner_dark_animated.mp4"
             autoPlay
             loop
             muted

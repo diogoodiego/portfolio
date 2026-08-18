@@ -44,9 +44,9 @@ export default function IFSolveCaseStudy() {
         </header>
 
         {/* Hero Video */}
-        <div className="bg-stone-900 rounded-2xl aspect-video overflow-hidden border border-white/5 shadow-2xl">
+        <div className="bg-stone-900 shadow-2xl border border-white/5 rounded-2xl aspect-video overflow-hidden">
           <video
-            src="/assets/ifsolve.mp4"
+            src="/assets/ifsolve_home.mp4"
             autoPlay
             loop
             muted
@@ -70,22 +70,22 @@ export default function IFSolveCaseStudy() {
             Meu papel neste projeto foi conduzir uma auditoria rigorosa de usabilidade e propor intervenções focadas em acessibilidade, prevenção de erros e consistência visual.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
-            <div className="bg-stone-900/60 p-4 rounded-xl border border-white/5">
+          <div className="gap-3 grid grid-cols-1 md:grid-cols-3 pt-2">
+            <div className="bg-stone-900/60 p-4 border border-white/5 rounded-xl">
               <h3 className="mb-1 font-semibold text-white text-base">O que é o IFSolve?</h3>
               <p className="text-stone-400 text-sm">
                 Plataforma acadêmica para criação, aplicação e gerenciamento centralizado de provas e repositório de questões educacionais.
               </p>
             </div>
 
-            <div className="bg-stone-900/60 p-4 rounded-xl border border-white/5">
+            <div className="bg-stone-900/60 p-4 border border-white/5 rounded-xl">
               <h3 className="mb-1 font-semibold text-white text-base">Meu Papel</h3>
               <p className="text-stone-400 text-sm">
                 Auditoria heurística de usabilidade, diagnóstico técnico dos gargalos e redesign de fluxos de interação e interfaces.
               </p>
             </div>
 
-            <div className="bg-stone-900/60 p-4 rounded-xl border border-white/5">
+            <div className="bg-stone-900/60 p-4 border border-white/5 rounded-xl">
               <h3 className="mb-1 font-semibold text-white text-base">Pilares Centrais</h3>
               <p className="text-stone-400 text-sm">
                 Acessibilidade (WCAG 2.1), prevenção ativa de erros críticos e responsividade mobile integral.
@@ -107,20 +107,20 @@ export default function IFSolveCaseStudy() {
           </p>
 
           {/* Metrics & Overview Banner */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-            <div className="bg-stone-900/60 p-5 rounded-xl text-center border border-white/5">
+          <div className="gap-4 grid grid-cols-1 sm:grid-cols-3 pt-2">
+            <div className="bg-stone-900/60 p-5 border border-white/5 rounded-xl text-center">
               <div className="mb-1 font-bold text-rose-500 text-3xl sm:text-4xl">51</div>
               <div className="mb-1 font-semibold text-white text-xs uppercase tracking-wider">Violações Documentadas</div>
               <p className="text-stone-400 text-xs">Mapeadas minuciosamente em todos os fluxos de professores e alunos.</p>
             </div>
 
-            <div className="bg-stone-900/60 p-5 rounded-xl text-center border border-white/5">
+            <div className="bg-stone-900/60 p-5 border border-white/5 rounded-xl text-center">
               <div className="mb-1 font-bold text-white text-3xl sm:text-4xl">4 Níveis</div>
               <div className="mb-1 font-semibold text-rose-500 text-xs uppercase tracking-wider">Escala de Gravidade</div>
               <p className="text-stone-400 text-xs">Classificação em Leve, Moderado, Grave e Crítico para priorização.</p>
             </div>
 
-            <div className="bg-stone-900/60 p-5 rounded-xl text-center border border-white/5">
+            <div className="bg-stone-900/60 p-5 border border-white/5 rounded-xl text-center">
               <div className="mb-1 font-bold text-white text-3xl sm:text-4xl">Eureca</div>
               <div className="mb-1 font-semibold text-rose-500 text-xs uppercase tracking-wider">Framework Teórico</div>
               <p className="text-stone-400 text-xs">Metodologia consolidada de diretrizes de usabilidade (Matos e Freire, 2023).</p>
@@ -140,9 +140,9 @@ export default function IFSolveCaseStudy() {
           </div>
 
           {/* Problema A */}
-          <div className="bg-stone-900/60 p-6 sm:p-8 rounded-2xl border border-rose-500/20 space-y-6">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="px-3 py-1 bg-rose-500/10 text-rose-400 text-xs font-semibold uppercase tracking-wider rounded-full border border-rose-500/30">
+          <div className="space-y-6 bg-stone-900/60 p-6 sm:p-8 border border-rose-500/20 rounded-2xl">
+            <div className="flex flex-wrap justify-between items-center gap-2">
+              <span className="bg-rose-500/10 px-3 py-1 border border-rose-500/30 rounded-full font-semibold text-rose-400 text-xs uppercase tracking-wider">
                 Gravidade: Crítico
               </span>
               <span className="font-mono text-stone-400 text-xs">
@@ -156,15 +156,15 @@ export default function IFSolveCaseStudy() {
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div className="bg-stone-950/60 p-4 rounded-xl border border-white/5 space-y-2">
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2 text-sm">
+              <div className="space-y-2 bg-stone-950/60 p-4 border border-white/5 rounded-xl">
                 <h4 className="font-semibold text-stone-200">O Cenário</h4>
                 <p className="text-stone-400 leading-relaxed">
                   Na tarefa principal do aluno — responder a uma avaliação —, o sistema permitia que uma prova fosse submetida inteiramente em branco, sem qualquer alerta ou barreira de confirmação.
                 </p>
               </div>
 
-              <div className="bg-stone-950/60 p-4 rounded-xl border border-white/5 space-y-2">
+              <div className="space-y-2 bg-stone-950/60 p-4 border border-white/5 rounded-xl">
                 <h4 className="font-semibold text-stone-200">O Impacto (UX e Negócio)</h4>
                 <p className="text-stone-400 leading-relaxed">
                   Em um contexto avaliativo, o custo desse erro é altíssimo. O aluno sofria com frustração e ansiedade pelo envio acidental, enquanto o professor lidava com dados corrompidos (provas nulas). A interface falhava em proteger o usuário de ações não intencionais.
@@ -172,7 +172,7 @@ export default function IFSolveCaseStudy() {
               </div>
             </div>
 
-            <div className="bg-stone-950/80 p-5 rounded-xl border border-emerald-500/20 space-y-2">
+            <div className="space-y-2 bg-stone-950/80 p-5 border border-emerald-500/20 rounded-xl">
               <h4 className="font-semibold text-emerald-400 text-sm uppercase tracking-wide">A Solução Projetada</h4>
               <p className="text-stone-300 text-sm leading-relaxed">
                 Projetei um sistema de feedback imediato. O botão de submissão permanece desabilitado e só é ativado após o preenchimento das questões essenciais, além da inclusão de um modal de confirmação com resumo das respostas e alerta seguro contra fechamento acidental da tela.
@@ -181,9 +181,9 @@ export default function IFSolveCaseStudy() {
           </div>
 
           {/* Problema B */}
-          <div className="bg-stone-900/60 p-6 sm:p-8 rounded-2xl border border-rose-500/20 space-y-6">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="px-3 py-1 bg-rose-500/10 text-rose-400 text-xs font-semibold uppercase tracking-wider rounded-full border border-rose-500/30">
+          <div className="space-y-6 bg-stone-900/60 p-6 sm:p-8 border border-rose-500/20 rounded-2xl">
+            <div className="flex flex-wrap justify-between items-center gap-2">
+              <span className="bg-rose-500/10 px-3 py-1 border border-rose-500/30 rounded-full font-semibold text-rose-400 text-xs uppercase tracking-wider">
                 Gravidade: Crítico
               </span>
               <span className="font-mono text-stone-400 text-xs">
@@ -197,15 +197,15 @@ export default function IFSolveCaseStudy() {
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div className="bg-stone-950/60 p-4 rounded-xl border border-white/5 space-y-2">
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2 text-sm">
+              <div className="space-y-2 bg-stone-950/60 p-4 border border-white/5 rounded-xl">
                 <h4 className="font-semibold text-stone-200">O Cenário</h4>
                 <p className="text-stone-400 leading-relaxed">
                   A tela não possuía comportamento responsivo, gerando quebras severas de layout em telas menores. A barra de navegação superior, por exemplo, sobrepunha o conteúdo de forma inadequada e ocultava elementos cruciais.
                 </p>
               </div>
 
-              <div className="bg-stone-950/60 p-4 rounded-xl border border-white/5 space-y-2">
+              <div className="space-y-2 bg-stone-950/60 p-4 border border-white/5 rounded-xl">
                 <h4 className="font-semibold text-stone-200">O Impacto</h4>
                 <p className="text-stone-400 leading-relaxed">
                   No ecossistema de educação pública e acadêmica, o smartphone é frequentemente o principal — ou único — dispositivo de acesso do estudante. A falta de responsividade configurava uma barreira direta de acessibilidade digital.
@@ -213,7 +213,7 @@ export default function IFSolveCaseStudy() {
               </div>
             </div>
 
-            <div className="bg-stone-950/80 p-5 rounded-xl border border-emerald-500/20 space-y-2">
+            <div className="space-y-2 bg-stone-950/80 p-5 border border-emerald-500/20 rounded-xl">
               <h4 className="font-semibold text-emerald-400 text-sm uppercase tracking-wide">A Solução Projetada</h4>
               <p className="text-stone-300 text-sm leading-relaxed">
                 Reestruturação completa do grid estrutural. O layout foi reorganizado para adotar orientação vertical no mobile, otimizando os botões de ação e alvos de toque (touch targets) e colapsando a navegação em um menu hambúrguer para preservar 100% da área útil de leitura.
@@ -222,9 +222,9 @@ export default function IFSolveCaseStudy() {
           </div>
 
           {/* Problema C */}
-          <div className="bg-stone-900/60 p-6 sm:p-8 rounded-2xl border border-amber-500/20 space-y-6">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="px-3 py-1 bg-amber-500/10 text-amber-400 text-xs font-semibold uppercase tracking-wider rounded-full border border-amber-500/30">
+          <div className="space-y-6 bg-stone-900/60 p-6 sm:p-8 border border-amber-500/20 rounded-2xl">
+            <div className="flex flex-wrap justify-between items-center gap-2">
+              <span className="bg-amber-500/10 px-3 py-1 border border-amber-500/30 rounded-full font-semibold text-amber-400 text-xs uppercase tracking-wider">
                 Gravidade: Grave
               </span>
               <span className="font-mono text-stone-400 text-xs">
@@ -238,15 +238,15 @@ export default function IFSolveCaseStudy() {
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div className="bg-stone-950/60 p-4 rounded-xl border border-white/5 space-y-2">
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2 text-sm">
+              <div className="space-y-2 bg-stone-950/60 p-4 border border-white/5 rounded-xl">
                 <h4 className="font-semibold text-stone-200">O Cenário</h4>
                 <p className="text-stone-400 leading-relaxed">
                   Múltiplos elementos interativos essenciais, como campos de texto para respostas discursivas e placeholders de preenchimento, apresentavam tons quase idênticos à cor de fundo, sem qualquer delimitação de bordas.
                 </p>
               </div>
 
-              <div className="bg-stone-950/60 p-4 rounded-xl border border-white/5 space-y-2">
+              <div className="space-y-2 bg-stone-950/60 p-4 border border-white/5 rounded-xl">
                 <h4 className="font-semibold text-stone-200">O Impacto</h4>
                 <p className="text-stone-400 leading-relaxed">
                   O baixo contraste dificultava severamente a identificação das áreas clicáveis, exigindo esforço cognitivo desnecessário do usuário para descobrir onde digitar e violando os critérios globais de acessibilidade da WCAG 2.1.
@@ -254,7 +254,7 @@ export default function IFSolveCaseStudy() {
               </div>
             </div>
 
-            <div className="bg-stone-950/80 p-5 rounded-xl border border-emerald-500/20 space-y-2">
+            <div className="space-y-2 bg-stone-950/80 p-5 border border-emerald-500/20 rounded-xl">
               <h4 className="font-semibold text-emerald-400 text-sm uppercase tracking-wide">A Solução Projetada</h4>
               <p className="text-stone-300 text-sm leading-relaxed">
                 Ajuste imediato da paleta cromática dos componentes de formulário. Introduzi bordas com contraste balanceado e reajustei as cores de texto e placeholders para garantir a proporção mínima de contraste exigida pelas normas de acessibilidade, mantendo o visual limpo e legível.
@@ -275,11 +275,11 @@ export default function IFSolveCaseStudy() {
             O maior aprendizado foi compreender que pequenos desajustes de contraste ou a ausência de um simples modal de aviso possuem um efeito em cadeia tremendo na confiança e segurança emocional do usuário durante momentos de alta pressão, como a realização de um exame.
           </p>
 
-          <blockquote className="bg-stone-900/80 p-5 rounded-xl text-stone-200 italic leading-relaxed border-l-4 border-rose-500">
+          <blockquote className="bg-stone-900/80 p-5 border-rose-500 border-l-4 rounded-xl text-stone-200 italic leading-relaxed">
             &quot;Heurísticas são bússolas excelentes, mas não substituem o mapa real que é o usuário.&quot;
           </blockquote>
 
-          <div className="bg-stone-900/60 p-5 rounded-xl space-y-2 border border-white/5">
+          <div className="space-y-2 bg-stone-900/60 p-5 border border-white/5 rounded-xl">
             <h3 className="font-semibold text-white text-lg">O Próximo Passo</h3>
             <p className="text-stone-400 text-sm leading-relaxed">
               Como evolução contínua deste projeto, o objetivo é colocar os novos protótipos construídos nas mãos dos professores e alunos. A realização de Testes de Usabilidade moderados será fundamental para validar se as hipóteses de redesenho eliminaram a fricção na prática ou se geraram novos comportamentos que demandem ajustes.

@@ -60,6 +60,7 @@ export default function Home() {
         <Image
           src={me}
           alt="myself"
+          priority
           className="bottom-0 left-1/2 -z-1 absolute blur-[.5px] w-[90%] sm:w-[80%] object-cover -translate-x-1/2 mix-blend-darken"
         />
 
