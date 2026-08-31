@@ -18,7 +18,7 @@ export interface StoryItem {
 const DEFAULT_STORIES: StoryItem[] = [
   {
     id: 1,
-    image: "/assets/story1.jpg",
+    image: "/assets/Day 1.png",
     tag: "Mobile UI",
     title: "Minimalist App Interface",
     caption: "Crafting fluid mobile experiences with vibrant dark mode accents.",
@@ -26,7 +26,7 @@ const DEFAULT_STORIES: StoryItem[] = [
   },
   {
     id: 2,
-    image: "/assets/story2.jpg",
+    image: "/assets/Day 2.png",
     tag: "Prototyping",
     title: "Design System & Workflows",
     caption: "Exploring 3D component systems and high-fidelity interactive flows.",
@@ -34,7 +34,7 @@ const DEFAULT_STORIES: StoryItem[] = [
   },
   {
     id: 3,
-    image: "/assets/story3.jpg",
+    image: "/assets/Day 3.png",
     tag: "Analytics",
     title: "Data Visualization UI",
     caption: "Designing real-time metric dashboards for complex fintech applications.",

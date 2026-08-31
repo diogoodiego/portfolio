@@ -7,4 +7,5 @@ export * from './ColorPicker';
 export * from './MusicPlayer';
 export * from './StoryCard';
 export * from './BentoCard';
+export * from './FloatingTOC';
 
