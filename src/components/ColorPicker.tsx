@@ -196,13 +196,13 @@ export const ColorPicker = () => {
 
               {/* Hex Input Display (right of the sliders) */}
               <div className="flex items-center gap-1 bg-stone-100 p-2 border border-stone-200 rounded-xl w-32 h-10 shrink-0">
-                <span className="font-mono text-stone-500 text-xs select-none">#</span>
+                <span className="text-stone-500 text-xs select-none">#</span>
                 <input
                   type="text"
                   value={hexInput.replace("#", "")}
                   onChange={(e) => handleHexInputChange(e.target.value)}
                   maxLength={6}
-                  className="bg-transparent border-none outline-none focus:ring-0 w-full font-mono font-semibold text-stone-900 text-xs uppercase tracking-wider"
+                  className="bg-transparent border-none outline-none focus:ring-0 w-full font-semibold text-stone-900 text-xs uppercase tracking-wider"
                 />
                 <button
                   onClick={handleCopy}
@@ -329,7 +329,7 @@ export const ColorPicker = () => {
                   <span className="font-semibold text-stone-900 text-sm">
                     Shade {weight}
                   </span>
-                  <span className="bg-stone-100 px-1.5 py-0.5 rounded font-mono text-[10px] text-stone-500">
+                  <span className="bg-stone-100 px-1.5 py-0.5 rounded text-[10px] text-stone-500">
                     Swatch {hoveredIndex + 1}/{N}
                   </span>
                 </div>
@@ -340,7 +340,7 @@ export const ColorPicker = () => {
               </div>
 
               {/* Color Formats */}
-              <div className="flex flex-col gap-2 font-mono text-[11px]">
+              <div className="flex flex-col gap-2 text-[11px]">
                 {/* Hex */}
                 <div className="group/row flex justify-between items-center">
                   <span className="text-stone-500">HEX</span>
@@ -426,7 +426,7 @@ export const ColorPicker = () => {
                       >
                         Aa
                       </div>
-                      <span className="font-mono font-bold text-stone-800 text-xs">
+                      <span className="font-bold text-stone-800 text-xs">
                         Lc {whiteRead.score > 0 ? `+${whiteRead.score}` : whiteRead.score}
                       </span>
                     </div>
@@ -447,7 +447,7 @@ export const ColorPicker = () => {
                       >
                         Aa
                       </div>
-                      <span className="font-mono font-bold text-stone-800 text-xs">
+                      <span className="font-bold text-stone-800 text-xs">
                         Lc {blackRead.score > 0 ? `+${blackRead.score}` : blackRead.score}
                       </span>
                     </div>

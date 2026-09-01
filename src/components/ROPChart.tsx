@@ -67,7 +67,7 @@ export const ROPChart = () => {
     <div className="z-10 flex flex-col col-start-2 row-start-2 bg-stone-900/20 shadow-2xl backdrop-blur-md p-5 rounded-2xl w-[420px] font-sans">
       {/* Header Info */}
       <div className="flex flex-col">
-        <span className="font-mono font-medium text-[11px] text-stone-400 uppercase tracking-wide">
+        <span className="font-medium text-[11px] text-stone-400 uppercase tracking-wide">
           Total Balance
         </span>
         <div className="flex items-baseline gap-2 mt-1">
@@ -133,7 +133,7 @@ export const ROPChart = () => {
 
             {/* Floating Tooltip positioned left or right of the handle */}
             <div
-              className="z-30 absolute flex items-center gap-1.5 bg-stone-900/95 shadow-xl backdrop-blur-sm px-2.5 py-1.5 border border-white/10 rounded-lg font-mono text-white text-xs transition-all duration-150 ease-out pointer-events-none"
+              className="z-30 absolute flex items-center gap-1.5 bg-stone-900/95 shadow-xl backdrop-blur-sm px-2.5 py-1.5 border border-white/10 rounded-lg text-white text-xs transition-all duration-150 ease-out pointer-events-none"
               style={{
                 bottom: `calc(${hoveredBarHeight}% - 14px)`,
                 left: isTooltipOnRight

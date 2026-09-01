@@ -100,7 +100,7 @@ const PROJECTS: InfoItem[] = [
 
 const ContactItem = ({ label, action, value, href }: ContactInfo) => (
   <div>
-    <h4 className="mb-2 font-mono font-bold text-[10px] text-stone-500 tracking-widest">
+    <h4 className="mb-2 font-bold text-[10px] text-stone-500 tracking-widest">
       {label}
     </h4>
     <a
@@ -110,7 +110,7 @@ const ContactItem = ({ label, action, value, href }: ContactInfo) => (
       className="group block font-medium text-white hover:text-[#f85c37] text-xs transition-colors duration-200"
     >
       {action} &rarr;{" "}
-      <span className="block mt-0.5 font-mono text-stone-400 group-hover:text-stone-300 transition-colors duration-200">
+      <span className="block mt-0.5 text-stone-400 group-hover:text-stone-300 transition-colors duration-200">
         {value}
       </span>
     </a>
@@ -145,7 +145,7 @@ const ResumeItemComponent = ({ institution, role, period }: ResumeItem) => (
         <h5 className="font-bold text-white group-hover:text-[#f85c37] text-sm sm:text-base tracking-wide transition-colors duration-200">
           {institution}
         </h5>
-        <span className="font-mono text-stone-500 group-hover:text-stone-400 text-xs transition-colors duration-200 shrink-0">
+        <span className="text-stone-500 group-hover:text-stone-400 text-xs transition-colors duration-200 shrink-0">
           {period}
         </span>
       </div>
@@ -165,7 +165,7 @@ const InfoList = ({ items }: { items: InfoItem[] }) => (
             <span className="text-stone-400 group-hover/item:text-[#f85c37] transition-colors duration-200">
               {item.name}
             </span>
-            <span className="font-mono text-[9px] text-stone-600 sm:text-[10px] group-hover/item:text-stone-400 text-right transition-colors duration-200">
+            <span className="text-[9px] text-stone-600 sm:text-[10px] group-hover/item:text-stone-400 text-right transition-colors duration-200">
               {item.meta.match(/^\d+$/) ? `'${item.meta}` : item.meta}
             </span>
           </>

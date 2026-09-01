@@ -238,7 +238,7 @@ export const MusicPlayer = () => {
                 className={`absolute inset-0 flex items-center justify-center bg-black/75 backdrop-blur-[1px] transition-all duration-300 pointer-events-none ${showVolumeOverlay ? "opacity-100 scale-100" : "opacity-0 scale-95"
                   }`}
               >
-                <span className="font-mono font-bold text-white text-xs">
+                <span className="font-bold text-white text-xs">
                   {Math.round(volume * 100)}%
                 </span>
               </div>
@@ -261,7 +261,7 @@ export const MusicPlayer = () => {
           </div>
 
           <div className="flex flex-col w-full min-w-[140px]">
-            <span className="font-mono text-stone-200 text-xs">
+            <span className="text-stone-200 text-xs">
               {currentTime} / {duration}
             </span>
 
@@ -331,7 +331,7 @@ export const MusicPlayer = () => {
               tabIndex={0}
             />
           </div>
-          <span className="font-mono font-semibold text-[10px] text-stone-900 uppercase tracking-widest">Vol</span>
+          <span className="font-semibold text-[10px] text-stone-900 uppercase tracking-widest">Vol</span>
         </div>
       </div>
     </div>
