@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Navbar, FloatingTOC } from "@/components";
+import { Navbar, FloatingTOC, ImageComparison } from "@/components";
 import me from "@/assets/me.png";
 
 export default function IFSolveCaseStudy() {
@@ -104,13 +104,23 @@ export default function IFSolveCaseStudy() {
         {/* Section 4 */}
         <section id="achados" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            4. Alguns achados que me marcaram
+            4. Alguns achados que se destacaram
           </h2>
-          <ul className="list-disc list-inside space-y-4 pt-2 text-stone-300 text-base sm:text-lg leading-relaxed marker:text-rose-500">
-            <li><strong className="text-white">A barra de busca que não fazia nada.</strong> O campo de pesquisa no topo do sistema simplesmente não respondia a cliques, um problema clássico de expectativa quebrada, classificado como crítico, porque o usuário nem percebe que é um erro: ele acha que é ele quem está fazendo algo errado.</li>
-            <li><strong className="text-white">Perda silenciosa de dados.</strong> Se o usuário fechava a aba no meio do cadastro de uma avaliação, tudo que ele tinha digitado sumia sem aviso. Um problema invisível até acontecer com alguém, e aí já é tarde.</li>
-            <li><strong className="text-white">Um campo de resposta que &quot;não existia&quot; visualmente.</strong> O campo de texto para respostas discursivas não tinha borda nem cor de fundo. Do ponto de vista técnico, o campo estava lá. Do ponto de vista do usuário, ele simplesmente não existia.</li>
-            <li><strong className="text-white">Nenhum aviso ao tentar enviar uma prova em branco.</strong> Quando o usuário tentava submeter uma avaliação sem responder nenhuma questão, o sistema não exibia qualquer mensagem de alerta, um erro silencioso que só é descoberto depois, quando já é tarde para corrigir.</li>
+
+          <div className="pt-4 pb-6">
+            <ImageComparison
+              leftImage="/assets/ifsolve/home_old.webp"
+              rightImage="/assets/ifsolve/home.png"
+              leftAlt="Nova interface da Home"
+              rightAlt="Antiga interface da Home"
+            />
+          </div>
+
+          <ul className="space-y-4 pt-2 text-stone-300 marker:text-rose-500 text-base sm:text-lg leading-relaxed list-disc list-inside">
+            <li><strong className="text-white">Campo de busca inoperante.</strong> O campo de pesquisa no topo do sistema não executava nenhuma ação ao ser acionado, apesar de apresentar a aparência de um elemento funcional. Classificado como crítico, esse tipo de falha compromete uma funcionalidade básica esperada em qualquer barra de busca.</li>
+            <li><strong className="text-white">Perda silenciosa de dados.</strong> Ao fechar a aba durante o cadastro de uma avaliação, todo o conteúdo digitado era perdido, sem aviso prévio ou opção de recuperação. Classificado como grave, esse problema gera retrabalho direto para quem está preenchendo o formulário.</li>
+            <li><strong className="text-white">Campo de resposta sem contraste visual</strong> O campo de texto destinado a respostas discursivas não possuía borda nem cor de fundo, o que comprometia sua visibilidade como área de entrada de dados.</li>
+            <li><strong className="text-white">Falta de feedback ao submeter uma avaliação incompleta.</strong> O sistema permitia o envio de uma prova sem nenhuma questão respondida, sem exibir qualquer mensagem de alerta. Classificado como crítico, esse tipo de ausência de feedback pode resultar na submissão indevida de avaliações incompletas.</li>
           </ul>
         </section>
 
@@ -128,6 +138,19 @@ export default function IFSolveCaseStudy() {
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
             Foi também o projeto que me ensinou a não confundir volume com profundidade. Um relatório com 51 pontos só é útil se alguém conseguir abrir ele e, em cinco minutos, saber exatamente o que resolver primeiro.
           </p>
+
+          <div className="pt-4 pb-6">
+            <div className="bg-stone-900 shadow-2xl border border-white/5 rounded-2xl aspect-video overflow-hidden">
+              <video
+                src="/assets/ifsolve/final.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
         </section>
 
       </article>
