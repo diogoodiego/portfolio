@@ -67,7 +67,7 @@ export default function CroftCaseStudy() {
               alt="Dio"
               width={40}
               height={40}
-              className="rounded-full object-cover"
+              className="rounded-full object-cover w-auto h-auto"
             />
             <div>
               <div className="font-semibold text-white">Dio</div>
@@ -153,6 +153,7 @@ export default function CroftCaseStudy() {
                 src={sliderImages[currentSlide].src} 
                 alt={sliderImages[currentSlide].alt} 
                 fill
+                sizes="100vw"
                 className="object-contain p-2 transition-transform hover:scale-[1.02]" 
               />
             </div>

@@ -87,7 +87,7 @@ const EXPERIENCE: ResumeItem[] = [
 
 const PROJECTS: InfoItem[] = [
   { name: "Croft Design System", meta: "24", href: "/croft" },
-  { name: "Ceni Figma Plugin", meta: "24", href: "/ceni" },
+  { name: "Depth Track", meta: "24", href: "/depth-track" },
   { name: "IFSolve Platform", meta: "23", href: "/ifsolve" },
   { name: "Petrobras ROP Console", meta: "24" },
   { name: "StreamTV Streaming", meta: "23" },
