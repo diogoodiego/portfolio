@@ -92,9 +92,8 @@ const PROJECTS: InfoItem[] = [
   { name: "Croft Design System", meta: "24", href: "/croft", thumbnail: "/assets/croft-mockup.mp4", roles: ["Product Design", "Design System"], description: "A scalable design system for enterprise products." },
   { name: "Depth Track", meta: "24", href: "/depth-track", thumbnail: "/assets/video.mp4", roles: ["UX/UI Design", "Frontend"], description: "Drilling monitoring platform." },
   { name: "IFSolve Platform", meta: "23", href: "/ifsolve", thumbnail: "/assets/ifsolve.mp4", roles: ["UX Research", "Usability"], description: "Platform for evaluating UX heuristics." },
-  { name: "Petrobras ROP Console", meta: "24" },
-  { name: "StreamTV Streaming", meta: "23" },
-  { name: "Vortx Fintech App", meta: "24" },
+  { name: "Geowellex Education", meta: "22", thumbnail: "/assets/geox-education/FireShot Capture 001 - Geowellex Education - [www.geowellex.com].png", roles: ["UI Design", "Frontend"], description: "Educational portal for the energy sector." },
+  { name: "Diga Duvido", meta: "21", thumbnail: "/assets/diga-duvido/home.webp", roles: ["Product Design"], description: "Card game digital experience." },
 ];
 
 // ==========================================
