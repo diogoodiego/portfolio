@@ -9,3 +9,4 @@ export * from './StoryCard';
 export * from './BentoCard';
 export * from './FloatingTOC';
 export * from './ImageComparison';
+export * from './ProjectHoverCard';

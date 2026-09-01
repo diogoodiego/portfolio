@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import side from "../assets/side.png";
-import { StoryCard, BentoCard } from "@/components";
+import { StoryCard, BentoCard, ProjectHoverCard } from "@/components";
 
 // ==========================================
 // Types & Data Contracts
@@ -14,6 +14,9 @@ interface InfoItem {
   name: string;
   meta: string;
   href?: string;
+  thumbnail?: string;
+  description?: string;
+  roles?: string[];
 }
 
 interface ContactInfo {
@@ -86,9 +89,9 @@ const EXPERIENCE: ResumeItem[] = [
 ];
 
 const PROJECTS: InfoItem[] = [
-  { name: "Croft Design System", meta: "24", href: "/croft" },
-  { name: "Depth Track", meta: "24", href: "/depth-track" },
-  { name: "IFSolve Platform", meta: "23", href: "/ifsolve" },
+  { name: "Croft Design System", meta: "24", href: "/croft", thumbnail: "/assets/croft-mockup.mp4", roles: ["Product Design", "Design System"], description: "A scalable design system for enterprise products." },
+  { name: "Depth Track", meta: "24", href: "/depth-track", thumbnail: "/assets/video.mp4", roles: ["UX/UI Design", "Frontend"], description: "Drilling monitoring platform." },
+  { name: "IFSolve Platform", meta: "23", href: "/ifsolve", thumbnail: "/assets/ifsolve.mp4", roles: ["UX Research", "Usability"], description: "Platform for evaluating UX heuristics." },
   { name: "Petrobras ROP Console", meta: "24" },
   { name: "StreamTV Streaming", meta: "23" },
   { name: "Vortx Fintech App", meta: "24" },
@@ -159,40 +162,9 @@ const ResumeItemComponent = ({ institution, role, period }: ResumeItem) => (
 const InfoList = ({ items }: { items: InfoItem[] }) => (
   <div className="flex flex-col gap-3">
     <ul className="flex flex-col gap-2.5">
-      {items.map((item, idx) => {
-        const itemContent = (
-          <>
-            <span className="text-stone-400 group-hover/item:text-[#f85c37] transition-colors duration-200">
-              {item.name}
-            </span>
-            <span className="text-[9px] text-stone-600 sm:text-[10px] group-hover/item:text-stone-400 text-right transition-colors duration-200">
-              {item.meta.match(/^\d+$/) ? `'${item.meta}` : item.meta}
-            </span>
-          </>
-        );
-
-        if (item.href) {
-          return (
-            <li key={idx}>
-              <Link
-                href={item.href}
-                className="group/item flex justify-between items-center text-xs cursor-pointer no-underline"
-              >
-                {itemContent}
-              </Link>
-            </li>
-          );
-        }
-
-        return (
-          <li
-            key={idx}
-            className="group/item flex justify-between items-center text-xs cursor-pointer"
-          >
-            {itemContent}
-          </li>
-        );
-      })}
+      {items.map((item, idx) => (
+        <ProjectHoverCard key={idx} item={item} />
+      ))}
     </ul>
   </div>
 );
