@@ -100,7 +100,7 @@ const PROJECTS: InfoItem[] = [
 
 const ContactItem = ({ label, action, value, href }: ContactInfo) => (
   <div>
-    <h4 className="mb-2 font-mono font-bold text-[10px] text-stone-500 uppercase tracking-widest">
+    <h4 className="mb-2 font-mono font-bold text-[10px] text-stone-500 tracking-widest">
       {label}
     </h4>
     <a
@@ -237,7 +237,7 @@ export const FooterSection = () => {
           </div>
 
           <div className="z-10 relative mt-auto pt-48">
-            <p className="mb-2 font-regular text-md text-white/60 uppercase tracking-wider">
+            <p className="mb-2 font-regular text-md text-white/60 tracking-wider">
               About me
             </p>
             <p className="max-w-[360px] font-medium text-white text-base md:text-lg leading-snug">
@@ -286,7 +286,7 @@ export const FooterSection = () => {
 
           <a
             href="mailto:hello@dio.design"
-            className="inline-flex relative justify-center items-center bg-gradient-to-r from-[#e23c14] to-[#f85c37] hover:shadow-[0_0_24px_rgba(248,92,55,0.4)] px-7 py-3.5 rounded-full font-bold text-white text-xs uppercase tracking-wider hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 shrink-0"
+            className="inline-flex relative justify-center items-center bg-gradient-to-r from-[#e23c14] to-[#f85c37] hover:shadow-[0_0_24px_rgba(248,92,55,0.4)] px-7 py-3.5 rounded-full font-bold text-white text-xs tracking-wider hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 shrink-0"
           >
             Book a session
           </a>

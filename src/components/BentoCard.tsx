@@ -18,7 +18,7 @@ export const BentoCard: React.FC<BentoCardProps> = ({
       className={`flex flex-col bg-white/5 shadow-xl backdrop-blur-md p-6 md:p-8 rounded-xl transition-all duration-300 ${className}`}
     >
       {title && (
-        <h4 className="mb-4 font-mono font-bold text-stone-500 text-xs uppercase tracking-widest">
+        <h4 className="mb-4 font-mono font-bold text-stone-500 text-xs tracking-widest">
           {title}
         </h4>
       )}
