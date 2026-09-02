@@ -4,8 +4,10 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import side from "../assets/side.png";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { StoryCard, BentoCard, ProjectHoverCard } from "@/components";
-
+import dribbble from "@/assets/dribbble.png";
+import linkedin from "@/assets/linkedin.svg";
 // ==========================================
 // Types & Data Contracts
 // ==========================================
@@ -256,12 +258,15 @@ export const FooterSection = () => {
             </div>
           </div>
           {/* Bottom Row: Additional Rows */}
-          <div className="flex flex-row gap-4 bg-white/5 p-6 rounded-lg">
-            <div className="flex flex-col flex-1">
-              <p>Experience</p>
+          <div className="flex flex-row bg-white/5 rounded-lg overflow-hidden">
+            <div className="flex flex-col flex-1 bg-[#E84C88] p-4">
+              <Image src={dribbble} className="h-12 object-contain" alt="Dribble" />
             </div>
-            <div className="flex flex-col flex-1">
-              <p>Education</p>
+            <div className="flex flex-col flex-1 p-4 bg-[#0A66C2]">
+              <Image src={linkedin} className="h-12 object-contain" alt="Linkedin" />
+            </div>
+            <div className="flex flex-col flex-1 p-4 bg-white items-center justify-center">
+              <p className="text-stone-950 font-iceberg text-3xl">Resume</p>
             </div>
           </div>
         </div>
