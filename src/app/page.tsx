@@ -46,9 +46,9 @@ const widgetVariants: Variants = {
 
 export default function Home() {
   return (
-    <main className="h-screen overflow-y-auto scroll-auto snap-mandatory snap-y scrollbar-thumb-white/20 scrollbar-thin">
+    <main className="h-screen overflow-y-auto scroll-auto scrollbar-thumb-white/20 scrollbar-thin">
       <Navbar />
-      <div id="home" className="relative border-[16px] border-stone-950 rounded-3xl sm:rounded-4xl w-full h-screen overflow-hidden snap-start">
+      <div id="home" className="relative border-[16px] border-stone-950 rounded-3xl sm:rounded-4xl w-full h-screen overflow-hidden">
         <video
           src="/assets/red_nebula2.mp4"
           autoPlay

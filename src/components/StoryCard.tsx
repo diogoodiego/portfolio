@@ -123,7 +123,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={() => setIsPaused(true)}
       onTouchEnd={() => setIsPaused(false)}
-      className={`group relative flex min-h-[300px] h-full w-full select-none flex-col justify-between overflow-hidden rounded-xl bg-stone-900 shadow-xl transition-all duration-300 hover:border-white/20 cursor-pointer ${className}`}
+      className={`group relative flex min-h-[300px] h-full w-full select-none flex-col justify-between overflow-hidden rounded-lg bg-stone-900 shadow-xl transition-all duration-300 hover:border-white/20 cursor-pointer ${className}`}
     >
       {/* Background Image with Framer Motion crossfade */}
       <AnimatePresence mode="popLayout">

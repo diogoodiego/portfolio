@@ -24,11 +24,11 @@ export const ProjectHoverCard = ({ item }: { item: InfoItem }) => {
 
   const itemContent = (
     <>
-      <span className="text-stone-400 group-hover/item:text-[#f85c37] transition-colors duration-200">
+      <span className="font-iceberg text-stone-400 group-hover/item:text-stone-50 text-2xl transition-colors duration-200">
         {item.name}
       </span>
-      <span className="text-[9px] text-stone-600 sm:text-[10px] group-hover/item:text-stone-400 text-right transition-colors duration-200">
-        {item.meta.match(/^\d+$/) ? `'${item.meta}` : item.meta}
+      <span className="text-stone-600 group-hover/item:text-stone-50 text-sm text-right italic transition-colors duration-200">
+        {item.meta.match(/^\d+$/) ? `${item.meta}` : item.meta}
       </span>
     </>
   );
@@ -41,13 +41,13 @@ export const ProjectHoverCard = ({ item }: { item: InfoItem }) => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="fixed z-50 pointer-events-none"
+          className="z-50 fixed pointer-events-none"
           style={{
             left: mousePos.x + 20,
             top: mousePos.y + 20,
           }}
         >
-          <div className="bg-stone-900 border border-white/10 shadow-2xl p-2 rounded-xl w-64 md:w-80 overflow-hidden">
+          <div className="bg-black shadow-2xl p-2 rounded-xl w-64 md:w-80 overflow-hidden">
             <div className="relative rounded-lg w-full aspect-video overflow-hidden">
               {item.thumbnail.endsWith(".mp4") ? (
                 <video

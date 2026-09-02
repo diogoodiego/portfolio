@@ -90,8 +90,8 @@ const EXPERIENCE: ResumeItem[] = [
 
 const PROJECTS: InfoItem[] = [
   { name: "Croft Design System", meta: "24", href: "/croft", thumbnail: "/assets/croft-mockup.mp4", roles: ["Product Design", "Design System"], description: "A scalable design system for enterprise products." },
-  { name: "Depth Track", meta: "24", href: "/depth-track", thumbnail: "/assets/video.mp4", roles: ["UX/UI Design", "Frontend"], description: "Drilling monitoring platform." },
-  { name: "IFSolve Platform", meta: "23", href: "/ifsolve", thumbnail: "/assets/ifsolve.mp4", roles: ["UX Research", "Usability"], description: "Platform for evaluating UX heuristics." },
+  { name: "Depth Track", meta: "24", href: "/depth-track", thumbnail: "/assets/depth/preview.mp4", roles: ["UX/UI Design", "Frontend"], description: "Drilling monitoring platform." },
+  { name: "IFSolve Platform", meta: "23", href: "/ifsolve", thumbnail: "/assets/ifsolve/preview.mp4", roles: ["UX Research", "Usability"], description: "Platform for evaluating UX heuristics." },
   { name: "Geowellex Education", meta: "22", thumbnail: "/assets/geox-education/FireShot Capture 001 - Geowellex Education - [www.geowellex.com].png", roles: ["UI Design", "Frontend"], description: "Educational portal for the energy sector." },
   { name: "Diga Duvido", meta: "21", thumbnail: "/assets/diga-duvido/home.webp", roles: ["Product Design"], description: "Card game digital experience." },
 ];
@@ -140,18 +140,21 @@ const SparkleIcon = () => (
 );
 
 const ResumeItemComponent = ({ institution, role, period }: ResumeItem) => (
-  <div className="group flex items-start gap-4 py-1">
-    <SparkleIcon />
-    <div className="flex-1">
-      <div className="flex justify-between items-baseline gap-4">
-        <h5 className="font-bold text-white group-hover:text-[#f85c37] text-sm sm:text-base tracking-wide transition-colors duration-200">
-          {institution}
-        </h5>
-        <span className="text-stone-500 group-hover:text-stone-400 text-xs transition-colors duration-200 shrink-0">
+  <div className="group flex items-center gap-4 py-1">
+    {/* <SparkleIcon /> */}
+    <div className="flex flex-col flex-1">
+      <div className="flex justify-between items-center gap-4">
+        <div className="flex items-center gap-2">
+          <h5 className="font-iceberg text-stone-200 group-hover:text-stone-50 text-xl tracking-wide transition-colors duration-200">
+            {institution}
+          </h5>
+          <SparkleIcon />
+        </div>
+        <span className="text-stone-600 group-hover:text-stone-400 text-sm italic transition-colors duration-200 shrink-0">
           {period}
         </span>
       </div>
-      <p className="mt-1 text-stone-400 group-hover:text-stone-300 text-xs sm:text-sm leading-relaxed transition-colors duration-200">
+      <p className="text-stone-400 group-hover:text-stone-300 text-base leading-relaxed transition-colors duration-200">
         {role}
       </p>
     </div>
@@ -160,7 +163,7 @@ const ResumeItemComponent = ({ institution, role, period }: ResumeItem) => (
 
 const InfoList = ({ items }: { items: InfoItem[] }) => (
   <div className="flex flex-col gap-3">
-    <ul className="flex flex-col gap-2.5">
+    <ul className="flex flex-col gap-2">
       {items.map((item, idx) => (
         <ProjectHoverCard key={idx} item={item} />
       ))}
@@ -176,12 +179,11 @@ export const FooterSection = () => {
   return (
     <footer
       id="contact"
-      className="relative flex flex-col justify-center bg-stone-950 p-6 md:p-12 lg:p-16 py-16 w-full min-h-screen overflow-hidden animate-fade-in snap-start"
+      className="relative flex flex-col justify-center bg-stone-950 p-6 md:p-12 lg:p-16 py-16 w-full min-h-screen overflow-hidden animate-fade-in"
     >
-      {/* Single Flat Bento Grid Container */}
-      <div className="items-stretch gap-4 lg:gap-6 grid grid-cols-1 lg:grid-cols-8 mx-auto w-full">
-        {/* Card 1: Editorial Bio/About Hero Card */}
-        <div className="group relative flex flex-col justify-between lg:col-span-2 lg:row-span-3 bg-gradient-to-b from-[#a3060e] to-[#CB1019] shadow-2xl p-8 rounded-xl w-full min-h-[480px] lg:min-h-full overflow-hidden shrink-0">
+      <div className="flex md:flex-row flex-col gap-4 mb-4">
+        {/* Left Column: Profile / About me Card */}
+        <div className="group relative flex flex-col justify-between bg-gradient-to-b from-[#a3060e] to-[#CB1019] shadow-2xl p-8 rounded-xl w-full md:w-[25%] lg:min-h-full aspect-[9/16] sm:aspect-video overflow-hidden shrink-0">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-stone-950/20 pointer-events-none mix-blend-overlay" />
 
           <Image
@@ -218,50 +220,51 @@ export const FooterSection = () => {
             </p>
           </div>
         </div>
-
-        {/* Card 2: Experience */}
-        <BentoCard className="lg:col-span-3" title="Experience">
-          <div className="flex flex-col gap-4">
-            {EXPERIENCE.map((item, idx) => (
-              <ResumeItemComponent key={idx} {...item} />
-            ))}
+        {/* Right Column: Experience, Education, Projects */}
+        <div className="flex flex-col flex-1 gap-4">
+          {/* Top Row: Experience and Education */}
+          <div className="flex md:flex-row flex-col flex-1 gap-8 bg-white/5 p-6 rounded-lg">
+            <div className="flex flex-col flex-1 gap-2">
+              {/* Experience Section */}
+              <p className="font-medium text-stone-500 text-lg">Experience</p>
+              <div className="flex flex-col gap-4">
+                {EXPERIENCE.map((item, idx) => (
+                  <ResumeItemComponent key={idx} {...item} />
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col flex-1 gap-2">
+              {/* Education Section */}
+              <p className="font-medium text-stone-500 text-lg">Education</p>
+              <div className="flex flex-col gap-4">
+                {EDUCATION.map((item, idx) => (
+                  <ResumeItemComponent key={idx} {...item} />
+                ))}
+              </div>
+            </div>
           </div>
-        </BentoCard>
-
-        {/* Card 3: Education */}
-        <BentoCard className="lg:col-span-3" title="Education">
-          <div className="flex flex-col gap-4">
-            {EDUCATION.map((item, idx) => (
-              <ResumeItemComponent key={idx} {...item} />
-            ))}
+          {/* Middle Row: Projects and Extra Info */}
+          <div className="flex md:flex-row flex-col gap-4">
+            {/* Projects Section */}
+            <div className="flex flex-col flex-1 gap-2 bg-white/5 p-6 rounded-lg">
+              <p className="font-medium text-stone-500 text-lg">Projects</p>
+              <InfoList items={PROJECTS} />
+            </div>
+            {/* Extra Info Section */}
+            <div className="flex flex-row bg-white/5 rounded-lg w-full md:w-[40%] aspect-video">
+              <StoryCard />
+            </div>
           </div>
-        </BentoCard>
-
-        {/* Card 4: Projects */}
-        <BentoCard className="lg:col-span-4" title="Projects">
-          <InfoList items={PROJECTS} />
-        </BentoCard>
-
-        {/* Card 5: Stories Carousel */}
-        <div className="lg:col-span-2 min-h-[300px]">
-          <StoryCard />
+          {/* Bottom Row: Additional Rows */}
+          <div className="flex flex-row gap-4 bg-white/5 p-6 rounded-lg">
+            <div className="flex flex-col flex-1">
+              <p>Experience</p>
+            </div>
+            <div className="flex flex-col flex-1">
+              <p>Education</p>
+            </div>
+          </div>
         </div>
-
-        {/* Card 6: Contacts & Action button */}
-        <BentoCard className="flex lg:flex-row flex-col justify-between items-start lg:items-center gap-6 lg:col-span-6">
-          <div className="gap-6 grid grid-cols-1 sm:grid-cols-3 w-full lg:w-auto">
-            {CONTACTS.map((contact, idx) => (
-              <ContactItem key={idx} {...contact} />
-            ))}
-          </div>
-
-          <a
-            href="mailto:hello@dio.design"
-            className="inline-flex relative justify-center items-center bg-gradient-to-r from-[#e23c14] to-[#f85c37] hover:shadow-[0_0_24px_rgba(248,92,55,0.4)] px-7 py-3.5 rounded-full font-bold text-white text-xs tracking-wider hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 shrink-0"
-          >
-            Book a session
-          </a>
-        </BentoCard>
       </div>
     </footer>
   );

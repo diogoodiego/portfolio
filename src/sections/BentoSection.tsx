@@ -47,21 +47,22 @@ const ProjectCard = ({
           ref={videoRef}
           src={videoSrc}
           muted
+          loop
           playsInline
           preload="auto"
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 pointer-events-none ${isHovered ? "opacity-75 scale-105" : "opacity-35 scale-100"
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 pointer-events-none ${isHovered ? "scale-105" : "scale-100"
             }`}
         />
       )}
 
       {/* Dark Overlay for Text Readability */}
       <div
-        className={`absolute inset-0 bg-gradient-to-b from-stone-950/90 via-stone-950/40 to-stone-950/90 transition-opacity duration-300 pointer-events-none ${isHovered ? "opacity-70" : "opacity-85"
+        className={`absolute inset-0 bg-gradient-to-b from-stone-950/20 to-black/0 transition-opacity duration-300 pointer-events-none ${isHovered ? "opacity-0" : "opacity-85"
           }`}
       />
 
       {/* Card Title */}
-      <h3 className="z-10 relative drop-shadow-md font-bold text-white text-xl sm:text-3xl tracking-tight">
+      <h3 className="z-10 relative font-medium text-white text-xl sm:text-3xl tracking-tight">
         {title}
       </h3>
     </div>
@@ -80,7 +81,7 @@ const ProjectCard = ({
 
 export const BentoSection = () => {
   return (
-    <section id="projects" className="flex flex-col justify-between bg-stone-950 p-6 md:p-8 md:px-16 lg:px-24 py-4 lg:pt-24 min-h-screen snap-start">
+    <section id="projects" className="flex flex-col justify-between bg-stone-950 p-6 md:p-8 md:px-16 lg:px-24 py-4 lg:pt-24 min-h-screen">
       {/* Header: Headline top left, Subtitle top right per diagram */}
       <div className="flex md:flex-row flex-col flex-shrink-0 justify-between md:items-baseline gap-4 mb-8">
         <h2 className="font-bold text-white text-4xl md:text-5xl lg:text-6xl tracking-tight">
@@ -94,8 +95,8 @@ export const BentoSection = () => {
       {/* 3 Vertical Cards Grid */}
       <div className="flex-1 items-stretch gap-6 lg:gap-4 grid grid-cols-1 md:grid-cols-3 h-full min-h-0">
         <ProjectCard title="Croft" videoSrc="/assets/croft-mockup.mp4" href="/croft" />
-        <ProjectCard title="Depth Track" videoSrc="/assets/video.mp4" href="/depth-track" />
-        <ProjectCard title="IFSolve" videoSrc="/assets/ifsolve.mp4" href="/ifsolve" />
+        <ProjectCard title="Depth Track" videoSrc="/assets/depth/preview.mp4" href="/depth-track" />
+        <ProjectCard title="IFSolve" videoSrc="/assets/ifsolve/preview.mp4" href="/ifsolve" />
       </div>
     </section>
   );
