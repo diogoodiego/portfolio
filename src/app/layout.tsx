@@ -42,8 +42,8 @@ export default function RootLayout({
           position="bottom-center"
           toastOptions={{
             classNames: {
-              toast: "flex justify-center bg-stone-900 border border-white/10 text-stone-300 rounded-xl shadow-2xl",
-              title: "text-md font-medium",
+              toast: "!bg-stone-900 !border !border-white/10 !text-stone-300 !rounded-xl !shadow-2xl !flex !items-center !justify-center",
+              title: "!text-md !font-medium",
             }
           }}
         />

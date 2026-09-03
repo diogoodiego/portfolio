@@ -266,7 +266,7 @@ export const FooterSection = () => {
                 onClick={() => {
                   navigator.clipboard.writeText("diogo.sam.nascimento@gmail.com");
                   toast.success("Email copiado!", {
-                    className: "bg-green-900 border-green-800 text-green-100",
+                    className: "!bg-green-900 !border-green-800 !text-green-100",
                   })
                 }}
                 className="group flex items-center gap-0 hover:gap-2 bg-white/5 px-5 py-2 rounded-full text-stone-400 hover:text-stone-50 text-lg cursor-pointer"
