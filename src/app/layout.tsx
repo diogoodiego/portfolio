@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Hind_Guntur } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -34,8 +35,18 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${hindGuntur.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+      <body className="flex flex-col min-h-full" suppressHydrationWarning>
         {children}
+        <Toaster
+          theme="dark"
+          position="bottom-center"
+          toastOptions={{
+            classNames: {
+              toast: "flex justify-center bg-stone-900 border border-white/10 text-stone-300 rounded-xl shadow-2xl",
+              title: "text-md font-medium",
+            }
+          }}
+        />
       </body>
     </html>
   );

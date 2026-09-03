@@ -4,7 +4,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import side from "../assets/side.png";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowUpRight, Copy } from "lucide-react";
+import { toast } from "sonner";
 import { StoryCard, BentoCard, ProjectHoverCard } from "@/components";
 import dribbble from "@/assets/dribbble.png";
 import linkedin from "@/assets/linkedin.svg";
@@ -181,11 +182,11 @@ export const FooterSection = () => {
   return (
     <footer
       id="contact"
-      className="relative flex flex-col justify-center bg-stone-950 p-6 md:p-12 lg:p-16 py-16 w-full min-h-screen overflow-hidden animate-fade-in"
+      className="relative flex flex-col justify-center bg-stone-950 p-6 lg:p-12 lg:p-16 py-16 w-full min-h-screen overflow-hidden animate-fade-in"
     >
-      <div className="flex md:flex-row flex-col gap-4 mb-4">
+      <div className="flex lg:flex-row flex-col gap-4 mb-4">
         {/* Left Column: Profile / About me Card */}
-        <div className="group relative flex flex-col justify-between bg-gradient-to-b from-[#a3060e] to-[#CB1019] shadow-2xl p-8 rounded-xl w-full md:w-[25%] lg:min-h-full aspect-[9/16] sm:aspect-video overflow-hidden shrink-0">
+        <div className="group relative flex flex-col justify-between bg-gradient-to-b from-[#a3060e] to-[#CB1019] shadow-2xl p-8 rounded-xl w-full lg:w-[25%] lg:min-h-full aspect-[9/16] sm:aspect-video overflow-hidden shrink-0">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-stone-950/20 pointer-events-none mix-blend-overlay" />
 
           <Image
@@ -215,7 +216,7 @@ export const FooterSection = () => {
             <p className="mb-2 font-regular text-md text-white/60 tracking-wider">
               About me
             </p>
-            <p className="max-w-[360px] font-medium text-white text-base md:text-lg leading-snug">
+            <p className="max-w-[360px] font-medium text-white text-base lg:text-lg leading-snug">
               I&apos;m Diogo! A designer with over 5 years of experience, specializing
               in creating intuitive interfaces and visual solutions for the energy
               industry.
@@ -225,7 +226,7 @@ export const FooterSection = () => {
         {/* Right Column: Experience, Education, Projects */}
         <div className="flex flex-col flex-1 gap-4">
           {/* Top Row: Experience and Education */}
-          <div className="flex md:flex-row flex-col flex-1 gap-8 bg-white/5 p-6 rounded-lg">
+          <div className="flex lg:flex-row flex-col flex-1 gap-8 bg-white/5 p-6 rounded-lg">
             <div className="flex flex-col flex-1 gap-2">
               {/* Experience Section */}
               <p className="font-medium text-stone-500 text-lg">Experience</p>
@@ -246,27 +247,46 @@ export const FooterSection = () => {
             </div>
           </div>
           {/* Middle Row: Projects and Extra Info */}
-          <div className="flex md:flex-row flex-col gap-4">
+          <div className="flex lg:flex-row flex-col gap-4">
             {/* Projects Section */}
             <div className="flex flex-col flex-1 gap-2 bg-white/5 p-6 rounded-lg">
               <p className="font-medium text-stone-500 text-lg">Projects</p>
               <InfoList items={PROJECTS} />
             </div>
             {/* Extra Info Section */}
-            <div className="flex flex-row bg-white/5 rounded-lg w-full md:w-[40%] aspect-video">
+            <div className="flex flex-row bg-white/5 rounded-lg w-full lg:w-[40%] aspect-video">
               <StoryCard />
             </div>
           </div>
           {/* Bottom Row: Additional Rows */}
-          <div className="flex flex-row bg-white/5 rounded-lg overflow-hidden">
-            <div className="flex flex-col flex-1 bg-[#E84C88] p-4">
-              <Image src={dribbble} className="h-12 object-contain" alt="Dribble" />
-            </div>
-            <div className="flex flex-col flex-1 p-4 bg-[#0A66C2]">
-              <Image src={linkedin} className="h-12 object-contain" alt="Linkedin" />
-            </div>
-            <div className="flex flex-col flex-1 p-4 bg-white items-center justify-center">
-              <p className="text-stone-950 font-iceberg text-3xl">Resume</p>
+          <div className="flex flex-row items-center bg-white/5 p-6 rounded-lg overflow-hidden">
+            <p className="me-auto font-semibold text-stone-300 text-2xl">Nice to see you here! Let's chat...</p>
+            <div className="flex gap-4">
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText("diogo.sam.nascimento@gmail.com");
+                  toast.success("Email copiado!", {
+                    className: "bg-green-900 border-green-800 text-green-100",
+                  })
+                }}
+                className="group flex items-center gap-0 hover:gap-2 bg-white/5 px-5 py-2 rounded-full text-stone-400 hover:text-stone-50 text-lg cursor-pointer"
+              >
+                Copy email
+                <div className="w-0 group-hover:w-5 overflow-hidden transition-all duration-200 ease-in-out">
+                  <Copy className="w-5" />
+                </div>
+              </button>
+              <a
+                href="https://www.linkedin.com/in/diogo-santos-nascimento/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-0 hover:gap-2 bg-white/5 px-5 py-2 rounded-full text-stone-400 hover:text-stone-50 text-lg cursor-pointer"
+              >
+                Linkedin
+                <div className="w-0 group-hover:w-5 overflow-hidden transition-all duration-200 ease-in-out">
+                  <ArrowUpRight className="w-5" />
+                </div>
+              </a>
             </div>
           </div>
         </div>
