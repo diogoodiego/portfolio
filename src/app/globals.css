@@ -174,3 +174,21 @@ body {
     0 0.5px 0.5px rgba(255, 255, 255, 0.4);
   /* Reflexo da luz na borda do buraco */
 }
+
+.animate-hang {
+  animation: hang-loose .6s linear infinite;
+}
+
+@keyframes hang-loose {
+  0% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotate(16deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}

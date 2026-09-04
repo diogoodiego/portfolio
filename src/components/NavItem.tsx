@@ -15,9 +15,9 @@ export const NavItem: React.FC<NavItemProps> = ({
   return (
     <Link
       href={href}
-      className={`relative text-sm font-medium px-4 py-2 transition-all duration-400 leading-none h-full flex items-center
+      className={`relative rounded-full text-sm font-medium px-5 py-3 transition-all duration-400 leading-none h-full flex items-center
         ${isActive
-          ? "text-white bg-linear-to-b from-white/10 to-rose-600/1 "
+          ? "text-white bg-white/10 "
           : "text-white/65 hover:text-white after:w-0 hover:after:w-full"
         }`}
     >

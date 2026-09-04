@@ -46,7 +46,7 @@ const widgetVariants: Variants = {
 
 export default function Home() {
   return (
-    <main className="h-screen overflow-y-auto scroll-auto scrollbar-thumb-white/20 scrollbar-thin">
+    <main id="main-scroll" className="h-screen overflow-y-auto scroll-auto scrollbar-thumb-white/20 scrollbar-thin">
       <Navbar />
       <div id="home" className="relative border-[16px] border-stone-950 rounded-3xl sm:rounded-4xl w-full h-screen overflow-hidden">
         <video
