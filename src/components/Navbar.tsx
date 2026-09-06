@@ -83,8 +83,8 @@ export const Navbar: React.FC = () => {
         </Link>
 
         <div className={`flex items-center gap-3 sm:gap-4 p-3 rounded-full ${isScrolled ? "bg-transparent p-0!" : "bg-stone-950/60"}`}>
-          <NavItem 
-            href="/" 
+          <NavItem
+            href="/"
             isActive={activeSection === "home"}
             onClick={(e) => {
               if (pathname === "/") {
@@ -96,8 +96,8 @@ export const Navbar: React.FC = () => {
           >
             Home
           </NavItem>
-          <NavItem 
-            href="/#projects" 
+          <NavItem
+            href="/#projects"
             isActive={activeSection === "projects"}
             onClick={(e) => {
               if (pathname === "/") {
@@ -109,8 +109,8 @@ export const Navbar: React.FC = () => {
           >
             Projects
           </NavItem>
-          <NavItem 
-            href="/#contact" 
+          <NavItem
+            href="/#contact"
             isActive={activeSection === "contact"}
             onClick={(e) => {
               if (pathname === "/") {

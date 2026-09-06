@@ -33,6 +33,7 @@ interface ResumeItem {
   institution: string;
   role: string;
   period: string;
+  href?: string;
 }
 
 // ==========================================
@@ -65,11 +66,13 @@ const EDUCATION: ResumeItem[] = [
     institution: "IFRN",
     role: "Technologist in Software Analysis and Development",
     period: "2021-2025",
+    href: "https://portal.ifrn.edu.br/cursos/superiores/graduacao/tecnologia-em-analise-e-desenvolvimento-de-sistemas/",
   },
   {
     institution: "IFRN",
     role: "Web Development Technician",
     period: "2017-2021",
+    href: "https://portal.ifrn.edu.br/cursos/tecnicos/tecnico-integrado/informatica-para-internet/",
   },
 ];
 
@@ -142,9 +145,8 @@ const SparkleIcon = () => (
   </svg>
 );
 
-const ResumeItemComponent = ({ institution, role, period }: ResumeItem) => (
-  <div className="group flex items-center gap-4 py-1">
-    {/* <SparkleIcon /> */}
+const ResumeItemComponent = ({ institution, role, period, href }: ResumeItem) => {
+  const content = (
     <div className="flex flex-col flex-1">
       <div className="flex justify-between items-center gap-4">
         <div className="flex items-center gap-2">
@@ -161,8 +163,22 @@ const ResumeItemComponent = ({ institution, role, period }: ResumeItem) => (
         {role}
       </p>
     </div>
-  </div>
-);
+  );
+
+  if (href) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 py-1 cursor-pointer">
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div className="group flex items-center gap-4 py-1">
+      {content}
+    </div>
+  );
+};
 
 const InfoList = ({ items }: { items: InfoItem[] }) => (
   <div className="flex flex-col gap-3">
