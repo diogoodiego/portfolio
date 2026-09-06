@@ -83,7 +83,7 @@ export default function Home() {
           initial="hidden"
           animate="visible"
           variants={containerVariants}
-          className="z-10 relative flex flex-col justify-end items-start gap-4 sm:gap-8 p-6 sm:p-12 px-6 sm:px-12 md:px-16 lg:px-24 pb-56 sm:pb-48 md:pb-12 w-full lg:w-1/2 xl:w-2/5 h-full"
+          className="z-10 relative flex flex-col justify-end items-start gap-4 sm:gap-8 p-6 sm:p-12 px-6 sm:px-12 md:px-16 lg:px-24 w-full lg:w-1/2 xl:w-2/5 h-full"
         >
           <motion.h1
             variants={itemVariants}

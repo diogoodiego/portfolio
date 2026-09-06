@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "@/i18n/routing";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import { NavItem } from "./NavItem";
 import navbarImage from "@/assets/navbar_image.jpg";
 import Image from "next/image";
@@ -18,6 +19,7 @@ export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const langDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -83,6 +85,10 @@ export const Navbar: React.FC = () => {
     setIsLangOpen(false);
   };
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20, x: "-50%" }}
@@ -104,49 +110,50 @@ export const Navbar: React.FC = () => {
           <span className="group-hover:left-[-18px] z-[-10] group-hover:z-[100] absolute w-4 h-4 text-base group-hover:-rotate-45 transition-all animate-hang duration-200">🤙</span>
         </Link>
 
-        <div className={`flex items-center gap-3 sm:gap-4 p-3 rounded-full ${isScrolled ? "bg-transparent p-0!" : "bg-stone-950/60"}`}>
-          <NavItem
-            href="/"
-            isActive={activeSection === "home"}
-            onClick={(e) => {
-              if (pathname === "/") {
-                e.preventDefault();
-                document.getElementById("main-scroll")?.scrollTo({ top: 0, behavior: "smooth" });
-                // We keep the locale in the URL
-                window.history.pushState(null, "", `/${locale}`);
-              }
-            }}
-          >
-            {t("home")}
-          </NavItem>
-          <NavItem
-            href="/#projects"
-            isActive={activeSection === "projects"}
-            onClick={(e) => {
-              if (pathname === "/") {
-                e.preventDefault();
-                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-                window.history.pushState(null, "", `/${locale}#projects`);
-              }
-            }}
-          >
-            {t("projects")}
-          </NavItem>
-          <NavItem
-            href="/#contact"
-            isActive={activeSection === "contact"}
-            onClick={(e) => {
-              if (pathname === "/") {
-                e.preventDefault();
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                window.history.pushState(null, "", `/${locale}#contact`);
-              }
-            }}
-          >
-            {t("contact")}
-          </NavItem>
+        <div className={`flex items-center p-3 rounded-full ${isScrolled ? "bg-transparent p-0!" : "bg-stone-950/60"}`}>
+          <div className="hidden md:flex items-center gap-3 sm:gap-4">
+            <NavItem
+              href="/"
+              isActive={activeSection === "home"}
+              onClick={(e) => {
+                if (pathname === "/") {
+                  e.preventDefault();
+                  document.getElementById("main-scroll")?.scrollTo({ top: 0, behavior: "smooth" });
+                  window.history.pushState(null, "", `/${locale}`);
+                }
+              }}
+            >
+              {t("home")}
+            </NavItem>
+            <NavItem
+              href="/#projects"
+              isActive={activeSection === "projects"}
+              onClick={(e) => {
+                if (pathname === "/") {
+                  e.preventDefault();
+                  document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+                  window.history.pushState(null, "", `/${locale}#projects`);
+                }
+              }}
+            >
+              {t("projects")}
+            </NavItem>
+            <NavItem
+              href="/#contact"
+              isActive={activeSection === "contact"}
+              onClick={(e) => {
+                if (pathname === "/") {
+                  e.preventDefault();
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                  window.history.pushState(null, "", `/${locale}#contact`);
+                }
+              }}
+            >
+              {t("contact")}
+            </NavItem>
+          </div>
 
-          <div className="relative flex items-center ml-1 sm:ml-2 pl-4 sm:pl-5 border-white/10 border-l h-4 sm:h-5" ref={langDropdownRef}>
+          <div className="relative flex items-center ml-2 sm:ml-4" ref={langDropdownRef}>
             <div className="group relative flex justify-center items-center">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
@@ -193,8 +200,74 @@ export const Navbar: React.FC = () => {
               </motion.div>
             )}
           </div>
+
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden flex justify-center items-center p-1.5 ml-2 text-white/70 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors w-8 h-8"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
         </div>
       </div>
+
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, scale: 0.95 }}
+            animate={{ opacity: 1, height: "auto", scale: 1 }}
+            exit={{ opacity: 0, height: 0, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute top-full left-4 right-4 mt-3 bg-stone-900/95 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden md:hidden shadow-2xl origin-top flex flex-col p-2 gap-1"
+          >
+            <NavItem
+              href="/"
+              isActive={activeSection === "home"}
+              className="w-full text-center py-3"
+              onClick={(e) => {
+                if (pathname === "/") {
+                  e.preventDefault();
+                  document.getElementById("main-scroll")?.scrollTo({ top: 0, behavior: "smooth" });
+                  window.history.pushState(null, "", `/${locale}`);
+                }
+                closeMobileMenu();
+              }}
+            >
+              {t("home")}
+            </NavItem>
+            <NavItem
+              href="/#projects"
+              isActive={activeSection === "projects"}
+              className="w-full text-center py-3"
+              onClick={(e) => {
+                if (pathname === "/") {
+                  e.preventDefault();
+                  document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+                  window.history.pushState(null, "", `/${locale}#projects`);
+                }
+                closeMobileMenu();
+              }}
+            >
+              {t("projects")}
+            </NavItem>
+            <NavItem
+              href="/#contact"
+              isActive={activeSection === "contact"}
+              className="w-full text-center py-3"
+              onClick={(e) => {
+                if (pathname === "/") {
+                  e.preventDefault();
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                  window.history.pushState(null, "", `/${locale}#contact`);
+                }
+                closeMobileMenu();
+              }}
+            >
+              {t("contact")}
+            </NavItem>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };
