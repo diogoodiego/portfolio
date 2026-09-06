@@ -5,16 +5,19 @@ interface NavItemProps {
   href: string;
   children: React.ReactNode;
   isActive?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export const NavItem: React.FC<NavItemProps> = ({
   href,
   children,
   isActive,
+  onClick,
 }) => {
   return (
     <Link
       href={href}
+      onClick={onClick}
       className={`relative rounded-full text-sm font-medium px-5 py-3 transition-all duration-400 leading-none h-full flex items-center
         ${isActive
           ? "text-white bg-white/10 "
