@@ -1,17 +1,34 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { NavItem } from "./NavItem";
 import navbarImage from "@/assets/navbar_image.jpg";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "@/i18n/routing";
+import { useLocale, useTranslations } from "next-intl";
 
 export const Navbar: React.FC = () => {
+  const t = useTranslations("Navbar");
+  const locale = useLocale();
   const pathname = usePathname();
+  const router = useRouter();
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [isLangOpen, setIsLangOpen] = useState(false);
+  const langDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
+        setIsLangOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const mainElement = document.getElementById("main-scroll");
@@ -61,6 +78,11 @@ export const Navbar: React.FC = () => {
     }
   }, [pathname]);
 
+  const changeLanguage = (newLocale: "en" | "pt") => {
+    router.replace(pathname, { locale: newLocale });
+    setIsLangOpen(false);
+  };
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20, x: "-50%" }}
@@ -70,7 +92,7 @@ export const Navbar: React.FC = () => {
     >
       {/* Corpo Central da Navbar */}
       <div
-        className={`flex flex-row items-center flex-1 justify-between rounded-full transition-all duration-200 ${isScrolled ? "bg-stone-950/60 backdrop-blur-sm px-6 py-3" : ""
+        className={`flex flex-row items-center flex-1 justify-between rounded-full transition-all duration-200 ${isScrolled ? "bg-stone-950/60 border border-white/5 backdrop-blur-sm px-6 py-3" : ""
           }`}
       >
         <Link
@@ -90,11 +112,12 @@ export const Navbar: React.FC = () => {
               if (pathname === "/") {
                 e.preventDefault();
                 document.getElementById("main-scroll")?.scrollTo({ top: 0, behavior: "smooth" });
-                window.history.pushState(null, "", "/");
+                // We keep the locale in the URL
+                window.history.pushState(null, "", `/${locale}`);
               }
             }}
           >
-            Home
+            {t("home")}
           </NavItem>
           <NavItem
             href="/#projects"
@@ -103,11 +126,11 @@ export const Navbar: React.FC = () => {
               if (pathname === "/") {
                 e.preventDefault();
                 document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-                window.history.pushState(null, "", "/#projects");
+                window.history.pushState(null, "", `/${locale}#projects`);
               }
             }}
           >
-            Projects
+            {t("projects")}
           </NavItem>
           <NavItem
             href="/#contact"
@@ -116,14 +139,63 @@ export const Navbar: React.FC = () => {
               if (pathname === "/") {
                 e.preventDefault();
                 document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                window.history.pushState(null, "", "/#contact");
+                window.history.pushState(null, "", `/${locale}#contact`);
               }
             }}
           >
-            Contact
+            {t("contact")}
           </NavItem>
+
+          <div className="relative flex items-center ml-1 sm:ml-2 pl-4 sm:pl-5 border-white/10 border-l h-4 sm:h-5" ref={langDropdownRef}>
+            <div className="group relative flex justify-center items-center">
+              <button
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className="flex justify-center items-center shadow-sm rounded-full focus:outline-none ring-1 ring-white/20 hover:ring-white/60 focus:ring-white/60 w-[22px] h-[22px] overflow-hidden transition-all duration-300"
+                aria-label={t("switchLanguage")}
+              >
+                <img
+                  src={locale === "en" ? "https://flagcdn.com/us.svg" : "https://flagcdn.com/br.svg"}
+                  alt={locale === "en" ? "US Flag" : "Brazil Flag"}
+                  className="w-full h-full object-cover scale-[1.5]"
+                />
+              </button>
+
+              <div className="top-full left-1/2 z-50 absolute bg-stone-800 opacity-0 group-hover:opacity-100 shadow-lg mt-3 px-2 py-1 border border-white/10 rounded-md text-white/90 text-xs whitespace-nowrap transition-opacity -translate-x-1/2 pointer-events-none">
+                {t("switchLanguage")}
+              </div>
+            </div>
+
+            {isLangOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -5, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                className="top-full right-0 z-50 absolute flex flex-col gap-0.5 bg-stone-900/95 shadow-2xl backdrop-blur-md mt-3 p-1.5 border border-white/10 rounded-2xl min-w-[140px]"
+              >
+                <button
+                  onClick={() => changeLanguage("en")}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors ${locale === "en" ? "bg-white/10 text-white font-medium" : "text-white/70 hover:text-white hover:bg-white/5"}`}
+                >
+                  <div className="rounded-full ring-1 ring-white/20 w-5 h-5 overflow-hidden shrink-0">
+                    <img src="https://flagcdn.com/us.svg" alt="English" className="w-full h-full object-cover scale-[1.5]" />
+                  </div>
+                  {t("english")}
+                </button>
+                <button
+                  onClick={() => changeLanguage("pt")}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors ${locale === "pt" ? "bg-white/10 text-white font-medium" : "text-white/70 hover:text-white hover:bg-white/5"}`}
+                >
+                  <div className="rounded-full ring-1 ring-white/20 w-5 h-5 overflow-hidden shrink-0">
+                    <img src="https://flagcdn.com/br.svg" alt="Português" className="w-full h-full object-cover scale-[1.5]" />
+                  </div>
+                  {t("portuguese")}
+                </button>
+              </motion.div>
+            )}
+          </div>
         </div>
       </div>
     </motion.nav>
   );
 };
+

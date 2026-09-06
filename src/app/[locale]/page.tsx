@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
-import me from "../assets/me.png";
+import me from "@/assets/me.png";
 import { Navbar, Button, MusicPlayer } from "@/components";
 import { BentoSection } from "@/sections/BentoSection";
 import { FooterSection } from "@/sections/FooterSection";

@@ -1,0 +1,10 @@
+{
+  "Navbar": {
+    "home": "Home",
+    "projects": "Projetos",
+    "contact": "Contato",
+    "switchLanguage": "Trocar idioma",
+    "english": "Inglês",
+    "portuguese": "Português"
+  }
+}
