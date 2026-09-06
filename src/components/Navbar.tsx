@@ -79,7 +79,7 @@ export const Navbar: React.FC = () => {
         >
           <Image src={navbarImage} alt="diogoodiego" className="rounded-full w-8 h-8"></Image>
           <span>DIO</span>
-          <span className="group-hover:left-[-12px] z-[-10] group-hover:z-[100] absolute w-4 h-4 text-base group-hover:-rotate-45 transition-all animate-hang duration-200">🤙</span>
+          <span className="group-hover:left-[-18px] z-[-10] group-hover:z-[100] absolute w-4 h-4 text-base group-hover:-rotate-45 transition-all animate-hang duration-200">🤙</span>
         </Link>
 
         <div className={`flex items-center gap-3 sm:gap-4 p-3 rounded-full ${isScrolled ? "bg-transparent p-0!" : "bg-stone-950/60"}`}>

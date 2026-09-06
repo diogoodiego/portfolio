@@ -278,6 +278,7 @@ export const FooterSection = () => {
           <div className="flex flex-row items-center bg-white/5 p-6 rounded-lg overflow-hidden">
             <p className="me-auto font-semibold text-stone-300 text-2xl">Nice to see you here! Let's chat...</p>
             <div className="flex gap-4">
+              {/* Desktop Copy Email Button */}
               <button
                 onClick={() => {
                   navigator.clipboard.writeText("diogo.sam.nascimento@gmail.com");
@@ -285,13 +286,23 @@ export const FooterSection = () => {
                     className: "!bg-green-900 !border-green-800 !text-green-100",
                   })
                 }}
-                className="group flex items-center gap-0 hover:gap-2 bg-white/5 px-5 py-2 rounded-full text-stone-400 hover:text-stone-50 text-lg cursor-pointer"
+                className="group hidden sm:flex items-center gap-0 hover:gap-2 bg-white/5 px-5 py-2 rounded-full text-stone-400 hover:text-stone-50 text-lg cursor-pointer"
               >
                 Copy email
                 <div className="w-0 group-hover:w-5 overflow-hidden transition-all duration-200 ease-in-out">
                   <Copy className="w-5" />
                 </div>
               </button>
+              {/* Mobile Mailto Link */}
+              <a
+                href="mailto:diogo.sam.nascimento@gmail.com"
+                className="group flex sm:hidden items-center gap-0 hover:gap-2 bg-white/5 px-5 py-2 rounded-full text-stone-400 hover:text-stone-50 text-lg cursor-pointer"
+              >
+                Send email
+                <div className="w-0 group-hover:w-5 overflow-hidden transition-all duration-200 ease-in-out">
+                  <ArrowUpRight className="w-5" />
+                </div>
+              </a>
               <a
                 href="https://www.linkedin.com/in/diogo-santos-nascimento/"
                 target="_blank"
