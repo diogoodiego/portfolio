@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { StoryCard, BentoCard, ProjectHoverCard } from "@/components";
 import dribbble from "@/assets/dribbble.png";
 import linkedin from "@/assets/linkedin.svg";
+import { useTranslations } from "next-intl";
 // ==========================================
 // Types & Data Contracts
 // ==========================================
@@ -38,69 +39,7 @@ interface ResumeItem {
 
 // ==========================================
 // Static Dataset Configuration
-// ==========================================
-
-const CONTACTS: ContactInfo[] = [
-  {
-    label: "Got a question?",
-    action: "Get in touch",
-    value: "hello@dio.design",
-    href: "mailto:hello@dio.design",
-  },
-  {
-    label: "Stay in the loop",
-    action: "Subscribe",
-    value: "news@dio.design",
-    href: "mailto:newsletter@dio.design",
-  },
-  {
-    label: "I'm on socials",
-    action: "Connect on LinkedIn",
-    value: "linkedin.com/in/dio",
-    href: "https://linkedin.com",
-  },
-];
-
-const EDUCATION: ResumeItem[] = [
-  {
-    institution: "IFRN",
-    role: "Technologist in Software Analysis and Development",
-    period: "2021-2025",
-    href: "https://portal.ifrn.edu.br/cursos/superiores/graduacao/tecnologia-em-analise-e-desenvolvimento-de-sistemas/",
-  },
-  {
-    institution: "IFRN",
-    role: "Web Development Technician",
-    period: "2017-2021",
-    href: "https://portal.ifrn.edu.br/cursos/tecnicos/tecnico-integrado/informatica-para-internet/",
-  },
-];
-
-const EXPERIENCE: ResumeItem[] = [
-  {
-    institution: "Geowellex",
-    role: "UX/UI Designer",
-    period: "Present",
-  },
-  {
-    institution: "Leme",
-    role: "UI Designer and Front-end Developer",
-    period: "2020-2021",
-  },
-  {
-    institution: "Assembleia Smart",
-    role: "Ui Designer Freelancer",
-    period: "2019",
-  },
-];
-
-const PROJECTS: InfoItem[] = [
-  { name: "Croft Design System", meta: "24", href: "/croft", thumbnail: "/assets/croft-mockup.mp4", roles: ["Product Design", "Design System"], description: "A scalable design system for enterprise products." },
-  { name: "Depth Track", meta: "24", href: "/depth-track", thumbnail: "/assets/depth/preview.mp4", roles: ["UX/UI Design", "Frontend"], description: "Drilling monitoring platform." },
-  { name: "IFSolve Platform", meta: "23", href: "/ifsolve", thumbnail: "/assets/ifsolve/preview.mp4", roles: ["UX Research", "Usability"], description: "Platform for evaluating UX heuristics." },
-  { name: "Geowellex Education", meta: "22", thumbnail: "/assets/geox-education/FireShot Capture 001 - Geowellex Education - [www.geowellex.com].png", roles: ["UI Design", "Frontend"], description: "Educational portal for the energy sector." },
-  { name: "Diga Duvido", meta: "21", thumbnail: "/assets/diga-duvido/home.webp", roles: ["Product Design"], description: "Card game digital experience." },
-];
+// (Moved into FooterSection for translations)
 
 // ==========================================
 // Sub-Components
@@ -195,6 +134,49 @@ const InfoList = ({ items }: { items: InfoItem[] }) => (
 // ==========================================
 
 export const FooterSection = () => {
+  const t = useTranslations("Footer");
+
+  const EDUCATION: ResumeItem[] = [
+    {
+      institution: "IFRN",
+      role: t("roles.techAnalysis"),
+      period: t("periods.p21_25"),
+      href: "https://portal.ifrn.edu.br/cursos/superiores/graduacao/tecnologia-em-analise-e-desenvolvimento-de-sistemas/",
+    },
+    {
+      institution: "IFRN",
+      role: t("roles.techWeb"),
+      period: t("periods.p17_21"),
+      href: "https://portal.ifrn.edu.br/cursos/tecnicos/tecnico-integrado/informatica-para-internet/",
+    },
+  ];
+
+  const EXPERIENCE: ResumeItem[] = [
+    {
+      institution: "Geowellex",
+      role: t("roles.uxuiDesigner"),
+      period: t("periods.present"),
+    },
+    {
+      institution: "Leme",
+      role: t("roles.uiFrontend"),
+      period: t("periods.p20_21"),
+    },
+    {
+      institution: "Assembleia Smart",
+      role: t("roles.uiFreelance"),
+      period: t("periods.p19"),
+    },
+  ];
+
+  const PROJECTS: InfoItem[] = [
+    { name: "Croft Design System", meta: "24", href: "/croft", thumbnail: "/assets/croft-mockup.mp4", roles: [t("projectRoles.productDesign"), t("projectRoles.designSystem")], description: t("projectDesc.croft") },
+    { name: "Depth Track", meta: "24", href: "/depth-track", thumbnail: "/assets/depth/preview.mp4", roles: [t("projectRoles.uxUiDesign"), t("projectRoles.frontend")], description: t("projectDesc.depth") },
+    { name: "IFSolve Platform", meta: "23", href: "/ifsolve", thumbnail: "/assets/ifsolve/preview.mp4", roles: [t("projectRoles.uxResearch"), t("projectRoles.usability")], description: t("projectDesc.ifsolve") },
+    { name: "Geowellex Education", meta: "22", thumbnail: "/assets/geox-education/FireShot Capture 001 - Geowellex Education - [www.geowellex.com].png", roles: [t("projectRoles.uiDesign"), t("projectRoles.frontend")], description: t("projectDesc.geowellex") },
+    { name: "Diga Duvido", meta: "21", thumbnail: "/assets/diga-duvido/home.webp", roles: [t("projectRoles.productDesign")], description: t("projectDesc.diga") },
+  ];
+
   return (
     <footer
       id="contact"
@@ -230,12 +212,10 @@ export const FooterSection = () => {
 
           <div className="z-10 relative mt-auto pt-48">
             <p className="mb-2 font-regular text-md text-white/60 tracking-wider">
-              About me
+              {t("aboutMeTitle")}
             </p>
             <p className="max-w-[360px] font-medium text-white text-base lg:text-lg leading-snug">
-              I&apos;m Diogo! A designer with over 5 years of experience, specializing
-              in creating intuitive interfaces and visual solutions for the energy
-              industry.
+              {t("aboutMeText")}
             </p>
           </div>
         </div>
@@ -245,7 +225,7 @@ export const FooterSection = () => {
           <div className="flex lg:flex-row flex-col flex-1 gap-8 bg-white/5 p-6 rounded-lg">
             <div className="flex flex-col flex-1 gap-2">
               {/* Experience Section */}
-              <p className="font-medium text-stone-500 text-lg">Experience</p>
+              <p className="font-medium text-stone-500 text-lg">{t("experience")}</p>
               <div className="flex flex-col gap-4">
                 {EXPERIENCE.map((item, idx) => (
                   <ResumeItemComponent key={idx} {...item} />
@@ -254,7 +234,7 @@ export const FooterSection = () => {
             </div>
             <div className="flex flex-col flex-1 gap-2">
               {/* Education Section */}
-              <p className="font-medium text-stone-500 text-lg">Education</p>
+              <p className="font-medium text-stone-500 text-lg">{t("education")}</p>
               <div className="flex flex-col gap-4">
                 {EDUCATION.map((item, idx) => (
                   <ResumeItemComponent key={idx} {...item} />
@@ -266,7 +246,7 @@ export const FooterSection = () => {
           <div className="flex lg:flex-row flex-col gap-4">
             {/* Projects Section */}
             <div className="flex flex-col flex-1 gap-2 bg-white/5 p-6 rounded-lg">
-              <p className="font-medium text-stone-500 text-lg">Projects</p>
+              <p className="font-medium text-stone-500 text-lg">{t("projects")}</p>
               <InfoList items={PROJECTS} />
             </div>
             {/* Extra Info Section */}
@@ -276,19 +256,19 @@ export const FooterSection = () => {
           </div>
           {/* Bottom Row: Additional Rows */}
           <div className="flex flex-row items-center bg-white/5 p-6 rounded-lg overflow-hidden">
-            <p className="me-auto font-semibold text-stone-300 text-2xl">Nice to see you here! Let's chat...</p>
+            <p className="me-auto font-semibold text-stone-300 text-2xl">{t("letsChat")}</p>
             <div className="flex gap-4">
               {/* Desktop Copy Email Button */}
               <button
                 onClick={() => {
                   navigator.clipboard.writeText("diogo.sam.nascimento@gmail.com");
-                  toast.success("Email copiado!", {
+                  toast.success(t("emailCopied"), {
                     className: "!bg-green-900 !border-green-800 !text-green-100",
                   })
                 }}
                 className="group hidden sm:flex items-center gap-0 hover:gap-2 bg-white/5 px-5 py-2 rounded-full text-stone-400 hover:text-stone-50 text-lg cursor-pointer"
               >
-                Copy email
+                {t("copyEmail")}
                 <div className="w-0 group-hover:w-5 overflow-hidden transition-all duration-200 ease-in-out">
                   <Copy className="w-5" />
                 </div>
@@ -298,7 +278,7 @@ export const FooterSection = () => {
                 href="mailto:diogo.sam.nascimento@gmail.com"
                 className="group flex sm:hidden items-center gap-0 hover:gap-2 bg-white/5 px-5 py-2 rounded-full text-stone-400 hover:text-stone-50 text-lg cursor-pointer"
               >
-                Send email
+                {t("sendEmail")}
                 <div className="w-0 group-hover:w-5 overflow-hidden transition-all duration-200 ease-in-out">
                   <ArrowUpRight className="w-5" />
                 </div>

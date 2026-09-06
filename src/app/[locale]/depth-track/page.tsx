@@ -4,18 +4,20 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Navbar, FloatingTOC } from "@/components";
 import me from "@/assets/me.png";
+import { useTranslations } from "next-intl";
 
 export default function DepthTrackCaseStudy() {
+  const t = useTranslations("DepthTrack");
   const [expandedImage, setExpandedImage] = useState<string | null>(null);
 
   const tocItems = [
-    { id: "contexto", title: "1. O contexto" },
-    { id: "problema", title: "2. O problema" },
-    { id: "prototipo", title: "3. Primeiro protótipo" },
-    { id: "estrutura", title: "4. A estrutura final" },
-    { id: "momento", title: "5. O momento que faltava" },
-    { id: "resultado", title: "6. Resultado" },
-    { id: "aprendizado", title: "7. Aprendizado" }
+    { id: "contexto", title: t("toc.context") },
+    { id: "problema", title: t("toc.problem") },
+    { id: "prototipo", title: t("toc.prototype") },
+    { id: "estrutura", title: t("toc.structure") },
+    { id: "momento", title: t("toc.missingMoment") },
+    { id: "resultado", title: t("toc.result") },
+    { id: "aprendizado", title: t("toc.learnings") }
   ];
 
   return (
@@ -28,21 +30,21 @@ export default function DepthTrackCaseStudy() {
         {/* Article Header */}
         <header className="space-y-6">
           <div className="font-semibold text-rose-500 text-xs sm:text-sm tracking-wider">
-            UX/UI Design & Engenharia • Estudo de caso
+            {t("meta")}
           </div>
 
           <h1 className="font-bold text-white text-4xl sm:text-5xl md:text-6xl leading-tight tracking-tight">
-            Depth Track
+            {t("title")}
           </h1>
 
           <p className="font-medium text-stone-300 text-xl sm:text-2xl leading-relaxed">
-            Redesenhando a régua de profundidade de um dashboard de perfuração de poços
+            {t("subtitle")}
           </p>
 
           <div className="space-y-2 bg-stone-900/40 p-6 border border-stone-800/50 rounded-xl text-stone-400 text-base sm:text-lg leading-relaxed">
-            <div><strong className="text-stone-300">Papel:</strong> Design + Desenvolvimento</div>
-            <div><strong className="text-stone-300">Produto:</strong> STRATVISION, Well Log Intelligence</div>
-            <div><strong className="text-stone-300">Usuários:</strong> engenheiros de petróleo, petrofísicos, engenheiros de dados, operadores de sala de controle, engenheiros de perfuração, operadores de sonda e supervisores</div>
+            <div><strong className="text-stone-300">{t("role")}</strong> {t("roleVal")}</div>
+            <div><strong className="text-stone-300">{t("product")}</strong> {t("productVal")}</div>
+            <div><strong className="text-stone-300">{t("users")}</strong> {t("usersVal")}</div>
           </div>
 
           {/* Meta Line */}
@@ -56,7 +58,7 @@ export default function DepthTrackCaseStudy() {
             />
             <div>
               <div className="font-semibold text-white">Dio</div>
-              <div>Lead Product Designer</div>
+              <div>{t("jobTitle")}</div>
             </div>
           </div>
         </header>
@@ -64,10 +66,10 @@ export default function DepthTrackCaseStudy() {
         {/* Section 1 */}
         <section id="contexto" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            1. O contexto
+            {t("contextTitle")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            O STRATVISION exibe curvas de perfuração (ROP, WOB, Gamma Ray, gases) ao longo da profundidade do poço, em tempo real. A régua de profundidade parece o elemento mais simples do dashboard. Mas é dela que depende toda a leitura correta do restante da tela.
+            {t("contextText")}
           </p>
 
           <div
@@ -81,13 +83,13 @@ export default function DepthTrackCaseStudy() {
         {/* Section 2 */}
         <section id="problema" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            2. O problema
+            {t("problemTitle")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Testando o software na escala 1:25, os ticks de profundidade ficaram tão distantes uns dos outros que a régua virava um espaço praticamente vazio. Como dar um super zoom numa régua real: só sobra o espaço entre os traços.
+            {t("problemText1")}
           </p>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Resultado: em escalas mais próximas, o usuário perdia a noção de onde estava no poço.
+            {t("problemText2")}
           </p>
 
           <div
@@ -98,18 +100,18 @@ export default function DepthTrackCaseStudy() {
           </div>
 
           <blockquote className="mt-6 py-1 pl-4 border-rose-500 border-l-4 text-stone-400 text-lg sm:text-xl italic">
-            &quot;Eu tinha visto que as profundidades sumiam quando mudava a escala, mas achei que só eu me incomodava.&quot;
-            <footer className="mt-2 text-stone-500 text-base">— feedback espontâneo de um usuário, após o lançamento</footer>
+            {t("quote")}
+            <footer className="mt-2 text-stone-500 text-base">{t("quoteAuthor")}</footer>
           </blockquote>
         </section>
 
         {/* Section 3 */}
         <section id="prototipo" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            3. Primeiro protótipo, feedback real
+            {t("prototypeTitle")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Levei o primeiro protótipo (Figma) para desenvolvedores testarem. Cada pessoa tentou uma interação diferente sem eu explicar nada: clicar e arrastar para navegar, clicar na coluna central para mudar a escala. Fui incorporando cada uma dessas descobertas ao componente.
+            {t("prototypeText")}
           </p>
 
           <div
@@ -123,12 +125,12 @@ export default function DepthTrackCaseStudy() {
         {/* Section 4 */}
         <section id="estrutura" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            4. A estrutura final: 3 colunas
+            {t("structureTitle")}
           </h2>
           <div className="space-y-4 pt-2 text-stone-300 text-base sm:text-lg leading-relaxed">
-            <p><strong className="text-white">1. Visão geral</strong> — todo o poço, com marcação do trecho visível</p>
-            <p><strong className="text-white">2. Escala</strong> — ajuste por clique ou scroll</p>
-            <p><strong className="text-white">3. Detalhe</strong> — zoom do trecho selecionado, com mais indicadores</p>
+            <p><strong className="text-white">{t("structureItem1")}</strong> {t("structureDesc1")}</p>
+            <p><strong className="text-white">{t("structureItem2")}</strong> {t("structureDesc2")}</p>
+            <p><strong className="text-white">{t("structureItem3")}</strong> {t("structureDesc3")}</p>
           </div>
 
           <div
@@ -142,10 +144,10 @@ export default function DepthTrackCaseStudy() {
         {/* Section 5 */}
         <section id="momento" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            5. O momento que faltava: &quot;E então, o que eu faço?&quot;
+            {t("missingTitle")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Um grupo de teste simplesmente travou diante do componente. Essa pergunta me mostrou que a interação não era autoexplicativa para todo mundo. Criei uma legenda flutuante, inspirada em HUDs de jogos, que aparece ao passar o mouse e explica cada gesto disponível.
+            {t("missingText")}
           </p>
 
           <div
@@ -159,10 +161,10 @@ export default function DepthTrackCaseStudy() {
         {/* Section 6 */}
         <section id="resultado" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            6. Resultado
+            {t("resultTitle")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Adoção imediata, sem necessidade de treinamento. O componente foi para o design system do produto, pronto para reuso em outras telas.
+            {t("resultText")}
           </p>
 
           <div className="relative flex justify-center items-center bg-stone-900/40 mt-6 border border-stone-800 rounded-md aspect-video overflow-hidden">
@@ -180,10 +182,10 @@ export default function DepthTrackCaseStudy() {
         {/* Section 7 */}
         <section id="aprendizado" className="space-y-4 pt-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            7. Aprendizado
+            {t("learningsTitle")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Nem todo problema de UX chega como reclamação, às vezes ele é só silenciosamente tolerado. E a forma mais rápida de descobrir a interação certa é colocar o protótipo na frente de gente real o quanto antes.
+            {t("learningsText")}
           </p>
         </section>
 

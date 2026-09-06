@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 // Project Card Component with 1st frame preview, non-looping video on hover and link support
 const ProjectCard = ({
@@ -80,15 +81,17 @@ const ProjectCard = ({
 };
 
 export const BentoSection = () => {
+  const t = useTranslations("Bento");
+
   return (
     <section id="projects" className="flex flex-col justify-between bg-stone-950 p-6 md:p-8 md:px-16 lg:px-24 py-4 lg:pt-24 min-h-screen">
       {/* Header: Headline top left, Subtitle top right per diagram */}
       <div className="flex md:flex-row flex-col flex-shrink-0 justify-between md:items-baseline gap-4 mb-8">
         <h2 className="font-bold text-white text-4xl md:text-5xl lg:text-6xl tracking-tight">
-          Featured Projects
+          {t("title")}
         </h2>
         <p className="max-w-md text-stone-400 text-sm md:text-base md:text-right">
-          A curated selection of product design, design systems, and usability research projects.
+          {t("subtitle")}
         </p>
       </div>
 

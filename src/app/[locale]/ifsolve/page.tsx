@@ -4,14 +4,17 @@ import React from "react";
 import Image from "next/image";
 import { Navbar, FloatingTOC, ImageComparison } from "@/components";
 import me from "@/assets/me.png";
+import { useTranslations } from "next-intl";
 
 export default function IFSolveCaseStudy() {
+  const t = useTranslations("IfSolve");
+
   const tocItems = [
-    { id: "ponto-de-partida", title: "1. O ponto de partida" },
-    { id: "desafio", title: "2. O desafio" },
-    { id: "como-trabalhei", title: "3. Como eu trabalhei" },
-    { id: "achados", title: "4. Achados que me marcaram" },
-    { id: "o-que-levo", title: "5. O que levo desse projeto" }
+    { id: "ponto-de-partida", title: t("toc.start") },
+    { id: "desafio", title: t("toc.challenge") },
+    { id: "como-trabalhei", title: t("toc.process") },
+    { id: "achados", title: t("toc.findings") },
+    { id: "o-que-levo", title: t("toc.takeaways") }
   ];
 
   return (
@@ -25,11 +28,11 @@ export default function IFSolveCaseStudy() {
         {/* Article Header */}
         <header className="space-y-6">
           <div className="font-semibold text-rose-500 text-xs sm:text-sm tracking-wider">
-            Estudo de caso: avaliação heurística do IFSolve
+            {t("meta")}
           </div>
 
           <h1 className="font-bold text-white text-4xl sm:text-5xl md:text-6xl leading-tight tracking-tight">
-            O que 51 problemas de usabilidade me ensinaram sobre olhar de verdade para uma interface
+            {t("title")}
           </h1>
 
           {/* Meta Line */}
@@ -43,7 +46,7 @@ export default function IFSolveCaseStudy() {
             />
             <div>
               <div className="font-semibold text-white">Dio</div>
-              <div>UX/UI Designer & Pesquisador de Usabilidade</div>
+              <div>{t("jobTitle")}</div>
             </div>
           </div>
         </header>
@@ -63,80 +66,78 @@ export default function IFSolveCaseStudy() {
         {/* Section 1 */}
         <section id="ponto-de-partida" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            1. O ponto de partida
+            {t("startTitle")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Esse projeto nunca pareceu simples. Foi a primeira vez que fiz uma avaliação heurística completa de um software, e não apenas de uma tela isolada como exercício de aula. O IFSolve é um sistema de provas e questões online usado por alunos e professores, e o trabalho envolvia percorrer toda a experiência: login, criação de avaliações, cadastro de questões e resposta de provas.
+            {t("startText1")}
           </p>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Comparado aos exercícios anteriores, a diferença era clara. Eu não estava analisando um recorte pronto, eu precisava enxergar o sistema inteiro, entender o contexto de uso de cada tela e, principalmente, justificar cada problema encontrado com uma diretriz concreta.
+            {t("startText2")}
           </p>
         </section>
 
         {/* Section 2 */}
         <section id="desafio" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            2. O desafio
+            {t("challengeTitle")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            O projeto fazia parte da faculdade, desenvolvido entre alunos e acompanhado por professores orientadores. Meu papel era percorrer cada tela do sistema como um usuário real faria, comparar o que encontrava com uma lista de diretrizes de usabilidade (a Lista Eureca, de Matos e Freire, 2023) e documentar cada desvio de forma clara o suficiente para que qualquer colega de equipe entendesse o problema e sua gravidade.
+            {t("challengeText1")}
           </p>
-          <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            No fim, o relatório reuniu <strong className="text-white">51 violações de diretriz</strong>, organizadas por tela, princípio violado e gravidade (crítico, grave, moderado, leve).
-          </p>
+          <p className="text-stone-300 text-base sm:text-lg leading-relaxed" dangerouslySetInnerHTML={{ __html: t("challengeText2") }} />
         </section>
 
         {/* Section 3 */}
         <section id="como-trabalhei" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            3. Como eu trabalhei
+            {t("processTitle")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Separei o processo em três etapas que hoje uso como base pessoal para qualquer avaliação heurística:
+            {t("processDesc")}
           </p>
           <div className="space-y-4 pt-2 text-stone-300 text-base sm:text-lg leading-relaxed">
-            <p><strong className="text-white">1. Mapear a jornada, não só as telas.</strong> Percorri o fluxo completo, login, criação de avaliação, cadastro de questão, resposta e visualização de resultado, como se fosse um aluno de verdade tentando terminar uma prova.</p>
-            <p><strong className="text-white">2. Confrontar cada tela com a lista de diretrizes.</strong> Cada achado virou um &quot;VD&quot; (Violação de Diretriz), sempre com a mesma estrutura: descrição do problema, sugestão de correção, princípio violado e gravidade. Essa disciplina de formato foi o que tornou o relatório útil de verdade, e não só uma lista de opiniões.</p>
-            <p><strong className="text-white">3. Priorizar pela gravidade, não pela quantidade.</strong> Ter 51 pontos não significa que o sistema é ruim, significa que dava pra separar sinal de ruído. Isso me ensinou a resistir à tentação de &quot;empilhar problemas&quot; e focar em comunicar o que realmente trava o usuário.</p>
+            <p><strong className="text-white">{t("processItem1")}</strong> {t("processDesc1")}</p>
+            <p><strong className="text-white">{t("processItem2")}</strong> {t("processDesc2")}</p>
+            <p><strong className="text-white">{t("processItem3")}</strong> {t("processDesc3")}</p>
           </div>
         </section>
 
         {/* Section 4 */}
         <section id="achados" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            4. Alguns achados que se destacaram
+            {t("findingsTitle")}
           </h2>
 
           <div className="pt-4 pb-6">
             <ImageComparison
               leftImage="/assets/ifsolve/home_old.webp"
               rightImage="/assets/ifsolve/home.png"
-              leftAlt="Nova interface da Home"
-              rightAlt="Antiga interface da Home"
+              leftAlt={t("findingsAltNew")}
+              rightAlt={t("findingsAltOld")}
             />
           </div>
 
           <ul className="space-y-4 pt-2 text-stone-300 marker:text-rose-500 text-base sm:text-lg leading-relaxed list-disc list-inside">
-            <li><strong className="text-white">Campo de busca inoperante.</strong> O campo de pesquisa no topo do sistema não executava nenhuma ação ao ser acionado, apesar de apresentar a aparência de um elemento funcional. Classificado como crítico, esse tipo de falha compromete uma funcionalidade básica esperada em qualquer barra de busca.</li>
-            <li><strong className="text-white">Perda silenciosa de dados.</strong> Ao fechar a aba durante o cadastro de uma avaliação, todo o conteúdo digitado era perdido, sem aviso prévio ou opção de recuperação. Classificado como grave, esse problema gera retrabalho direto para quem está preenchendo o formulário.</li>
-            <li><strong className="text-white">Campo de resposta sem contraste visual</strong> O campo de texto destinado a respostas discursivas não possuía borda nem cor de fundo, o que comprometia sua visibilidade como área de entrada de dados.</li>
-            <li><strong className="text-white">Falta de feedback ao submeter uma avaliação incompleta.</strong> O sistema permitia o envio de uma prova sem nenhuma questão respondida, sem exibir qualquer mensagem de alerta. Classificado como crítico, esse tipo de ausência de feedback pode resultar na submissão indevida de avaliações incompletas.</li>
+            <li><strong className="text-white">{t("findingsItem1Title")}</strong> {t("findingsItem1Desc")}</li>
+            <li><strong className="text-white">{t("findingsItem2Title")}</strong> {t("findingsItem2Desc")}</li>
+            <li><strong className="text-white">{t("findingsItem3Title")}</strong> {t("findingsItem3Desc")}</li>
+            <li><strong className="text-white">{t("findingsItem4Title")}</strong> {t("findingsItem4Desc")}</li>
           </ul>
         </section>
 
         {/* Section 5 */}
         <section id="o-que-levo" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            5. O que eu levo desse projeto
+            {t("takeawaysTitle")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Eu não conhecia avaliação heurística antes desse projeto. Quem me apresentou o método foi a professora Silva Matos, autora da própria Lista Eureca usada na avaliação, e por isso cheguei sem nenhuma ideia formada sobre como o processo deveria funcionar. Isso acabou sendo bom: aprendi o método enquanto aplicava, sem preconceitos sobre o que &quot;devia&quot; encontrar ou como classificar cada problema.
+            {t("takeawaysText1")}
           </p>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Com o tempo, percebi que o valor real da avaliação está em traduzir percepção em argumento: não basta sentir que algo está errado, é preciso nomear o princípio, medir a gravidade e propor um caminho de solução que outra pessoa consiga executar sem precisar te perguntar nada.
+            {t("takeawaysText2")}
           </p>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Foi também o projeto que me ensinou a não confundir volume com profundidade. Um relatório com 51 pontos só é útil se alguém conseguir abrir ele e, em cinco minutos, saber exatamente o que resolver primeiro.
+            {t("takeawaysText3")}
           </p>
 
           <div className="pt-4 pb-6">

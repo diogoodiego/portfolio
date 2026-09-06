@@ -6,6 +6,7 @@ import me from "@/assets/me.png";
 import { Navbar, Button, MusicPlayer } from "@/components";
 import { BentoSection } from "@/sections/BentoSection";
 import { FooterSection } from "@/sections/FooterSection";
+import { useTranslations } from "next-intl";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -45,6 +46,8 @@ const widgetVariants: Variants = {
 };
 
 export default function Home() {
+  const t = useTranslations("Home");
+
   return (
     <main id="main-scroll" className="h-screen overflow-y-auto scroll-auto scrollbar-thumb-white/20 scrollbar-thin">
       <Navbar />
@@ -86,23 +89,21 @@ export default function Home() {
             variants={itemVariants}
             className="drop-shadow-lg max-w-4xl font-medium text-white text-3xl sm:text-4xl md:text-5xl text-start leading-tight tracking-tight"
           >
-            Crafting digital products focused on utility, aesthetics, and precision
+            {t("title")}
           </motion.h1>
           <motion.p
             variants={itemVariants}
             className="font-abeezee font-regular text-white/80 text-sm sm:text-base leading-relaxed"
           >
-            Hi, I&apos;m Dio! I design intuitive interfaces, robust design systems,
-            and high-fidelity visual solutions for complex industries and
-            innovative startups.
+            {t("description")}
           </motion.p>
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
             <a href="#projects">
-              <Button size="lg">View Projects</Button>
+              <Button size="lg">{t("viewProjects")}</Button>
             </a>
             <a href="#contact">
               <Button variant="secondary" size="lg">
-                Get in Touch
+                {t("getInTouch")}
               </Button>
             </a>
           </motion.div>

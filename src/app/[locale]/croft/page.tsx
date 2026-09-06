@@ -5,17 +5,19 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Navbar, FloatingTOC } from "@/components";
 import me from "@/assets/me.png";
+import { useTranslations } from "next-intl";
 
 export default function CroftCaseStudy() {
+  const t = useTranslations("Croft");
   const [expandedImage, setExpandedImage] = useState<string | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const sliderImages = [
-    { src: "/assets/croft/Colors.png", alt: "Cores & Opacidade" },
-    { src: "/assets/croft/Typography.png", alt: "Escala Tipográfica" },
-    { src: "/assets/croft/Spacing.png", alt: "Espaçamento" },
-    { src: "/assets/croft/Radius.png", alt: "Border Radius" },
-    { src: "/assets/croft/Elevation.png", alt: "Superfícies & Elevação" },
+    { src: "/assets/croft/Colors.png", alt: t("sliderAlt.colors") },
+    { src: "/assets/croft/Typography.png", alt: t("sliderAlt.typography") },
+    { src: "/assets/croft/Spacing.png", alt: t("sliderAlt.spacing") },
+    { src: "/assets/croft/Radius.png", alt: t("sliderAlt.radius") },
+    { src: "/assets/croft/Elevation.png", alt: t("sliderAlt.elevation") },
   ];
 
   const nextSlide = () => {
@@ -27,12 +29,12 @@ export default function CroftCaseStudy() {
   };
 
   const tocItems = [
-    { id: "overview", title: "1. Overview" },
-    { id: "problema", title: "2. O problema" },
-    { id: "processo", title: "3. Meu processo" },
-    { id: "decisoes", title: "4. Decisões e aprendizados" },
-    { id: "antes-depois", title: "5. Antes / depois" },
-    { id: "impacto", title: "6. Impacto" }
+    { id: "overview", title: t("toc.overview") },
+    { id: "problema", title: t("toc.problem") },
+    { id: "processo", title: t("toc.process") },
+    { id: "decisoes", title: t("toc.decisions") },
+    { id: "antes-depois", title: t("toc.beforeAfter") },
+    { id: "impacto", title: t("toc.impact") }
   ];
 
   return (
@@ -46,18 +48,18 @@ export default function CroftCaseStudy() {
         {/* Article Header */}
         <header className="space-y-6">
           <div className="font-semibold text-rose-500 text-xs sm:text-sm tracking-wider">
-            UX/UI Design & Product Strategy • Estudo de caso
+            {t("meta")}
           </div>
 
           <h1 className="font-bold text-white text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight">
-            Construindo um design system para dashboards de alta densidade de dados
+            {t("title")}
           </h1>
 
           <div className="text-stone-400 text-base sm:text-lg leading-relaxed space-y-2 bg-stone-900/40 p-6 rounded-xl border border-stone-800/50">
-            <div><strong className="text-stone-300">Meu papel:</strong> Design Lead / Responsável principal</div>
-            <div><strong className="text-stone-300">Ferramentas:</strong> Figma, Storybook</div>
-            <div><strong className="text-stone-300">Referências de base:</strong> Tailwind (nomenclatura de tokens), MUI (estética de componentes)</div>
-            <div><strong className="text-stone-300">Colaboração:</strong> Time de Front-end</div>
+            <div><strong className="text-stone-300">{t("role")}</strong> {t("roleVal")}</div>
+            <div><strong className="text-stone-300">{t("tools")}</strong> {t("toolsVal")}</div>
+            <div><strong className="text-stone-300">{t("references")}</strong> {t("referencesVal")}</div>
+            <div><strong className="text-stone-300">{t("collaboration")}</strong> {t("collaborationVal")}</div>
           </div>
 
           {/* Meta Line */}
@@ -71,7 +73,7 @@ export default function CroftCaseStudy() {
             />
             <div>
               <div className="font-semibold text-white">Dio</div>
-              <div>Lead Product Designer</div>
+              <div>{t("jobTitle")}</div>
             </div>
           </div>
         </header>
@@ -92,20 +94,20 @@ export default function CroftCaseStudy() {
         {/* Section 1 */}
         <section id="overview" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            1. Overview
+            {t("toc.overview")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Cada produto da empresa tinha sua própria identidade visual, com bibliotecas de componentes diferentes e nenhum vocabulário em comum. Fui o principal responsável por criar um design system do zero para produtos de monitoramento de dados de poços e aplicações científicas, unificando tokens, componentes e documentação. O resultado foi consistência visual entre sistemas, uma documentação viva que virou referência para novas telas, e uma redução real no tempo de entrega: telas que levavam de 3 a 4 dias para serem prototipadas passaram a ser feitas em 1 a 2 dias.
+            {t("overviewText")}
           </p>
         </section>
 
         {/* Section 2 */}
         <section id="problema" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            2. O problema
+            {t("toc.problem")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Não existia padrão visual entre os produtos. Cada aplicação usava uma biblioteca diferente, sem harmonia entre cores, espaçamentos ou tipografia. Isso gerava produtos que pareciam pertencer a empresas diferentes, e retrabalho constante: cada tela nova era uma decisão de design do zero, sem tokens definidos nem critério compartilhado do que era certo.
+            {t("problemText1")}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
             <div 
@@ -126,20 +128,20 @@ export default function CroftCaseStudy() {
         {/* Section 3 */}
         <section id="processo" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            3. Meu processo
+            {t("toc.process")}
           </h2>
           <div className="space-y-4 text-stone-300 text-base sm:text-lg leading-relaxed pt-2">
             <p>
-              <strong className="text-white">Ouvindo quem ia usar o sistema.</strong> Antes de desenhar qualquer token, conversei com o time de front-end para entender o que eles realmente precisavam. Essa conversa moldou as prioridades: quais componentes tinham mais atrito na implementação e onde estavam as maiores dores de manutenção.
+              <strong className="text-white">{t("processText1")}</strong> {t("processDesc1")}
             </p>
             <p>
-              <strong className="text-white">Definindo prioridades.</strong> Priorizei os componentes mais utilizados em todos os sistemas da empresa, não o mais bonito ou complexo, mas o que traria ganho de consistência mais rápido para o maior número de produtos.
+              <strong className="text-white">{t("processText2")}</strong> {t("processDesc2")}
             </p>
             <p>
-              <strong className="text-white">Estruturando os tokens.</strong> Usei o Tailwind como referência de nomenclatura e o MUI como referência estética para alguns componentes, adaptando ambos ao contexto de dashboards densos em dados, voltados a um público técnico e científico.
+              <strong className="text-white">{t("processText3")}</strong> {t("processDesc3")}
             </p>
             <p>
-              <strong className="text-white">Documentando em dois lugares.</strong> A documentação foi construída no Figma (specs e guidelines para o time de design) e no Storybook (componentes vivos para o front-end). Manter os dois sincronizados foi parte do trabalho tanto quanto desenhar os componentes.
+              <strong className="text-white">{t("processText4")}</strong> {t("processDesc4")}
             </p>
           </div>
 
@@ -188,20 +190,20 @@ export default function CroftCaseStudy() {
         {/* Section 4 */}
         <section id="decisoes" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            4. Decisões e aprendizados
+            {t("toc.decisions")}
           </h2>
           <div className="space-y-4 text-stone-300 text-base sm:text-lg leading-relaxed pt-2">
             <div className="bg-stone-900/40 p-5 rounded-xl border border-stone-800/50">
-              <h3 className="mb-2 font-semibold text-white text-lg">1. Uma paleta ampla era necessidade, não luxo</h3>
-              <p className="text-stone-400">Dashboards de monitoramento de poços representam muitas variáveis simultâneas, com múltiplas curvas sobrepostas no mesmo gráfico. Isso exigiu uma paleta bem mais ampla do que o usual, tanto para os templates iniciais quanto para as sugestões de cor nos formulários de customização, onde o próprio usuário escolhe como visualizar seus dados.</p>
+              <h3 className="mb-2 font-semibold text-white text-lg">{t("decision1Title")}</h3>
+              <p className="text-stone-400">{t("decision1Text")}</p>
             </div>
             <div className="bg-stone-900/40 p-5 rounded-xl border border-stone-800/50">
-              <h3 className="mb-2 font-semibold text-white text-lg">2. Eu estava errado sobre opacidade</h3>
-              <p className="text-stone-400">Minha primeira decisão foi evitar cores com opacidade variável, para manter controle total sem depender do que estava atrás de cada elemento. Na prática, opacidade se mostrou a forma mais prática de resolver estados de interação como hover e pressed, sem precisar definir manualmente uma cor para cada estado em cada superfície do sistema. Foi uma das decisões que mais precisei desaprender no projeto.</p>
+              <h3 className="mb-2 font-semibold text-white text-lg">{t("decision2Title")}</h3>
+              <p className="text-stone-400">{t("decision2Text")}</p>
             </div>
             <div className="bg-stone-900/40 p-5 rounded-xl border border-stone-800/50">
-              <h3 className="mb-2 font-semibold text-white text-lg">3. Tipografia enxuta por design</h3>
-              <p className="text-stone-400">O produto é voltado a dashboards e formulários, não a conteúdo editorial. Por isso optei por uma escala tipográfica compacta, o que manteve a interface previsível e reduziu decisões desnecessárias no uso do design system.</p>
+              <h3 className="mb-2 font-semibold text-white text-lg">{t("decision3Title")}</h3>
+              <p className="text-stone-400">{t("decision3Text")}</p>
             </div>
           </div>
         </section>
@@ -209,28 +211,28 @@ export default function CroftCaseStudy() {
         {/* Section 5 */}
         <section id="antes-depois" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            5. Antes / depois
+            {t("toc.beforeAfter")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
             <div className="space-y-3">
-              <h3 className="font-semibold text-stone-400 text-lg">Antes</h3>
+              <h3 className="font-semibold text-stone-400 text-lg">{t("beforeTitle")}</h3>
               <div 
                 className="bg-stone-900/40 rounded-md border border-stone-800 overflow-hidden cursor-pointer transition-transform hover:scale-[1.02]"
                 onClick={() => setExpandedImage("/assets/croft/old_gold.jpg")}
               >
                 <Image src="/assets/croft/old_gold.jpg" alt="Interface antiga" width={800} height={450} className="w-full h-auto" />
               </div>
-              <p className="text-stone-500 text-sm">Design fragmentado e sem padrão visual estabelecido.</p>
+              <p className="text-stone-500 text-sm">{t("beforeText")}</p>
             </div>
             <div className="space-y-3">
-              <h3 className="font-semibold text-rose-500 text-lg">Depois</h3>
+              <h3 className="font-semibold text-rose-500 text-lg">{t("afterTitle")}</h3>
               <div 
                 className="bg-stone-900/40 rounded-md border border-stone-700 overflow-hidden cursor-pointer transition-transform hover:scale-[1.02]"
                 onClick={() => setExpandedImage("/assets/croft/new_gold.jpg")}
               >
                 <Image src="/assets/croft/new_gold.jpg" alt="Interface nova" width={800} height={450} className="w-full h-auto" />
               </div>
-              <p className="text-stone-400 text-sm">Interface unificada com o novo Design System, mais limpa e consistente.</p>
+              <p className="text-stone-400 text-sm">{t("afterText")}</p>
             </div>
           </div>
         </section>
@@ -238,13 +240,13 @@ export default function CroftCaseStudy() {
         {/* Section 6 */}
         <section id="impacto" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
-            6. Impacto
+            {t("toc.impact")}
           </h2>
           <ul className="space-y-3 text-stone-300 text-base sm:text-lg leading-relaxed list-disc list-inside pt-2">
-            <li>Consistência visual entre produtos que antes pareciam de empresas diferentes.</li>
-            <li>Documentação viva no Figma e no Storybook, usada como referência no dia a dia.</li>
-            <li>Telas que levavam de 3 a 4 dias para serem prototipadas passaram a ser feitas em 1 a 2 dias, com alta fidelidade e interações animadas.</li>
-            <li>Em telas mais simples, o time de front-end passou a prototipar diretamente no código, com apoio do design, algo possível só porque o design system já era confiável o suficiente para sustentar esse fluxo.</li>
+            <li>{t("impact1")}</li>
+            <li>{t("impact2")}</li>
+            <li>{t("impact3")}</li>
+            <li>{t("impact4")}</li>
           </ul>
         </section>
 
