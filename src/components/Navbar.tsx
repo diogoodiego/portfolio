@@ -110,7 +110,7 @@ export const Navbar: React.FC = () => {
           <span className="group-hover:left-[-18px] z-[-10] group-hover:z-[100] absolute w-4 h-4 text-base group-hover:-rotate-45 transition-all animate-hang duration-200">🤙</span>
         </Link>
 
-        <div className={`flex items-center p-3 rounded-full ${isScrolled ? "bg-transparent p-0!" : "bg-stone-950/60"}`}>
+        <div className={`flex items-center p-3 pe-5 rounded-full ${isScrolled ? "bg-transparent p-0!" : "bg-stone-950/60"}`}>
           <div className="hidden md:flex items-center gap-3 sm:gap-4">
             <NavItem
               href="/"
@@ -157,7 +157,7 @@ export const Navbar: React.FC = () => {
             <div className="group relative flex justify-center items-center">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex justify-center items-center shadow-sm rounded-full focus:outline-none ring-1 ring-white/20 hover:ring-white/60 focus:ring-white/60 w-[22px] h-[22px] overflow-hidden transition-all duration-300"
+                className="flex justify-center items-center shadow-sm rounded-full focus:outline-none ring-3 ring-white/40 hover:ring-white/60 focus:ring-white/60 w-[22px] h-[22px] overflow-hidden transition-all duration-300"
                 aria-label={t("switchLanguage")}
               >
                 <img
@@ -203,7 +203,7 @@ export const Navbar: React.FC = () => {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden flex justify-center items-center p-1.5 ml-2 text-white/70 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors w-8 h-8"
+            className="md:hidden flex justify-center items-center bg-white/5 hover:bg-white/10 ml-2 p-1.5 rounded-full w-8 h-8 text-white/70 hover:text-white transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
@@ -218,12 +218,12 @@ export const Navbar: React.FC = () => {
             animate={{ opacity: 1, height: "auto", scale: 1 }}
             exit={{ opacity: 0, height: 0, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute top-full left-4 right-4 mt-3 bg-stone-900/95 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden md:hidden shadow-2xl origin-top flex flex-col p-2 gap-1"
+            className="md:hidden top-full right-4 left-4 absolute flex flex-col gap-1 bg-stone-900/95 shadow-2xl backdrop-blur-xl mt-3 p-2 border border-white/10 rounded-2xl overflow-hidden origin-top"
           >
             <NavItem
               href="/"
               isActive={activeSection === "home"}
-              className="w-full text-center py-3"
+              className="py-3 w-full text-center"
               onClick={(e) => {
                 if (pathname === "/") {
                   e.preventDefault();
@@ -238,7 +238,7 @@ export const Navbar: React.FC = () => {
             <NavItem
               href="/#projects"
               isActive={activeSection === "projects"}
-              className="w-full text-center py-3"
+              className="py-3 w-full text-center"
               onClick={(e) => {
                 if (pathname === "/") {
                   e.preventDefault();
@@ -253,7 +253,7 @@ export const Navbar: React.FC = () => {
             <NavItem
               href="/#contact"
               isActive={activeSection === "contact"}
-              className="w-full text-center py-3"
+              className="py-3 w-full text-center"
               onClick={(e) => {
                 if (pathname === "/") {
                   e.preventDefault();
