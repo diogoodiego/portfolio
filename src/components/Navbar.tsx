@@ -157,7 +157,7 @@ export const Navbar: React.FC = () => {
             <div className="group relative flex justify-center items-center">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex justify-center items-center shadow-sm rounded-full focus:outline-none ring-3 ring-white/40 hover:ring-white/60 focus:ring-white/60 w-[22px] h-[22px] overflow-hidden transition-all duration-300"
+                className="flex justify-center items-center shadow-sm rounded-full focus:outline-none ring-3 ring-white/40 hover:ring-white/60 focus:ring-white/60 w-[22px] h-[22px] overflow-hidden transition-all duration-300 cursor-pointer"
                 aria-label={t("switchLanguage")}
               >
                 <img

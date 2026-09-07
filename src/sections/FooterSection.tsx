@@ -255,8 +255,8 @@ export const FooterSection = () => {
             </div>
           </div>
           {/* Bottom Row: Additional Rows */}
-          <div className="flex flex-row items-center bg-white/5 p-6 rounded-lg overflow-hidden">
-            <p className="me-auto font-semibold text-stone-300 text-2xl">{t("letsChat")}</p>
+          <div className="flex lg:flex-row flex-col items-center gap-8 bg-white/5 p-6 rounded-lg overflow-hidden">
+            <p className="lg:me-auto font-semibold text-stone-300 text-2xl text-center">{t("letsChat")}</p>
             <div className="flex gap-4">
               {/* Desktop Copy Email Button */}
               <button
@@ -276,7 +276,7 @@ export const FooterSection = () => {
               {/* Mobile Mailto Link */}
               <a
                 href="mailto:diogo.sam.nascimento@gmail.com"
-                className="group flex sm:hidden items-center gap-0 hover:gap-2 bg-white/5 px-5 py-2 rounded-full text-stone-400 hover:text-stone-50 text-lg cursor-pointer"
+                className="group sm:hidden flex items-center gap-0 hover:gap-2 bg-white/5 px-5 py-2 rounded-full text-stone-400 hover:text-stone-50 text-lg cursor-pointer"
               >
                 {t("sendEmail")}
                 <div className="w-0 group-hover:w-5 overflow-hidden transition-all duration-200 ease-in-out">
