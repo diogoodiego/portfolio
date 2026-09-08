@@ -173,8 +173,8 @@ export const FooterSection = () => {
     { name: "Croft Design System", meta: "24", href: "/croft", thumbnail: "/assets/croft-mockup.mp4", roles: [t("projectRoles.productDesign"), t("projectRoles.designSystem")], description: t("projectDesc.croft") },
     { name: "Depth Track", meta: "24", href: "/depth-track", thumbnail: "/assets/depth/preview.mp4", roles: [t("projectRoles.uxUiDesign"), t("projectRoles.frontend")], description: t("projectDesc.depth") },
     { name: "IFSolve Platform", meta: "23", href: "/ifsolve", thumbnail: "/assets/ifsolve/preview.mp4", roles: [t("projectRoles.uxResearch"), t("projectRoles.usability")], description: t("projectDesc.ifsolve") },
-    { name: "Geowellex Education", meta: "22", thumbnail: "/assets/geox-education/FireShot Capture 001 - Geowellex Education - [www.geowellex.com].png", roles: [t("projectRoles.uiDesign"), t("projectRoles.frontend")], description: t("projectDesc.geowellex") },
-    { name: "Diga Duvido", meta: "21", thumbnail: "/assets/diga-duvido/home.webp", roles: [t("projectRoles.productDesign")], description: t("projectDesc.diga") },
+    { name: "Geowellex Education", meta: "22", href: "/geowellex", thumbnail: "/assets/geox-education/FireShot Capture 001 - Geowellex Education - [www.geowellex.com].png", roles: [t("projectRoles.uiDesign"), t("projectRoles.frontend")], description: t("projectDesc.geowellex") },
+    { name: "Diga Duvido", meta: "21", href: "/diga-duvido", thumbnail: "/assets/diga-duvido/home.webp", roles: [t("projectRoles.productDesign")], description: t("projectDesc.diga") },
   ];
 
   return (

@@ -193,5 +193,25 @@
     "takeawaysText1": "I didn't know heuristic evaluation before this project. The person who introduced me to the method was professor Silva Matos, author of the Eureca List itself used in the evaluation, and so I arrived without any preconceived idea of how the process should work. This turned out to be good: I learned the method while applying it, without prejudices about what I \"should\" find or how to classify each problem.",
     "takeawaysText2": "Over time, I realized that the real value of the evaluation lies in translating perception into argument: it's not enough to feel that something is wrong; you need to name the principle, measure the severity, and propose a solution path that someone else can execute without needing to ask you anything.",
     "takeawaysText3": "It was also the project that taught me not to confuse volume with depth. A 51-point report is only useful if someone can open it and, in five minutes, know exactly what to solve first."
+  },
+  "Geowellex": {
+    "meta": "UX/UI Design & Frontend • Case study",
+    "title": "Geowellex Education",
+    "subtitle": "Educational portal for the energy sector.",
+    "role": "Role:",
+    "roleVal": "Design + Development",
+    "jobTitle": "Product Designer",
+    "contentTitle": "Overview",
+    "contentText": "Geowellex Education is an educational platform designed specifically for the energy sector, aiming to provide high-quality training and resources for professionals in the field. The project focused on creating an intuitive, accessible, and engaging learning experience, bridging the gap between complex technical content and user-friendly design."
+  },
+  "DigaDuvido": {
+    "meta": "UI Design & Branding • Case study",
+    "title": "Diga Duvido",
+    "subtitle": "Card game digital experience.",
+    "role": "Role:",
+    "roleVal": "Design + Development",
+    "jobTitle": "Product Designer",
+    "contentTitle": "Overview",
+    "contentText": "School project created in the human-computer interface discipline: a betting website. This interface prototype was created in Figma and features a modern design for sports and e-sports betting. I'm excited to share this work and would love to receive feedback on the interface and usability."
   }
 }

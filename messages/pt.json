@@ -193,5 +193,25 @@
     "takeawaysText1": "Eu não conhecia avaliação heurística antes desse projeto. Quem me apresentou o método foi a professora Silva Matos, autora da própria Lista Eureca usada na avaliação, e por isso cheguei sem nenhuma ideia formada sobre como o processo deveria funcionar. Isso acabou sendo bom: aprendi o método enquanto aplicava, sem preconceitos sobre o que \"devia\" encontrar ou como classificar cada problema.",
     "takeawaysText2": "Com o tempo, percebi que o valor real da avaliação está em traduzir percepção em argumento: não basta sentir que algo está errado, é preciso nomear o princípio, medir a gravidade e propor um caminho de solução que outra pessoa consiga executar sem precisar te perguntar nada.",
     "takeawaysText3": "Foi também o projeto que me ensinou a não confundir volume com profundidade. Um relatório com 51 pontos só é útil se alguém conseguir abrir ele e, em cinco minutos, saber exatamente o que resolver primeiro."
+  },
+  "Geowellex": {
+    "meta": "UX/UI Design & Frontend • Estudo de caso",
+    "title": "Geowellex Education",
+    "subtitle": "Portal educacional para o setor de energia.",
+    "role": "Papel:",
+    "roleVal": "Design + Desenvolvimento",
+    "jobTitle": "Product Designer",
+    "contentTitle": "Visão geral",
+    "contentText": "Geowellex Education é uma plataforma educacional projetada especificamente para o setor de energia, com o objetivo de fornecer treinamento e recursos de alta qualidade para profissionais da área. O projeto focou em criar uma experiência de aprendizado intuitiva, acessível e engajadora, preenchendo a lacuna entre conteúdo técnico complexo e um design amigável ao usuário."
+  },
+  "DigaDuvido": {
+    "meta": "UI Design & Branding • Estudo de caso",
+    "title": "Diga Duvido",
+    "subtitle": "Experiência digital de jogo de cartas.",
+    "role": "Papel:",
+    "roleVal": "Design + Desenvolvimento",
+    "jobTitle": "Product Designer",
+    "contentTitle": "Visão geral",
+    "contentText": "Projeto escolar criado na disciplina de interface humano-computador: um site de apostas. Este protótipo de interface foi criado no Figma e apresenta um design moderno para apostas em esportes e e-sports. Estou animado para compartilhar este trabalho e adoraria receber feedback sobre a interface e usabilidade."
   }
 }
