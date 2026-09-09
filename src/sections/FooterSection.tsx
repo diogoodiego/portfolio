@@ -211,9 +211,7 @@ export const FooterSection = () => {
           </div>
 
           <div className="z-10 relative mt-auto pt-48">
-            <p className="mb-2 font-regular text-md text-white/60 tracking-wider">
-              {t("aboutMeTitle")}
-            </p>
+
             <p className="max-w-[360px] font-medium text-white text-base lg:text-lg leading-snug">
               {t("aboutMeText")}
             </p>
