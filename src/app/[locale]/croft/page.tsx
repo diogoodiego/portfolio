@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Navbar, FloatingTOC } from "@/components";
-import me from "@/assets/me.png";
 import { useTranslations } from "next-intl";
 
 export default function CroftCaseStudy() {
@@ -62,20 +61,7 @@ export default function CroftCaseStudy() {
             <div><strong className="text-stone-300">{t("collaboration")}</strong> {t("collaborationVal")}</div>
           </div>
 
-          {/* Meta Line */}
-          <div className="flex items-center gap-4 pt-2 text-stone-400 text-sm sm:text-base">
-            <Image
-              src={me}
-              alt="Dio"
-              width={40}
-              height={40}
-              className="rounded-full object-cover w-auto h-auto"
-            />
-            <div>
-              <div className="font-semibold text-white">Dio</div>
-              <div>{t("jobTitle")}</div>
-            </div>
-          </div>
+
         </header>
 
         {/* Hero Video */}

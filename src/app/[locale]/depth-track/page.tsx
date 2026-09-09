@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Navbar, FloatingTOC } from "@/components";
-import me from "@/assets/me.png";
 import { useTranslations } from "next-intl";
 
 export default function DepthTrackCaseStudy() {
@@ -47,20 +46,7 @@ export default function DepthTrackCaseStudy() {
             <div><strong className="text-stone-300">{t("users")}</strong> {t("usersVal")}</div>
           </div>
 
-          {/* Meta Line */}
-          <div className="flex items-center gap-4 pt-2 text-stone-400 text-sm sm:text-base">
-            <Image
-              src={me}
-              alt="Dio"
-              width={40}
-              height={40}
-              className="rounded-full w-auto h-auto object-cover"
-            />
-            <div>
-              <div className="font-semibold text-white">Dio</div>
-              <div>{t("jobTitle")}</div>
-            </div>
-          </div>
+
         </header>
 
         {/* Section 1 */}
@@ -96,7 +82,7 @@ export default function DepthTrackCaseStudy() {
             className="bg-stone-900/40 mt-6 border border-stone-800 rounded-md overflow-hidden hover:scale-[1.02] transition-transform cursor-pointer"
             onClick={() => setExpandedImage("/assets/depth/old_track.png")}
           >
-            <Image src="/assets/depth/old_track.png" alt="Componente antigo" width={1200} height={675} className="w-full h-auto" />
+            <Image src="/assets/depth/old_track.png" alt="Componente antigo" width={1200} height={675} className="w-full h-auto object-contain aspect-video" />
           </div>
 
           <blockquote className="mt-6 py-1 pl-4 border-rose-500 border-l-4 text-stone-400 text-lg sm:text-xl italic">
@@ -118,7 +104,7 @@ export default function DepthTrackCaseStudy() {
             className="bg-stone-900/40 mt-6 border border-stone-800 rounded-md overflow-hidden hover:scale-[1.02] transition-transform cursor-pointer"
             onClick={() => setExpandedImage("/assets/depth/prototipo1.png")}
           >
-            <Image src="/assets/depth/prototipo1.png" alt="Protótipo inicial no Figma" width={1200} height={675} className="w-full h-auto" />
+            <Image src="/assets/depth/prototipo1.png" alt="Protótipo inicial no Figma" width={1200} height={675} className="w-full h-auto object-contain aspect-video" />
           </div>
         </section>
 
@@ -137,7 +123,7 @@ export default function DepthTrackCaseStudy() {
             className="bg-stone-900/40 mt-6 border border-stone-800 rounded-md overflow-hidden hover:scale-[1.02] transition-transform cursor-pointer"
             onClick={() => setExpandedImage("/assets/depth/protipo2.png")}
           >
-            <Image src="/assets/depth/protipo2.png" alt="As 3 colunas lado a lado" width={1200} height={675} className="w-full h-auto" />
+            <Image src="/assets/depth/protipo2.png" alt="As 3 colunas lado a lado" width={1200} height={675} className="w-full h-auto object-cover aspect-video" />
           </div>
         </section>
 
@@ -154,7 +140,7 @@ export default function DepthTrackCaseStudy() {
             className="bg-stone-900/40 mt-6 border border-stone-800 rounded-md overflow-hidden hover:scale-[1.02] transition-transform cursor-pointer"
             onClick={() => setExpandedImage("/assets/depth/legend.png")}
           >
-            <Image src="/assets/depth/legend.png" alt="Legenda flutuante em ação" width={1200} height={675} className="w-full h-auto" />
+            <Image src="/assets/depth/legend.png" alt="Legenda flutuante em ação" width={1200} height={675} className="w-full h-auto object-cover aspect-video" />
           </div>
         </section>
 
@@ -174,7 +160,18 @@ export default function DepthTrackCaseStudy() {
               loop
               muted
               playsInline
-              className="w-full h-full object-cover"
+              className="w-full h-full object-fit"
+            />
+          </div>
+
+          <div className="relative flex justify-center items-center bg-stone-900/40 mt-6 border border-stone-800 rounded-md aspect-video overflow-hidden">
+            <video
+              src="/assets/depth/stratvision.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-fit"
             />
           </div>
         </section>

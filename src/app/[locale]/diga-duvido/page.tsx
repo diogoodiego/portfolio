@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Navbar } from "@/components";
-import me from "@/assets/me.png";
+import { Navbar, FloatingTOC } from "@/components";
 import { useTranslations } from "next-intl";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -50,20 +49,7 @@ export default function DigaDuvidoCaseStudy() {
             <div><strong className="text-stone-300">{t("role")}</strong> {t("roleVal")}</div>
           </div>
 
-          {/* Meta Line */}
-          <div className="flex items-center gap-4 pt-2 text-stone-400 text-sm sm:text-base">
-            <Image
-              src={me}
-              alt="Dio"
-              width={40}
-              height={40}
-              className="rounded-full w-auto h-auto object-cover"
-            />
-            <div>
-              <div className="font-semibold text-white">Dio</div>
-              <div>{t("jobTitle")}</div>
-            </div>
-          </div>
+
         </header>
 
         {/* Section 1 */}
