@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import me from "@/assets/me.png";
@@ -56,6 +58,18 @@ export const StoryCard: React.FC<StoryCardProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const t = useTranslations("StoryCard");
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    setMousePos({ x: e.clientX, y: e.clientY });
+  }, []);
 
   const nextStory = useCallback(() => {
     setProgress(0);
@@ -116,15 +130,21 @@ export const StoryCard: React.FC<StoryCardProps> = ({
   const activeStory = stories[currentIndex];
 
   return (
-    <div
-      onClick={handleCardClick}
-      onMouseDown={() => setIsPaused(true)}
-      onMouseUp={() => setIsPaused(false)}
-      onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={() => setIsPaused(true)}
-      onTouchEnd={() => setIsPaused(false)}
-      className={`group relative flex min-h-[300px] h-full w-full select-none flex-col justify-between overflow-hidden rounded-lg bg-stone-900 shadow-xl transition-all duration-300 hover:border-white/20 cursor-pointer ${className}`}
-    >
+    <>
+      <div
+        onClick={handleCardClick}
+        onMouseDown={() => setIsPaused(true)}
+        onMouseUp={() => setIsPaused(false)}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => {
+          setIsPaused(false);
+          setIsHovering(false);
+        }}
+        onMouseMove={handleMouseMove}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+        className={`group relative flex min-h-[300px] h-full w-full select-none flex-col justify-between overflow-hidden rounded-lg bg-stone-900 shadow-xl transition-all duration-300 hover:border-white/20 cursor-pointer ${className}`}
+      >
       {/* Background Image with Framer Motion crossfade */}
       <AnimatePresence mode="popLayout">
         <motion.div
@@ -147,10 +167,15 @@ export const StoryCard: React.FC<StoryCardProps> = ({
       </AnimatePresence>
 
 
-      {/* Top Header: Progress Bars + User Info */}
-      <div className="z-10 flex flex-col gap-2.5 p-4">
+      {/* Top Header: Title + Progress Bars with Gradient Background */}
+      <div className="z-10 flex flex-col gap-2 p-4 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none pb-8">
+        {/* Title */}
+        <h3 className="text-white font-medium text-sm drop-shadow-md">
+          {t('uiChallengeTitle')}
+        </h3>
+        
         {/* Progress Bars */}
-        <div className="flex gap-1.5 w-full">
+        <div className="flex gap-1.5 w-full pointer-events-auto">
           {stories.map((story, index) => {
             let barWidth = "0%";
             if (index < currentIndex) {
@@ -206,6 +231,32 @@ export const StoryCard: React.FC<StoryCardProps> = ({
         </button>
       </div>
     </div>
+
+    {/* Tooltip Portal */}
+    {mounted &&
+      createPortal(
+        <AnimatePresence>
+          {isHovering && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              className="fixed z-[9999] pointer-events-none w-64 bg-stone-950/90 backdrop-blur-md border border-white/10 rounded-lg p-3 shadow-2xl"
+              style={{
+                left: mousePos.x + 16,
+                top: mousePos.y + 16,
+              }}
+            >
+              <p className="text-white/90 text-xs leading-relaxed">
+                {t('uiChallengeCaption')}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </>
   );
 };
 

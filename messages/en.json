@@ -213,5 +213,9 @@
     "jobTitle": "Product Designer",
     "contentTitle": "Overview",
     "contentText": "School project created in the human-computer interface discipline: a betting website. This interface prototype was created in Figma and features a modern design for sports and e-sports betting. I'm excited to share this work and would love to receive feedback on the interface and usability."
+  },
+  "StoryCard": {
+    "uiChallengeTitle": "Ui chalange",
+    "uiChallengeCaption": "The images being displayed are a challenge I do to try and replicate interfaces I found beautiful in Figma, and these are some of the ones I liked the most."
   }
 }

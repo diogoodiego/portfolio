@@ -213,5 +213,9 @@
     "jobTitle": "Product Designer",
     "contentTitle": "Visão geral",
     "contentText": "Projeto escolar criado na disciplina de interface humano-computador: um site de apostas. Este protótipo de interface foi criado no Figma e apresenta um design moderno para apostas em esportes e e-sports. Estou animado para compartilhar este trabalho e adoraria receber feedback sobre a interface e usabilidade."
+  },
+  "StoryCard": {
+    "uiChallengeTitle": "Ui chalange",
+    "uiChallengeCaption": "As imagens que estão sendo exibidas são um desafio que tento fazer para tentar replicar no Figma interfaces que achei bonitas e que essas são algumas que mais gostei."
   }
 }
