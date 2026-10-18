@@ -11,6 +11,7 @@ export default function DepthTrackCaseStudy() {
 
   const tocItems = [
     { id: "contexto", title: t("toc.context") },
+    { id: "ouvindo", title: t("toc.listening") },
     { id: "problema", title: t("toc.problem") },
     { id: "prototipo", title: t("toc.prototype") },
     { id: "estrutura", title: t("toc.structure") },
@@ -67,10 +68,35 @@ export default function DepthTrackCaseStudy() {
         </section>
 
         {/* Section 2 */}
+        <section id="ouvindo" className="space-y-4">
+          <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
+            {t("listeningTitle")}
+          </h2>
+          <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
+            {t("listeningText1")}
+          </p>
+          <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
+            {t("listeningText2")}
+          </p>
+          <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
+            {t("listeningText3")}
+          </p>
+        </section>
+
+        {/* Section 3 */}
         <section id="problema" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
             {t("problemTitle")}
           </h2>
+          <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
+            {t("problemIntro")}
+          </p>
+          <ol className="space-y-2 pl-6 text-stone-300 text-base sm:text-lg marker:text-rose-500 leading-relaxed list-decimal">
+            <li>{t("problemStep1")}</li>
+            <li>{t("problemStep2")}</li>
+            <li>{t("problemStep3")}</li>
+            <li>{t("problemStep4")}</li>
+          </ol>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
             {t("problemText1")}
           </p>
@@ -84,14 +110,9 @@ export default function DepthTrackCaseStudy() {
           >
             <Image src="/assets/depth/old_track.png" alt="Componente antigo" width={1200} height={675} className="w-full h-auto object-contain aspect-video" />
           </div>
-
-          <blockquote className="mt-6 py-1 pl-4 border-rose-500 border-l-4 text-stone-400 text-lg sm:text-xl italic">
-            {t("quote")}
-            <footer className="mt-2 text-stone-500 text-base">{t("quoteAuthor")}</footer>
-          </blockquote>
         </section>
 
-        {/* Section 3 */}
+        {/* Section 4 */}
         <section id="prototipo" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
             {t("prototypeTitle")}
@@ -108,15 +129,37 @@ export default function DepthTrackCaseStudy() {
           </div>
         </section>
 
-        {/* Section 4 */}
+        {/* Section 5 */}
         <section id="estrutura" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
             {t("structureTitle")}
           </h2>
+          <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
+            {t("structureIntro")}
+          </p>
           <div className="space-y-4 pt-2 text-stone-300 text-base sm:text-lg leading-relaxed">
             <p><strong className="text-white">{t("structureItem1")}</strong> {t("structureDesc1")}</p>
             <p><strong className="text-white">{t("structureItem2")}</strong> {t("structureDesc2")}</p>
             <p><strong className="text-white">{t("structureItem3")}</strong> {t("structureDesc3")}</p>
+          </div>
+
+          <div className="mt-6 border border-stone-800 rounded-md overflow-x-auto">
+            <table className="w-full text-sm sm:text-base text-left">
+              <thead className="bg-stone-900/60 text-white">
+                <tr>
+                  <th className="px-4 py-3 font-semibold">{t("comparison.before")}</th>
+                  <th className="px-4 py-3 font-semibold">{t("comparison.after")}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-stone-800 text-stone-300">
+                {[1, 2, 3, 4].map((i) => (
+                  <tr key={i}>
+                    <td className="px-4 py-3 text-stone-400">{t(`comparison.before${i}`)}</td>
+                    <td className="px-4 py-3">{t(`comparison.after${i}`)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
 
           <div
@@ -127,13 +170,16 @@ export default function DepthTrackCaseStudy() {
           </div>
         </section>
 
-        {/* Section 5 */}
+        {/* Section 6 */}
         <section id="momento" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
             {t("missingTitle")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            {t("missingText")}
+            {t("missingText1")}
+          </p>
+          <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
+            {t("missingText2")}
           </p>
 
           <div
@@ -144,14 +190,22 @@ export default function DepthTrackCaseStudy() {
           </div>
         </section>
 
-        {/* Section 6 */}
+        {/* Section 7 */}
         <section id="resultado" className="space-y-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
             {t("resultTitle")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            {t("resultText")}
+            <strong className="text-white">{t("resultHighlight")}</strong>{t("resultText1")}
           </p>
+          <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
+            {t("resultText2")}
+          </p>
+
+          <blockquote className="mt-6 py-1 pl-4 border-rose-500 border-l-4 text-stone-400 text-lg sm:text-xl italic">
+            {t("quote")}
+            <footer className="mt-2 text-stone-500 text-base">{t("quoteAuthor")}</footer>
+          </blockquote>
 
           <div className="relative flex justify-center items-center bg-stone-900/40 mt-6 border border-stone-800 rounded-md aspect-video overflow-hidden">
             <video
@@ -176,13 +230,16 @@ export default function DepthTrackCaseStudy() {
           </div>
         </section>
 
-        {/* Section 7 */}
+        {/* Section 8 */}
         <section id="aprendizado" className="space-y-4 pt-4">
           <h2 className="font-bold text-white text-2xl sm:text-3xl tracking-tight">
             {t("learningsTitle")}
           </h2>
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            {t("learningsText")}
+            {t("learningsText1")}
+          </p>
+          <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
+            {t("learningsText2")}
           </p>
         </section>
 
