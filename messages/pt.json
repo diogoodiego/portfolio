@@ -8,18 +8,18 @@
     "portuguese": "Português"
   },
   "Home": {
-    "title": "Criando produtos digitais focados em utilidade, estética e precisão",
-    "description": "Olá, eu sou o Dio! Eu desenho interfaces intuitivas, sistemas de design robustos e soluções visuais de alta fidelidade para indústrias complexas e startups inovadoras.",
-    "viewProjects": "Ver Projetos",
-    "getInTouch": "Fale Comigo"
+    "title": "Product Designer para produtos B2B com dados complexos.",
+    "description": "Há 5 anos desenho dashboards de monitoramento em tempo real para a indústria de óleo e gás, além do design system que os sustenta.",
+    "viewProjects": "Ver cases",
+    "getInTouch": "Entrar em contato"
   },
   "Bento": {
-    "title": "Projetos em Destaque",
-    "subtitle": "Uma seleção curada de projetos de product design, design systems e pesquisa de usabilidade."
+    "title": "Cases em destaque",
+    "subtitle": "Design system, componentes de visualização de dados e avaliação de usabilidade."
   },
   "Footer": {
     "aboutMeTitle": "Sobre mim",
-    "aboutMeText": "Olá, me chamo Diogo! Sou um UX/UI Designer especializado em interfaces limpas e funcionais para o setor de energia.",
+    "aboutMeText": "Sou o Diogo, designer de produto na Geowellex, em Natal. Desenho interfaces para quem toma decisão olhando dados em tempo real: engenheiros de petróleo, petrofísicos e operadores de sonda. Trabalho perto da engenharia: sou formado em Análise e Desenvolvimento de Sistemas e já implementei interfaces em React.",
     "experience": "Experiência",
     "education": "Educação",
     "projects": "Projetos",
@@ -30,15 +30,15 @@
     "roles": {
       "uxuiDesigner": "UX/UI Designer",
       "uiFrontend": "UI Designer e Desenvolvedor Front-end",
-      "uiFreelance": "UI Designer Freelancer",
+      "uiFreelance": "UI Designer (freelancer)",
       "techAnalysis": "Tecnólogo em Análise e Desenvolvimento de Sistemas",
       "techWeb": "Técnico em Informática para Internet"
     },
     "periods": {
-      "present": "Presente",
+      "present": "2021 – atual",
       "p21_25": "2021-2025",
       "p17_21": "2017-2021",
-      "p20_21": "2020-2021",
+      "p20_21": "2020 – 2021",
       "p19": "2019"
     },
     "projectDesc": {

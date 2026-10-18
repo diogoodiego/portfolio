@@ -158,7 +158,7 @@ export const FooterSection = () => {
       period: t("periods.present"),
     },
     {
-      institution: "Leme",
+      institution: "IFRN, Núcleo de Extensão (DIATINF)",
       role: t("roles.uiFrontend"),
       period: t("periods.p20_21"),
     },
