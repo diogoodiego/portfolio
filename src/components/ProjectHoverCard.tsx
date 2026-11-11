@@ -14,7 +14,8 @@ export interface InfoItem {
   roles?: string[];
 }
 
-export const ProjectHoverCard = ({ item }: { item: InfoItem }) => {
+export const ProjectHoverCard = ({ item, size = "sm" }: { item: InfoItem; size?: "sm" | "lg" }) => {
+  const lg = size === "lg";
   const [isHovered, setIsHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -24,10 +25,10 @@ export const ProjectHoverCard = ({ item }: { item: InfoItem }) => {
 
   const itemContent = (
     <>
-      <span className="font-iceberg text-stone-400 group-hover/item:text-stone-50 text-2xl transition-colors duration-200">
+      <span className={`${lg ? "font-medium text-3xl md:text-5xl tracking-tight" : "font-iceberg text-2xl"} text-stone-400 group-hover/item:text-stone-50 transition-colors duration-200`}>
         {item.name}
       </span>
-      <span className="text-stone-600 group-hover/item:text-stone-50 text-sm text-right italic transition-colors duration-200">
+      <span className={`${lg ? "text-base" : "text-sm"} text-stone-600 group-hover/item:text-stone-50 text-right italic transition-colors duration-200`}>
         {item.meta.match(/^\d+$/) ? `${item.meta}` : item.meta}
       </span>
     </>
@@ -96,7 +97,7 @@ export const ProjectHoverCard = ({ item }: { item: InfoItem }) => {
   return (
     <>
       <li
-        className="group/item flex justify-between items-center text-xs cursor-pointer"
+        className={`group/item flex justify-between items-center text-xs cursor-pointer ${lg ? "py-8 md:py-10 border-b border-stone-800" : ""}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onMouseMove={handleMouseMove}
